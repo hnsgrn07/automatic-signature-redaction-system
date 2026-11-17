@@ -80,7 +80,7 @@ def find_labels(lines):
             best = min(Levenshtein.distance(up[:n], target)
                        for n in range(max(1, len(target) - kmax), min(len(up), len(target) + kmax) + 1))
             if best <= kmax:
-                if re.search(r'[0-9]', ln['text']) or (best >= 2 and ':' not in ln['text']):
+                if re.search(r'[0-9]', ln['text']) or (label == 'Attested' and best >= 2 and ':' not in ln['text']):
                     continue
                 first = letters(ln['text'])[:1]
                 if first.upper() != target[0] or (label == 'APPROVED' and not first.isupper()):
@@ -95,7 +95,8 @@ def is_name_line(ln):
     lt = letters(t)
     if len(lt) < NAME_MIN_LETTERS or len(ln['words']) > NAME_MAX_WORDS:
         return False
-    if re.search(r'[0-9]', t) or t.endswith(':'):
+    # digits only as a lone character (a middle initial "O." is often read as 0 or 9)
+    if any(re.search(r'[0-9]', w) and len(w.strip('.,')) > 1 for w in t.split()) or t.endswith(':'):
         return False
     words = [w for w in re.split(r'\s+', t) if letters(w)]
     if len(words) < NAME_MIN_WORDS or any(letters(w).upper() in NAME_STOPWORDS for w in words):
@@ -156,12 +157,15 @@ def find_blocks(lines, ppi):
             if (gap < -NAME_TITLE_OVERLAP_IN or (name['box'][1] + name['box'][3]) >= (title['box'][1] + title['box'][3])
                     or x_overlap(name['box'], title['box']) < NAME_TITLE_X_OVERLAP):
                 continue
-            if (is_name_line(name) or is_name_line(row_join(lines, j, ppi))) and j not in used:
-                used.add(j)
-                found.append(dict(kind='block', role=role, box=union([name['box'], title['box']]),
-                                  name_box=name['box'], text=f"{name['text']} / {title['text']}",
-                                  conf=min(name['conf'], title['conf']), method=f'name+title {score:.0f}'))
-            break
+            if (is_name_line(name) or is_name_line(row_join(lines, j, ppi))):
+                if j not in used:
+                    used.add(j)
+                    found.append(dict(kind='block', role=role, box=union([name['box'], title['box']]),
+                                      name_box=name['box'], text=f"{name['text']} / {title['text']}",
+                                      conf=min(name['conf'], title['conf']), method=f'name+title {score:.0f}'))
+                break
+            if role_of(name['text'])[0] is None:
+                break      # only another title line (a two-line title) may sit between name and title
     return found
 
 

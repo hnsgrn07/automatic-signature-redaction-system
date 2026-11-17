@@ -13,10 +13,11 @@ Usage (D:\\doctr-env):
   D:\\doctr-env\\Scripts\\python.exe check_doctr_anchors.py [--out DIR] [--cpu]
 """
 import argparse, csv, json, os, random, re, sys, time
+from paths import thesis_path
 from collections import defaultdict
 
-ANN = r'D:\Thesis\baguio_annotation'
-GT_DEV = r'D:\Thesis\ground_truth\final\ground_truth_dev.json'
+ANN = thesis_path('baguio_annotation')
+GT_DEV = thesis_path('ground_truth', 'final', 'ground_truth_dev.json')
 HARD = [  # (year, file, page, why)
     (2020, '069-2020.pdf', 2, 'Attested left unsigned'),
     (2021, '111-2021.pdf', 5, 'finance certification page, no anchor labels, 5 signatures'),
@@ -59,7 +60,7 @@ def near_misses(words):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--out', default=r'D:\Thesis\pipeline_checks\doctr_anchor_check')
+    ap.add_argument('--out', default=thesis_path('pipeline_checks', 'doctr_anchor_check'))
     ap.add_argument('--cpu', action='store_true')
     args = ap.parse_args()
 

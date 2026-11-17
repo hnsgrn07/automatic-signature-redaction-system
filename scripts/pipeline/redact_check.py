@@ -8,6 +8,7 @@
   D:\\doctr-env\\Scripts\\python.exe redact_check.py [--docs N] [--out DIR]
 """
 import argparse, csv, json, os, random, sys, time
+from paths import thesis_path
 
 import cv2
 import numpy as np
@@ -18,16 +19,16 @@ from ingest import load_pages, to_gray
 from detect import detect
 from redact import redact_pdf, verify
 
-CORPUS = r'D:\Thesis\baguio_corpus_sample'
-ANN = r'D:\Thesis\baguio_annotation'
-CACHE = r'D:\Thesis\pipeline_cache\doctr_dev'
+CORPUS = thesis_path('baguio_corpus_sample')
+ANN = thesis_path('baguio_annotation')
+CACHE = thesis_path('pipeline_cache', 'doctr_dev')
 ALWAYS = [('2021', '111-2021.pdf'), ('2026', '016-2026.pdf'), ('2024', '082-2025.pdf'), ('2020', '069-2020.pdf')]
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--docs', type=int, default=12, help='random dev docs (seed "redact-check-2026") plus 4 fixed ones')
-    ap.add_argument('--out', default=r'D:\Thesis\pipeline_checks\redact_check')
+    ap.add_argument('--out', default=thesis_path('pipeline_checks', 'redact_check'))
     args = ap.parse_args()
     rows = [r for r in csv.DictReader(open(os.path.join(CORPUS, 'sample.csv'), encoding='utf-8')) if r['split'] == 'dev']
     pick = random.Random('redact-check-2026').sample(rows, args.docs)

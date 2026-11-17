@@ -10,13 +10,14 @@ Refuses test pages: anchor rules are developed on dev only.
   D:\\doctr-env\\Scripts\\python.exe ocr_cache.py
 """
 import argparse, csv, json, os, sys, time
+from paths import thesis_path
 
-ANN = r'D:\Thesis\baguio_annotation'
+ANN = thesis_path('baguio_annotation')
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--out', default=r'D:\Thesis\pipeline_cache\doctr_dev')
+    ap.add_argument('--out', default=thesis_path('pipeline_cache', 'doctr_dev'))
     args = ap.parse_args()
     import numpy as np, torch, pymupdf
     from doctr.models import ocr_predictor

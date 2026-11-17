@@ -6,6 +6,7 @@ Writes per-page results and an error list; optional overlays for the worst pages
   D:\\doctr-env\\Scripts\\python.exe eval_detect.py [--overlays N] [--out DIR]
 """
 import argparse, csv, json, os, sys, time
+from paths import thesis_path
 from collections import Counter, defaultdict
 
 import cv2
@@ -14,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from detect import detect
 from eval_anchors import GT_DEV, CACHE
 
-ANN = r'D:\Thesis\baguio_annotation'
+ANN = thesis_path('baguio_annotation')
 IOU_MATCH = 0.50
 
 
@@ -41,7 +42,7 @@ def match(gts, dets):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--out', default=r'D:\Thesis\pipeline_checks\detect_eval')
+    ap.add_argument('--out', default=thesis_path('pipeline_checks', 'detect_eval'))
     ap.add_argument('--overlays', type=int, default=0, help='draw this many pages with the most errors')
     args = ap.parse_args()
     gt = json.load(open(GT_DEV, encoding='utf-8'))

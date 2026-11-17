@@ -9,13 +9,14 @@ most --reach inches (default 1.0 in). Reported per anchor family and method, plu
   D:\\doctr-env\\Scripts\\python.exe eval_anchors.py [--reach 1.0] [--out DIR]
 """
 import argparse, csv, glob, json, os, sys
+from paths import thesis_path
 from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from anchors import find_anchors, PAGE_WIDTH_IN
 
-GT_DEV = r'D:\Thesis\ground_truth\final\ground_truth_dev.json'
-CACHE = r'D:\Thesis\pipeline_cache\doctr_dev'
+GT_DEV = thesis_path('ground_truth', 'final', 'ground_truth_dev.json')
+CACHE = thesis_path('pipeline_cache', 'doctr_dev')
 
 
 def gap(a, b):
@@ -28,7 +29,7 @@ def gap(a, b):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--reach', type=float, default=1.0)
-    ap.add_argument('--out', default=r'D:\Thesis\pipeline_checks\anchor_eval')
+    ap.add_argument('--out', default=thesis_path('pipeline_checks', 'anchor_eval'))
     args = ap.parse_args()
     gt = json.load(open(GT_DEV, encoding='utf-8'))
     if any(im['split'] != 'dev' for im in gt['images']):

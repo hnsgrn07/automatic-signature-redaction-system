@@ -1,0 +1,23 @@
+Full annotation split (seed 'split-2026'): 357 documents, 1197 pages (dev 238 docs / 840 p, test 119 docs / 357 p); pilot excluded: 42 docs
+
+Annotator   Docs  Pages  Dev docs  Dev p  Test docs  Test p
+Ben          165    601       165    601          0       0
+Geron        192    596        73    239        119     357
+
+Dev pages per year (Ben / Geron):
+  2020: 82p (22 docs) / 33p (12 docs)
+  2021: 111p (24 docs) / 44p (10 docs)
+  2022: 61p (24 docs) / 24p (10 docs)
+  2023: 74p (24 docs) / 29p (10 docs)
+  2024: 84p (24 docs) / 34p (10 docs)
+  2025: 89p (23 docs) / 36p (11 docs)
+  2026: 100p (24 docs) / 39p (10 docs)
+
+Cross-review (seed 'xreview-2026', 10% per annotator and split):
+  Geron reviews 17 of Ben's dev docs (51 pages)
+  Ben reviews 8 of Geron's dev docs (46 pages)
+  Ben reviews 12 of Geron's test docs (55 pages)
+full_ben_dev: 165 docs, 601 pages -> D:\Thesis\baguio_annotation\full\full_ben_dev
+  zip: D:\Thesis\baguio_annotation\full\full_ben_dev.zip
+full_geron_dev: 73 docs, 239 pages -> D:\Thesis\baguio_annotation\full\full_geron_dev
+full_geron_test: 119 docs, 357 pages -> D:\Thesis\baguio_annotation\full\full_geron_test

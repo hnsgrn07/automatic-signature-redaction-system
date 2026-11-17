@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.log
+*.pdf
+*.png
+*.zip
+*.sqlite3
+# Sealed test ground truth and raw test annotations must never be committed
+*ground_truth_test*
+full_geron_test*
+*_test.json

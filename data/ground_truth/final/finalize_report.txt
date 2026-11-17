@@ -1,0 +1,32 @@
+Final signature ground truth  (2026-11-17T11:48:23)
+Protocol: Signature Annotation Protocol v1.0.1 (https://claude.ai/artifact/WF5eQ3TruqqUekmMkWz1Md)
+
+DEV: 280 documents, 976 pages, 869 signature boxes, 669 pages with no signature
+  boxes by source: pilot r1 consensus 3/3 129, single annotator 740
+  boxes by year:   2020 120, 2021 131, 2022 120, 2023 126, 2024 124, 2025 123, 2026 125
+
+TEST: 119 documents, 357 pages, 372 signature boxes, 229 pages with no signature
+  boxes by source: single annotator 372
+  boxes by year:   2020 51, 2021 61, 2022 52, 2023 52, 2024 52, 2025 51, 2026 53
+
+Inputs:
+  pilot r1 ground truth: 42 docs, 136 pages
+  full_ben_dev.json: 513 boxes
+  full_geron_dev.json: 228 boxes
+  full_geron_test.json: 372 boxes
+Corrections applied: 1
+  full_geron_dev.json 024-2025.pdf p2 (765,513,5,2) dropped: accidental click, no handwriting (protocol v1.0 hard-case ruling)
+
+SHA-256 (also in SHA256SUMS.txt):
+  ec8f05af9069bec629e6214c688f87e6a0ae59b7ec2cce99734daba2810bd59b  ground_truth_dev.json
+  033dff477c97aff7ea8bb5f7d34f264a0e6aa50e2861e1df8d76acaec7862e4c  ground_truth_dev.csv
+  a9ecaed6c23c6c47fb1d9a700e7aa9a2488d7e2022fe023dbabe08ee4664cfb5  ground_truth_test.json
+  b2cb5c351f5c817277c68175a86e5d7f24dac524818a04ffc44074a45d5573ab  ground_truth_test.csv
+  24e4d8c42bc2b2348a9d41347d620e0683289655a34e83561b9f3b450ed2459b  input: D:\Thesis\ground_truth\pilot_r1\pilot_r1_ground_truth.csv
+  1ec12395c555f7507776828965d6e72296e3e1f94f2e7fc8f445f7a8ab0f2ed4  input: D:\Thesis\ground_truth\pilot_r1\pilot_r1_ground_truth_coco.json
+  61d46ca42190ced723b8b13f8401246b3e3707456648eeaa1bffaba46f6ea479  input: D:\Thesis\exports\full\corrections.csv
+  3820dd4d30a5666ebf107ce452990365a881ba81efb5f77c916184f4b4d97714  input: D:\Thesis\exports\full\full_ben_dev.json
+  1fe7bc32262934f664cca4feed4b6b362893e0862e122ed85dbf6be07971026b  input: D:\Thesis\exports\full\full_geron_dev.json
+  4cceb7afc996f16f2f676da9e0b1012220bbdd1cad601a609d8eab6eb30e7991  input: D:\Thesis\exports\full\full_geron_test.json
+
+Test files are read-only. Open them once, for the single final test run.

@@ -1,0 +1,870 @@
+split,year,file,page,image,x,y,w,h,source,annotators
+dev,2020,002-2020.pdf,2,images/dev/2020/2020_002-2020_p02.png,753.37,801.67,282.46,136.56,single annotator,Ben
+dev,2020,002-2020.pdf,2,images/dev/2020/2020_002-2020_p02.png,298.2,981.62,282.45,145.0,single annotator,Ben
+dev,2020,002-2020.pdf,2,images/dev/2020/2020_002-2020_p02.png,774.21,1198.1,386.02,195.75,single annotator,Ben
+dev,2020,004-2020.pdf,1,images/dev/2020/2020_004-2020_p01.png,705.69,1518.88,340.89,165.33,single annotator,Geron
+dev,2020,004-2020.pdf,1,images/dev/2020/2020_004-2020_p01.png,306.27,1624.95,265.54,137.53,single annotator,Geron
+dev,2020,004-2020.pdf,1,images/dev/2020/2020_004-2020_p01.png,814.69,1783.94,290.42,117.04,single annotator,Geron
+dev,2020,005-2020.pdf,4,images/dev/2020/2020_005-2020_p04.png,716.57,946.07,225.35,175.07,single annotator,Geron
+dev,2020,005-2020.pdf,4,images/dev/2020/2020_005-2020_p04.png,287.85,1139.77,266.08,163.19,single annotator,Geron
+dev,2020,005-2020.pdf,4,images/dev/2020/2020_005-2020_p04.png,778.91,1353.6,336.93,162.38,single annotator,Geron
+dev,2020,016-2020.pdf,1,images/dev/2020/2020_016-2020_p01.png,292.26,954.06,462.43,190.45,single annotator,Ben
+dev,2020,016-2020.pdf,42,images/dev/2020/2020_016-2020_p42.png,796.32,680.83,317.56,148.94,single annotator,Ben
+dev,2020,016-2020.pdf,42,images/dev/2020/2020_016-2020_p42.png,331.85,862.14,229.74,147.61,single annotator,Ben
+dev,2020,016-2020.pdf,42,images/dev/2020/2020_016-2020_p42.png,834.47,1091.73,295.44,151.79,single annotator,Ben
+dev,2020,020-2020.pdf,2,images/dev/2020/2020_020-2020_p02.png,787.63,558.34,234.18,142.06,single annotator,Ben
+dev,2020,020-2020.pdf,2,images/dev/2020/2020_020-2020_p02.png,291.56,732.68,269.64,153.06,single annotator,Ben
+dev,2020,020-2020.pdf,2,images/dev/2020/2020_020-2020_p02.png,774.53,941.31,343.47,229.56,single annotator,Ben
+dev,2020,021-2020.pdf,2,images/dev/2020/2020_021-2020_p02.png,791.39,1096.98,219.93,163.15,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,021-2020.pdf,2,images/dev/2020/2020_021-2020_p02.png,299.75,1272.6,237.98,162.97,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,021-2020.pdf,2,images/dev/2020/2020_021-2020_p02.png,777.71,1496.5,358.67,191.24,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,027-2020.pdf,2,images/dev/2020/2020_027-2020_p02.png,788.23,900.54,197.56,147.06,single annotator,Ben
+dev,2020,027-2020.pdf,2,images/dev/2020/2020_027-2020_p02.png,292.01,1069.24,243.82,145.37,single annotator,Ben
+dev,2020,027-2020.pdf,2,images/dev/2020/2020_027-2020_p02.png,804.47,1298.58,313.14,168.13,single annotator,Ben
+dev,2020,028-2020.pdf,2,images/dev/2020/2020_028-2020_p02.png,765.68,841.44,217.17,174.02,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,028-2020.pdf,2,images/dev/2020/2020_028-2020_p02.png,297.92,1008.61,263.68,175.25,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,028-2020.pdf,2,images/dev/2020/2020_028-2020_p02.png,742.04,1248.38,369.12,192.09,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,030-2020.pdf,2,images/dev/2020/2020_030-2020_p02.png,738.74,497.65,270.74,145.39,single annotator,Geron
+dev,2020,030-2020.pdf,2,images/dev/2020/2020_030-2020_p02.png,327.67,690.84,228.55,140.25,single annotator,Geron
+dev,2020,030-2020.pdf,2,images/dev/2020/2020_030-2020_p02.png,803.25,919.47,310.75,109.25,single annotator,Geron
+dev,2020,032-2020.pdf,2,images/dev/2020/2020_032-2020_p02.png,729.05,1021.68,350.16,208.1,single annotator,Ben
+dev,2020,032-2020.pdf,2,images/dev/2020/2020_032-2020_p02.png,281.79,1218.57,280.12,168.7,single annotator,Ben
+dev,2020,032-2020.pdf,2,images/dev/2020/2020_032-2020_p02.png,776.77,1420.15,305.68,165.47,single annotator,Ben
+dev,2020,043-2020.pdf,1,images/dev/2020/2020_043-2020_p01.png,747.44,1624.45,231.41,147.69,single annotator,Ben
+dev,2020,043-2020.pdf,1,images/dev/2020/2020_043-2020_p01.png,299.62,1701.25,283.2,152.54,single annotator,Ben
+dev,2020,043-2020.pdf,1,images/dev/2020/2020_043-2020_p01.png,809.42,1823.57,224.77,115.69,single annotator,Ben
+dev,2020,051-2020.pdf,2,images/dev/2020/2020_051-2020_p02.png,782.59,750.07,320.16,159.22,single annotator,Ben
+dev,2020,051-2020.pdf,2,images/dev/2020/2020_051-2020_p02.png,288.25,937.36,280.14,147.66,single annotator,Ben
+dev,2020,051-2020.pdf,2,images/dev/2020/2020_051-2020_p02.png,718.73,1137.42,383.34,238.7,single annotator,Ben
+dev,2020,052-2020.pdf,2,images/dev/2020/2020_052-2020_p02.png,752.64,1329.3,215.14,141.72,single annotator,Ben
+dev,2020,052-2020.pdf,2,images/dev/2020/2020_052-2020_p02.png,300.61,1489.02,265.18,162.47,single annotator,Ben
+dev,2020,052-2020.pdf,2,images/dev/2020/2020_052-2020_p02.png,787.85,1703.54,311.36,164.72,single annotator,Ben
+dev,2020,056-2020.pdf,2,images/dev/2020/2020_056-2020_p02.png,777.75,602.93,201.64,124.31,single annotator,Ben
+dev,2020,056-2020.pdf,2,images/dev/2020/2020_056-2020_p02.png,288.06,777.53,248.37,149.97,single annotator,Ben
+dev,2020,056-2020.pdf,2,images/dev/2020/2020_056-2020_p02.png,775.83,1000.77,359.94,182.91,single annotator,Ben
+dev,2020,058-2020.pdf,2,images/dev/2020/2020_058-2020_p02.png,794.05,435.21,198.04,133.74,single annotator,Geron
+dev,2020,058-2020.pdf,2,images/dev/2020/2020_058-2020_p02.png,303.11,621.9,242.59,147.46,single annotator,Geron
+dev,2020,058-2020.pdf,2,images/dev/2020/2020_058-2020_p02.png,789.2,813.5,326.25,201.74,single annotator,Geron
+dev,2020,059-2020.pdf,4,images/dev/2020/2020_059-2020_p04.png,781.42,888.59,196.79,117.57,single annotator,Geron
+dev,2020,059-2020.pdf,4,images/dev/2020/2020_059-2020_p04.png,309.53,1046.99,266.58,168.31,single annotator,Geron
+dev,2020,059-2020.pdf,4,images/dev/2020/2020_059-2020_p04.png,758.98,1276.55,378.15,165.72,single annotator,Geron
+dev,2020,062-2020.pdf,1,images/dev/2020/2020_062-2020_p01.png,780.76,1495.56,270.11,111.86,single annotator,Ben
+dev,2020,062-2020.pdf,1,images/dev/2020/2020_062-2020_p01.png,281.42,1593.28,271.34,166.54,single annotator,Ben
+dev,2020,062-2020.pdf,1,images/dev/2020/2020_062-2020_p01.png,790.52,1740.31,320.84,157.39,single annotator,Ben
+dev,2020,064-2020.pdf,2,images/dev/2020/2020_064-2020_p02.png,783.88,461.52,220.21,142.15,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,064-2020.pdf,2,images/dev/2020/2020_064-2020_p02.png,306.73,634.91,264.75,142.54,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,064-2020.pdf,2,images/dev/2020/2020_064-2020_p02.png,785.15,854.13,300.51,209.58,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,066-2020.pdf,6,images/dev/2020/2020_066-2020_p06.png,779.64,649.39,262.3,155.08,single annotator,Geron
+dev,2020,066-2020.pdf,6,images/dev/2020/2020_066-2020_p06.png,325.74,804.78,267.48,172.79,single annotator,Geron
+dev,2020,066-2020.pdf,6,images/dev/2020/2020_066-2020_p06.png,762.97,1052.82,355.42,182.99,single annotator,Geron
+dev,2020,068-2020.pdf,4,images/dev/2020/2020_068-2020_p04.png,806.15,1455.73,245.11,129.08,single annotator,Geron
+dev,2020,068-2020.pdf,4,images/dev/2020/2020_068-2020_p04.png,321.25,1585.07,222.92,138.08,single annotator,Geron
+dev,2020,068-2020.pdf,4,images/dev/2020/2020_068-2020_p04.png,790.46,1753.26,260.69,141.39,single annotator,Geron
+dev,2020,069-2020.pdf,2,images/dev/2020/2020_069-2020_p02.png,777.19,1007.16,271.36,144.28,single annotator,Ben
+dev,2020,069-2020.pdf,2,images/dev/2020/2020_069-2020_p02.png,759.22,1335.74,334.5,194.27,single annotator,Ben
+dev,2020,085-2020.pdf,2,images/dev/2020/2020_085-2020_p02.png,785.0,948.63,253.03,138.4,single annotator,Geron
+dev,2020,085-2020.pdf,2,images/dev/2020/2020_085-2020_p02.png,273.43,1080.52,248.58,153.97,single annotator,Geron
+dev,2020,085-2020.pdf,2,images/dev/2020/2020_085-2020_p02.png,757.94,1247.51,350.22,190.42,single annotator,Geron
+dev,2020,092-2020.pdf,2,images/dev/2020/2020_092-2020_p02.png,783.59,451.54,197.27,131.51,single annotator,Geron
+dev,2020,092-2020.pdf,2,images/dev/2020/2020_092-2020_p02.png,294.83,609.04,242.41,163.45,single annotator,Geron
+dev,2020,092-2020.pdf,2,images/dev/2020/2020_092-2020_p02.png,786.61,845.62,326.37,166.32,single annotator,Geron
+dev,2020,095-2020.pdf,2,images/dev/2020/2020_095-2020_p02.png,726.55,1086.78,265.26,146.49,single annotator,Ben
+dev,2020,095-2020.pdf,2,images/dev/2020/2020_095-2020_p02.png,291.62,1210.26,239.73,162.09,single annotator,Ben
+dev,2020,095-2020.pdf,2,images/dev/2020/2020_095-2020_p02.png,763.1,1379.71,307.84,213.4,single annotator,Ben
+dev,2020,101-2020.pdf,2,images/dev/2020/2020_101-2020_p02.png,761.48,888.71,279.78,169.9,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,101-2020.pdf,2,images/dev/2020/2020_101-2020_p02.png,298.86,1059.1,221.66,159.21,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,101-2020.pdf,2,images/dev/2020/2020_101-2020_p02.png,786.26,1276.51,305.77,235.74,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,106-2020.pdf,2,images/dev/2020/2020_106-2020_p02.png,807.42,438.76,197.13,141.0,single annotator,Geron
+dev,2020,106-2020.pdf,2,images/dev/2020/2020_106-2020_p02.png,283.19,615.97,264.35,161.37,single annotator,Geron
+dev,2020,106-2020.pdf,2,images/dev/2020/2020_106-2020_p02.png,775.02,830.33,378.05,190.54,single annotator,Geron
+dev,2020,112-2020.pdf,2,images/dev/2020/2020_112-2020_p02.png,815.87,403.65,190.45,104.42,single annotator,Ben
+dev,2020,112-2020.pdf,2,images/dev/2020/2020_112-2020_p02.png,293.49,516.52,278.69,150.83,single annotator,Ben
+dev,2020,112-2020.pdf,2,images/dev/2020/2020_112-2020_p02.png,774.11,676.15,319.59,179.4,single annotator,Ben
+dev,2020,113-2020.pdf,3,images/dev/2020/2020_113-2020_p03.png,747.83,1083.83,312.53,130.96,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,113-2020.pdf,3,images/dev/2020/2020_113-2020_p03.png,348.48,1249.46,213.93,145.77,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,113-2020.pdf,3,images/dev/2020/2020_113-2020_p03.png,774.14,1462.05,379.45,186.81,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,116-2020.pdf,2,images/dev/2020/2020_116-2020_p02.png,784.12,372.77,234.78,126.35,single annotator,Ben
+dev,2020,116-2020.pdf,2,images/dev/2020/2020_116-2020_p02.png,296.3,579.25,268.81,126.99,single annotator,Ben
+dev,2020,116-2020.pdf,2,images/dev/2020/2020_116-2020_p02.png,735.37,771.31,346.34,275.82,single annotator,Ben
+dev,2020,117-2020.pdf,2,images/dev/2020/2020_117-2020_p02.png,769.73,451.74,236.57,95.1,single annotator,Ben
+dev,2020,117-2020.pdf,2,images/dev/2020/2020_117-2020_p02.png,287.23,603.11,265.53,169.6,single annotator,Ben
+dev,2020,117-2020.pdf,2,images/dev/2020/2020_117-2020_p02.png,783.77,848.64,340.53,163.0,single annotator,Ben
+dev,2020,120-2020.pdf,2,images/dev/2020/2020_120-2020_p02.png,791.4,552.66,236.92,160.08,single annotator,Ben
+dev,2020,120-2020.pdf,2,images/dev/2020/2020_120-2020_p02.png,297.03,726.62,242.86,163.12,single annotator,Ben
+dev,2020,120-2020.pdf,2,images/dev/2020/2020_120-2020_p02.png,768.27,940.24,372.51,213.4,single annotator,Ben
+dev,2020,126-2020.pdf,2,images/dev/2020/2020_126-2020_p02.png,797.2,1014.22,227.54,145.59,single annotator,Ben
+dev,2020,126-2020.pdf,2,images/dev/2020/2020_126-2020_p02.png,306.34,1188.69,233.65,161.68,single annotator,Ben
+dev,2020,126-2020.pdf,2,images/dev/2020/2020_126-2020_p02.png,771.81,1415.59,334.63,161.29,single annotator,Ben
+dev,2020,130-2020.pdf,2,images/dev/2020/2020_130-2020_p02.png,804.59,1157.76,159.91,198.54,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,130-2020.pdf,2,images/dev/2020/2020_130-2020_p02.png,298.47,1335.73,264.16,158.4,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,130-2020.pdf,2,images/dev/2020/2020_130-2020_p02.png,809.28,1569.77,298.27,172.53,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2020,132-2020.pdf,2,images/dev/2020/2020_132-2020_p02.png,770.02,1057.6,268.08,147.27,single annotator,Ben
+dev,2020,132-2020.pdf,2,images/dev/2020/2020_132-2020_p02.png,307.89,1224.4,203.99,170.95,single annotator,Ben
+dev,2020,132-2020.pdf,2,images/dev/2020/2020_132-2020_p02.png,772.44,1458.54,298.11,147.77,single annotator,Ben
+dev,2020,133-2020.pdf,2,images/dev/2020/2020_133-2020_p02.png,770.98,435.79,200.14,138.85,single annotator,Geron
+dev,2020,133-2020.pdf,2,images/dev/2020/2020_133-2020_p02.png,289.87,617.26,243.28,143.01,single annotator,Geron
+dev,2020,133-2020.pdf,2,images/dev/2020/2020_133-2020_p02.png,771.19,832.53,331.53,208.55,single annotator,Geron
+dev,2020,145-2020.pdf,2,images/dev/2020/2020_145-2020_p02.png,736.95,357.94,266.8,159.22,single annotator,Ben
+dev,2020,145-2020.pdf,2,images/dev/2020/2020_145-2020_p02.png,306.94,542.6,212.3,149.4,single annotator,Ben
+dev,2020,145-2020.pdf,2,images/dev/2020/2020_145-2020_p02.png,756.37,780.12,346.52,127.2,single annotator,Ben
+dev,2020,147-2020.pdf,2,images/dev/2020/2020_147-2020_p02.png,769.01,382.43,256.37,167.33,single annotator,Geron
+dev,2020,147-2020.pdf,2,images/dev/2020/2020_147-2020_p02.png,289.74,574.77,232.7,146.76,single annotator,Geron
+dev,2020,147-2020.pdf,2,images/dev/2020/2020_147-2020_p02.png,771.69,781.98,331.47,149.83,single annotator,Geron
+dev,2020,153-2020.pdf,2,images/dev/2020/2020_153-2020_p02.png,763.74,855.5,240.91,149.75,single annotator,Ben
+dev,2020,153-2020.pdf,2,images/dev/2020/2020_153-2020_p02.png,285.31,1018.16,234.36,168.79,single annotator,Ben
+dev,2020,153-2020.pdf,2,images/dev/2020/2020_153-2020_p02.png,744.9,1264.33,363.6,174.72,single annotator,Ben
+dev,2020,154-2020.pdf,2,images/dev/2020/2020_154-2020_p02.png,738.39,627.96,218.06,182.52,single annotator,Ben
+dev,2020,154-2020.pdf,2,images/dev/2020/2020_154-2020_p02.png,279.83,810.9,254.68,169.44,single annotator,Ben
+dev,2020,154-2020.pdf,2,images/dev/2020/2020_154-2020_p02.png,762.07,1057.91,357.73,209.48,single annotator,Ben
+dev,2020,159-2020.pdf,2,images/dev/2020/2020_159-2020_p02.png,768.42,414.79,268.08,161.79,single annotator,Ben
+dev,2020,159-2020.pdf,2,images/dev/2020/2020_159-2020_p02.png,293.78,625.78,251.36,143.69,single annotator,Ben
+dev,2020,159-2020.pdf,2,images/dev/2020/2020_159-2020_p02.png,777.55,851.3,319.19,132.58,single annotator,Ben
+dev,2021,001-2021.pdf,5,images/dev/2021/2021_001-2021_p05.png,1224.17,502.48,329.51,259.27,single annotator,Ben
+dev,2021,001-2021.pdf,5,images/dev/2021/2021_001-2021_p05.png,434.26,777.13,394.78,253.69,single annotator,Ben
+dev,2021,001-2021.pdf,5,images/dev/2021/2021_001-2021_p05.png,1196.95,1108.55,520.02,230.77,single annotator,Ben
+dev,2021,005-2021.pdf,2,images/dev/2021/2021_005-2021_p02.png,768.6,330.26,253.05,142.62,single annotator,Ben
+dev,2021,005-2021.pdf,2,images/dev/2021/2021_005-2021_p02.png,291.79,481.76,257.18,173.91,single annotator,Ben
+dev,2021,005-2021.pdf,2,images/dev/2021/2021_005-2021_p02.png,769.45,729.12,315.11,187.52,single annotator,Ben
+dev,2021,010-2021.pdf,2,images/dev/2021/2021_010-2021_p02.png,752.99,557.56,237.83,144.95,single annotator,Ben
+dev,2021,010-2021.pdf,2,images/dev/2021/2021_010-2021_p02.png,304.09,732.2,227.32,149.44,single annotator,Ben
+dev,2021,010-2021.pdf,2,images/dev/2021/2021_010-2021_p02.png,792.25,962.63,332.81,187.07,single annotator,Ben
+dev,2021,012-2021.pdf,2,images/dev/2021/2021_012-2021_p02.png,732.31,438.6,231.73,152.78,single annotator,Ben
+dev,2021,012-2021.pdf,2,images/dev/2021/2021_012-2021_p02.png,293.15,615.68,254.18,154.73,single annotator,Ben
+dev,2021,012-2021.pdf,2,images/dev/2021/2021_012-2021_p02.png,773.27,835.15,361.94,200.08,single annotator,Ben
+dev,2021,018-2021.pdf,1,images/dev/2021/2021_018-2021_p01.png,174.23,1057.28,523.75,173.86,single annotator,Ben
+dev,2021,018-2021.pdf,3,images/dev/2021/2021_018-2021_p03.png,784.25,699.75,242.38,129.86,single annotator,Ben
+dev,2021,018-2021.pdf,3,images/dev/2021/2021_018-2021_p03.png,313.63,865.02,202.68,147.86,single annotator,Ben
+dev,2021,018-2021.pdf,3,images/dev/2021/2021_018-2021_p03.png,773.63,1095.48,328.98,145.85,single annotator,Ben
+dev,2021,020-2021.pdf,2,images/dev/2021/2021_020-2021_p02.png,769.05,322.94,224.19,153.87,single annotator,Ben
+dev,2021,020-2021.pdf,2,images/dev/2021/2021_020-2021_p02.png,311.82,505.16,273.11,146.78,single annotator,Ben
+dev,2021,020-2021.pdf,2,images/dev/2021/2021_020-2021_p02.png,780.25,724.44,319.33,132.22,single annotator,Ben
+dev,2021,021-2021.pdf,2,images/dev/2021/2021_021-2021_p02.png,783.31,321.62,170.32,135.92,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,021-2021.pdf,2,images/dev/2021/2021_021-2021_p02.png,304.07,498.88,190.82,150.74,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,021-2021.pdf,2,images/dev/2021/2021_021-2021_p02.png,774.12,727.81,345.25,192.4,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,022-2021.pdf,2,images/dev/2021/2021_022-2021_p02.png,794.02,1144.54,157.98,107.4,single annotator,Geron
+dev,2021,022-2021.pdf,2,images/dev/2021/2021_022-2021_p02.png,315.96,1247.91,195.05,163.52,single annotator,Geron
+dev,2021,022-2021.pdf,2,images/dev/2021/2021_022-2021_p02.png,795.1,1440.53,310.07,129.92,single annotator,Geron
+dev,2021,027-2021.pdf,1,images/dev/2021/2021_027-2021_p01.png,193.35,1211.88,509.97,153.82,single annotator,Geron
+dev,2021,027-2021.pdf,6,images/dev/2021/2021_027-2021_p06.png,753.27,1401.65,256.64,124.38,single annotator,Geron
+dev,2021,027-2021.pdf,6,images/dev/2021/2021_027-2021_p06.png,318.32,1508.91,220.63,163.18,single annotator,Geron
+dev,2021,027-2021.pdf,6,images/dev/2021/2021_027-2021_p06.png,778.96,1722.72,312.82,127.69,single annotator,Geron
+dev,2021,028-2021.pdf,1,images/dev/2021/2021_028-2021_p01.png,219.05,1249.6,507.02,101.77,single annotator,Geron
+dev,2021,028-2021.pdf,3,images/dev/2021/2021_028-2021_p03.png,775.05,1402.04,226.16,102.51,single annotator,Geron
+dev,2021,028-2021.pdf,3,images/dev/2021/2021_028-2021_p03.png,315.84,1518.05,243.35,152.63,single annotator,Geron
+dev,2021,028-2021.pdf,3,images/dev/2021/2021_028-2021_p03.png,763.26,1714.22,327.16,145.02,single annotator,Geron
+dev,2021,031-2021-2.pdf,1,images/dev/2021/2021_031-2021-2_p01.png,102.75,1132.98,600.19,158.91,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,031-2021-2.pdf,4,images/dev/2021/2021_031-2021-2_p04.png,786.73,742.98,173.45,133.54,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,031-2021-2.pdf,4,images/dev/2021/2021_031-2021-2_p04.png,306.63,921.2,247.37,136.59,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,031-2021-2.pdf,4,images/dev/2021/2021_031-2021-2_p04.png,795.33,1131.58,339.19,188.48,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,032-2021.pdf,3,images/dev/2021/2021_032-2021_p03.png,785.73,321.36,184.74,144.26,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,032-2021.pdf,3,images/dev/2021/2021_032-2021_p03.png,326.72,498.61,214.59,148.77,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,032-2021.pdf,3,images/dev/2021/2021_032-2021_p03.png,806.38,721.6,321.46,162.17,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,034-2021.pdf,1,images/dev/2021/2021_034-2021_p01.png,748.71,1448.23,335.18,179.24,single annotator,Ben
+dev,2021,034-2021.pdf,1,images/dev/2021/2021_034-2021_p01.png,294.44,1614.75,236.55,125.12,single annotator,Ben
+dev,2021,034-2021.pdf,1,images/dev/2021/2021_034-2021_p01.png,794.58,1735.83,286.75,124.78,single annotator,Ben
+dev,2021,038-2021.pdf,2,images/dev/2021/2021_038-2021_p02.png,786.86,956.01,262.95,152.39,single annotator,Ben
+dev,2021,038-2021.pdf,2,images/dev/2021/2021_038-2021_p02.png,274.21,1122.67,248.09,170.98,single annotator,Ben
+dev,2021,038-2021.pdf,2,images/dev/2021/2021_038-2021_p02.png,771.11,1349.95,340.35,183.43,single annotator,Ben
+dev,2021,042-2021.pdf,2,images/dev/2021/2021_042-2021_p02.png,776.55,329.35,205.33,158.37,single annotator,Ben
+dev,2021,042-2021.pdf,2,images/dev/2021/2021_042-2021_p02.png,289.67,488.42,246.6,169.99,single annotator,Ben
+dev,2021,042-2021.pdf,2,images/dev/2021/2021_042-2021_p02.png,757.94,720.94,344.84,221.84,single annotator,Ben
+dev,2021,047-2021.pdf,1,images/dev/2021/2021_047-2021_p01.png,175.19,1074.32,499.22,216.43,single annotator,Ben
+dev,2021,047-2021.pdf,27,images/dev/2021/2021_047-2021_p27.png,748.22,669.18,268.93,151.11,single annotator,Ben
+dev,2021,047-2021.pdf,27,images/dev/2021/2021_047-2021_p27.png,340.59,864.41,106.45,115.36,single annotator,Ben
+dev,2021,047-2021.pdf,27,images/dev/2021/2021_047-2021_p27.png,777.43,1072.43,333.49,197.15,single annotator,Ben
+dev,2021,053-2021.pdf,3,images/dev/2021/2021_053-2021_p03.png,782.38,634.88,240.23,152.35,single annotator,Ben
+dev,2021,053-2021.pdf,3,images/dev/2021/2021_053-2021_p03.png,321.39,856.01,236.0,126.36,single annotator,Ben
+dev,2021,053-2021.pdf,3,images/dev/2021/2021_053-2021_p03.png,757.87,1023.65,335.75,252.32,single annotator,Ben
+dev,2021,056-2021.pdf,2,images/dev/2021/2021_056-2021_p02.png,762.4,439.88,253.94,156.55,single annotator,Ben
+dev,2021,056-2021.pdf,2,images/dev/2021/2021_056-2021_p02.png,322.4,638.72,108.22,117.32,single annotator,Ben
+dev,2021,056-2021.pdf,2,images/dev/2021/2021_056-2021_p02.png,781.34,839.02,336.45,133.03,single annotator,Ben
+dev,2021,057-2021.pdf,2,images/dev/2021/2021_057-2021_p02.png,761.7,399.27,256.28,130.11,single annotator,Geron
+dev,2021,057-2021.pdf,2,images/dev/2021/2021_057-2021_p02.png,343.41,588.09,109.77,121.3,single annotator,Geron
+dev,2021,057-2021.pdf,2,images/dev/2021/2021_057-2021_p02.png,782.83,796.28,322.32,134.08,single annotator,Geron
+dev,2021,058-2021.pdf,2,images/dev/2021/2021_058-2021_p02.png,756.63,552.85,229.4,160.74,single annotator,Geron
+dev,2021,058-2021.pdf,2,images/dev/2021/2021_058-2021_p02.png,291.91,722.65,256.49,157.7,single annotator,Geron
+dev,2021,058-2021.pdf,2,images/dev/2021/2021_058-2021_p02.png,785.84,949.02,297.15,160.89,single annotator,Geron
+dev,2021,062-2021.pdf,1,images/dev/2021/2021_062-2021_p01.png,807.53,1473.0,231.88,150.58,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,062-2021.pdf,1,images/dev/2021/2021_062-2021_p01.png,336.17,1622.56,100.31,110.52,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,062-2021.pdf,1,images/dev/2021/2021_062-2021_p01.png,788.18,1707.65,278.56,175.05,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,063-2021.pdf,5,images/dev/2021/2021_063-2021_p05.png,784.55,1048.57,189.79,112.65,single annotator,Ben
+dev,2021,063-2021.pdf,5,images/dev/2021/2021_063-2021_p05.png,339.16,1240.94,91.51,101.09,single annotator,Ben
+dev,2021,063-2021.pdf,5,images/dev/2021/2021_063-2021_p05.png,777.7,1397.19,313.15,171.35,single annotator,Ben
+dev,2021,064-2021.pdf,4,images/dev/2021/2021_064-2021_p04.png,769.23,697.64,253.05,153.16,single annotator,Ben
+dev,2021,064-2021.pdf,4,images/dev/2021/2021_064-2021_p04.png,313.09,909.38,239.22,113.73,single annotator,Ben
+dev,2021,064-2021.pdf,4,images/dev/2021/2021_064-2021_p04.png,777.19,1069.4,303.73,206.51,single annotator,Ben
+dev,2021,066-2021.pdf,2,images/dev/2021/2021_066-2021_p02.png,783.69,536.44,235.21,139.59,single annotator,Ben
+dev,2021,066-2021.pdf,2,images/dev/2021/2021_066-2021_p02.png,290.08,744.48,254.91,121.22,single annotator,Ben
+dev,2021,066-2021.pdf,2,images/dev/2021/2021_066-2021_p02.png,778.85,930.34,303.73,161.4,single annotator,Ben
+dev,2021,071-2021.pdf,4,images/dev/2021/2021_071-2021_p04.png,760.7,408.97,252.5,154.38,single annotator,Ben
+dev,2021,071-2021.pdf,4,images/dev/2021/2021_071-2021_p04.png,272.86,618.47,248.52,115.4,single annotator,Ben
+dev,2021,071-2021.pdf,4,images/dev/2021/2021_071-2021_p04.png,748.46,822.36,350.12,150.6,single annotator,Ben
+dev,2021,074-2021.pdf,2,images/dev/2021/2021_074-2021_p02.png,744.52,511.16,234.78,128.06,single annotator,Ben
+dev,2021,074-2021.pdf,2,images/dev/2021/2021_074-2021_p02.png,297.42,736.59,246.98,114.99,single annotator,Ben
+dev,2021,074-2021.pdf,2,images/dev/2021/2021_074-2021_p02.png,743.67,897.59,375.86,225.51,single annotator,Ben
+dev,2021,077-2021.pdf,4,images/dev/2021/2021_077-2021_p04.png,766.6,561.81,225.39,117.82,single annotator,Ben
+dev,2021,077-2021.pdf,4,images/dev/2021/2021_077-2021_p04.png,298.35,729.28,249.42,155.04,single annotator,Ben
+dev,2021,077-2021.pdf,4,images/dev/2021/2021_077-2021_p04.png,771.01,944.73,332.52,144.96,single annotator,Ben
+dev,2021,080-2021.pdf,2,images/dev/2021/2021_080-2021_p02.png,736.51,712.31,290.7,178.86,single annotator,Ben
+dev,2021,080-2021.pdf,2,images/dev/2021/2021_080-2021_p02.png,309.86,927.21,234.68,113.66,single annotator,Ben
+dev,2021,080-2021.pdf,2,images/dev/2021/2021_080-2021_p02.png,784.54,1119.72,350.95,136.86,single annotator,Ben
+dev,2021,083-2021.pdf,2,images/dev/2021/2021_083-2021_p02.png,807.47,507.36,230.15,124.74,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,083-2021.pdf,2,images/dev/2021/2021_083-2021_p02.png,343.12,706.24,227.84,141.24,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,083-2021.pdf,2,images/dev/2021/2021_083-2021_p02.png,800.84,895.51,332.99,148.91,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,084-2021.pdf,2,images/dev/2021/2021_084-2021_p02.png,797.64,441.71,223.94,122.48,single annotator,Ben
+dev,2021,084-2021.pdf,2,images/dev/2021/2021_084-2021_p02.png,312.73,599.55,244.88,153.81,single annotator,Ben
+dev,2021,084-2021.pdf,2,images/dev/2021/2021_084-2021_p02.png,804.57,842.92,301.36,124.24,single annotator,Ben
+dev,2021,091-2021.pdf,2,images/dev/2021/2021_091-2021_p02.png,770.22,705.75,251.0,132.76,single annotator,Ben
+dev,2021,091-2021.pdf,2,images/dev/2021/2021_091-2021_p02.png,300.66,879.2,225.72,151.64,single annotator,Ben
+dev,2021,091-2021.pdf,2,images/dev/2021/2021_091-2021_p02.png,777.42,1064.51,328.18,207.77,single annotator,Ben
+dev,2021,099-2021.pdf,1,images/dev/2021/2021_099-2021_p01.png,213.68,1155.93,530.26,201.72,single annotator,Geron
+dev,2021,099-2021.pdf,5,images/dev/2021/2021_099-2021_p05.png,738.93,1078.62,318.29,164.16,single annotator,Geron
+dev,2021,099-2021.pdf,5,images/dev/2021/2021_099-2021_p05.png,298.05,1245.87,248.71,164.26,single annotator,Geron
+dev,2021,099-2021.pdf,5,images/dev/2021/2021_099-2021_p05.png,744.81,1477.26,338.75,187.12,single annotator,Geron
+dev,2021,100-2021.pdf,2,images/dev/2021/2021_100-2021_p02.png,798.48,317.73,246.49,133.45,single annotator,Geron
+dev,2021,100-2021.pdf,2,images/dev/2021/2021_100-2021_p02.png,310.82,483.4,215.51,166.28,single annotator,Geron
+dev,2021,104-2021.pdf,1,images/dev/2021/2021_104-2021_p01.png,771.93,1467.48,222.34,132.97,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,104-2021.pdf,1,images/dev/2021/2021_104-2021_p01.png,290.92,1607.54,238.98,121.69,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,104-2021.pdf,1,images/dev/2021/2021_104-2021_p01.png,778.64,1677.45,342.35,135.86,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2021,107-2021.pdf,1,images/dev/2021/2021_107-2021_p01.png,228.53,1066.69,521.42,204.09,single annotator,Geron
+dev,2021,107-2021.pdf,3,images/dev/2021/2021_107-2021_p03.png,778.27,1412.16,219.0,133.7,single annotator,Geron
+dev,2021,107-2021.pdf,3,images/dev/2021/2021_107-2021_p03.png,279.37,1553.93,262.22,146.3,single annotator,Geron
+dev,2021,107-2021.pdf,3,images/dev/2021/2021_107-2021_p03.png,761.88,1708.96,347.59,167.26,single annotator,Geron
+dev,2021,108-2021.pdf,1,images/dev/2021/2021_108-2021_p01.png,207.39,1237.55,451.08,159.35,single annotator,Ben
+dev,2021,108-2021.pdf,3,images/dev/2021/2021_108-2021_p03.png,693.69,966.11,391.23,170.92,single annotator,Ben
+dev,2021,108-2021.pdf,3,images/dev/2021/2021_108-2021_p03.png,267.77,1140.48,248.52,171.9,single annotator,Ben
+dev,2021,110-2021.pdf,1,images/dev/2021/2021_110-2021_p01.png,774.44,1514.13,306.61,158.43,single annotator,Geron
+dev,2021,110-2021.pdf,1,images/dev/2021/2021_110-2021_p01.png,297.73,1648.18,214.95,150.06,single annotator,Geron
+dev,2021,110-2021.pdf,1,images/dev/2021/2021_110-2021_p01.png,731.7,1742.13,352.62,152.39,single annotator,Geron
+dev,2021,111-2021.pdf,3,images/dev/2021/2021_111-2021_p03.png,768.37,796.55,214.29,147.27,single annotator,Ben
+dev,2021,111-2021.pdf,3,images/dev/2021/2021_111-2021_p03.png,295.7,967.56,248.14,150.8,single annotator,Ben
+dev,2021,111-2021.pdf,3,images/dev/2021/2021_111-2021_p03.png,744.58,1191.2,321.67,182.44,single annotator,Ben
+dev,2021,111-2021.pdf,5,images/dev/2021/2021_111-2021_p05.png,708.8,513.16,100.9,96.26,single annotator,Ben
+dev,2021,111-2021.pdf,5,images/dev/2021/2021_111-2021_p05.png,424.52,517.61,104.95,102.88,single annotator,Ben
+dev,2021,111-2021.pdf,5,images/dev/2021/2021_111-2021_p05.png,763.68,624.66,186.12,93.58,single annotator,Ben
+dev,2021,111-2021.pdf,5,images/dev/2021/2021_111-2021_p05.png,369.53,639.92,206.18,32.69,single annotator,Ben
+dev,2021,111-2021.pdf,5,images/dev/2021/2021_111-2021_p05.png,507.37,704.73,287.51,119.06,single annotator,Ben
+dev,2021,114-2021.pdf,12,images/dev/2021/2021_114-2021_p12.png,811.59,334.74,208.84,104.75,single annotator,Ben
+dev,2021,114-2021.pdf,12,images/dev/2021/2021_114-2021_p12.png,311.67,536.88,238.37,133.65,single annotator,Ben
+dev,2021,114-2021.pdf,12,images/dev/2021/2021_114-2021_p12.png,759.54,726.32,382.76,237.36,single annotator,Ben
+dev,2021,115-2021.pdf,18,images/dev/2021/2021_115-2021_p18.png,795.1,320.78,220.08,120.79,single annotator,Geron
+dev,2021,115-2021.pdf,18,images/dev/2021/2021_115-2021_p18.png,267.79,489.89,276.0,151.06,single annotator,Geron
+dev,2021,115-2021.pdf,18,images/dev/2021/2021_115-2021_p18.png,666.32,713.82,402.51,156.41,single annotator,Geron
+dev,2022,001-2022.pdf,2,images/dev/2022/2022_001-2022_p02.png,806.2,867.69,207.31,112.27,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,001-2022.pdf,2,images/dev/2022/2022_001-2022_p02.png,321.71,1038.53,213.34,147.64,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,001-2022.pdf,2,images/dev/2022/2022_001-2022_p02.png,785.38,1259.97,361.19,184.76,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,003-2022.pdf,2,images/dev/2022/2022_003-2022_p02.png,755.33,1054.02,208.75,221.8,single annotator,Geron
+dev,2022,003-2022.pdf,2,images/dev/2022/2022_003-2022_p02.png,348.99,1281.81,111.24,108.21,single annotator,Geron
+dev,2022,003-2022.pdf,2,images/dev/2022/2022_003-2022_p02.png,810.62,1452.52,318.45,202.17,single annotator,Geron
+dev,2022,007-2022.pdf,4,images/dev/2022/2022_007-2022_p04.png,765.56,352.16,196.95,201.28,single annotator,Ben
+dev,2022,007-2022.pdf,4,images/dev/2022/2022_007-2022_p04.png,324.99,518.95,216.22,129.48,single annotator,Ben
+dev,2022,007-2022.pdf,4,images/dev/2022/2022_007-2022_p04.png,762.57,714.45,311.93,206.14,single annotator,Ben
+dev,2022,012-2022.pdf,5,images/dev/2022/2022_012-2022_p05.png,791.24,770.19,192.49,124.88,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,012-2022.pdf,5,images/dev/2022/2022_012-2022_p05.png,305.45,969.44,231.27,122.01,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,012-2022.pdf,5,images/dev/2022/2022_012-2022_p05.png,782.83,1173.64,382.59,205.07,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,014-2022.pdf,3,images/dev/2022/2022_014-2022_p03.png,752.35,488.58,344.08,167.26,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,014-2022.pdf,3,images/dev/2022/2022_014-2022_p03.png,300.69,634.25,225.96,162.17,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,014-2022.pdf,3,images/dev/2022/2022_014-2022_p03.png,774.47,887.8,288.67,127.53,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,015-2022.pdf,5,images/dev/2022/2022_015-2022_p05.png,750.12,779.8,323.53,169.81,single annotator,Ben
+dev,2022,015-2022.pdf,5,images/dev/2022/2022_015-2022_p05.png,297.69,963.25,215.74,131.14,single annotator,Ben
+dev,2022,015-2022.pdf,5,images/dev/2022/2022_015-2022_p05.png,789.29,1148.6,273.42,159.66,single annotator,Ben
+dev,2022,017-2022.pdf,2,images/dev/2022/2022_017-2022_p02.png,723.51,461.78,325.27,168.05,single annotator,Ben
+dev,2022,017-2022.pdf,2,images/dev/2022/2022_017-2022_p02.png,303.94,616.05,211.29,151.38,single annotator,Ben
+dev,2022,017-2022.pdf,2,images/dev/2022/2022_017-2022_p02.png,760.88,847.91,331.8,146.69,single annotator,Ben
+dev,2022,018-2022.pdf,2,images/dev/2022/2022_018-2022_p02.png,752.39,1020.12,323.92,154.38,single annotator,Ben
+dev,2022,018-2022.pdf,2,images/dev/2022/2022_018-2022_p02.png,312.86,1173.88,218.88,131.25,single annotator,Ben
+dev,2022,018-2022.pdf,2,images/dev/2022/2022_018-2022_p02.png,786.62,1377.26,326.04,138.78,single annotator,Ben
+dev,2022,019-2022.pdf,3,images/dev/2022/2022_019-2022_p03.png,773.6,351.55,252.5,160.17,single annotator,Ben
+dev,2022,019-2022.pdf,3,images/dev/2022/2022_019-2022_p03.png,267.83,546.72,251.31,135.76,single annotator,Ben
+dev,2022,019-2022.pdf,3,images/dev/2022/2022_019-2022_p03.png,764.64,762.82,318.97,152.88,single annotator,Ben
+dev,2022,021-2022.pdf,2,images/dev/2022/2022_021-2022_p02.png,793.5,459.63,182.28,122.51,single annotator,Ben
+dev,2022,021-2022.pdf,2,images/dev/2022/2022_021-2022_p02.png,280.4,649.17,237.34,120.81,single annotator,Ben
+dev,2022,021-2022.pdf,2,images/dev/2022/2022_021-2022_p02.png,770.45,831.87,309.06,165.2,single annotator,Ben
+dev,2022,023-2022.pdf,2,images/dev/2022/2022_023-2022_p02.png,790.06,429.46,178.01,129.34,single annotator,Ben
+dev,2022,023-2022.pdf,2,images/dev/2022/2022_023-2022_p02.png,302.57,598.5,231.79,146.84,single annotator,Ben
+dev,2022,023-2022.pdf,2,images/dev/2022/2022_023-2022_p02.png,792.62,816.63,283.44,216.85,single annotator,Ben
+dev,2022,024-2022.pdf,2,images/dev/2022/2022_024-2022_p02.png,801.37,359.01,206.46,136.56,single annotator,Geron
+dev,2022,024-2022.pdf,2,images/dev/2022/2022_024-2022_p02.png,297.77,529.62,228.68,163.81,single annotator,Geron
+dev,2022,024-2022.pdf,2,images/dev/2022/2022_024-2022_p02.png,783.27,753.53,282.21,179.2,single annotator,Geron
+dev,2022,025-2022.pdf,3,images/dev/2022/2022_025-2022_p03.png,787.15,357.48,149.83,138.84,single annotator,Ben
+dev,2022,025-2022.pdf,3,images/dev/2022/2022_025-2022_p03.png,298.14,592.8,237.06,88.96,single annotator,Ben
+dev,2022,025-2022.pdf,3,images/dev/2022/2022_025-2022_p03.png,777.64,758.01,292.79,224.36,single annotator,Ben
+dev,2022,027-2022.pdf,2,images/dev/2022/2022_027-2022_p02.png,715.39,375.33,318.53,149.83,single annotator,Ben
+dev,2022,027-2022.pdf,2,images/dev/2022/2022_027-2022_p02.png,309.65,547.17,241.4,141.51,single annotator,Ben
+dev,2022,027-2022.pdf,2,images/dev/2022/2022_027-2022_p02.png,786.34,753.6,344.06,164.82,single annotator,Ben
+dev,2022,030-2022.pdf,2,images/dev/2022/2022_030-2022_p02.png,725.35,400.52,339.07,169.53,single annotator,Ben
+dev,2022,030-2022.pdf,2,images/dev/2022/2022_030-2022_p02.png,307.65,585.92,238.07,132.74,single annotator,Ben
+dev,2022,030-2022.pdf,2,images/dev/2022/2022_030-2022_p02.png,767.19,775.66,330.41,185.4,single annotator,Ben
+dev,2022,032-2022.pdf,2,images/dev/2022/2022_032-2022_p02.png,738.41,807.5,362.0,163.74,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,032-2022.pdf,2,images/dev/2022/2022_032-2022_p02.png,300.62,975.46,239.66,163.05,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,032-2022.pdf,2,images/dev/2022/2022_032-2022_p02.png,798.3,1174.37,328.52,168.24,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,034-2022.pdf,2,images/dev/2022/2022_034-2022_p02.png,770.14,793.89,297.75,141.92,single annotator,Geron
+dev,2022,034-2022.pdf,2,images/dev/2022/2022_034-2022_p02.png,335.35,958.93,238.59,144.45,single annotator,Geron
+dev,2022,034-2022.pdf,2,images/dev/2022/2022_034-2022_p02.png,786.93,1164.63,256.63,151.09,single annotator,Geron
+dev,2022,036-2022.pdf,2,images/dev/2022/2022_036-2022_p02.png,744.37,531.81,306.62,180.48,single annotator,Geron
+dev,2022,036-2022.pdf,2,images/dev/2022/2022_036-2022_p02.png,326.09,698.91,222.96,142.79,single annotator,Geron
+dev,2022,036-2022.pdf,2,images/dev/2022/2022_036-2022_p02.png,788.16,900.97,278.74,171.58,single annotator,Geron
+dev,2022,038-2022.pdf,3,images/dev/2022/2022_038-2022_p03.png,768.18,1082.51,240.23,231.93,single annotator,Geron
+dev,2022,038-2022.pdf,3,images/dev/2022/2022_038-2022_p03.png,288.47,1337.1,253.11,111.34,single annotator,Geron
+dev,2022,038-2022.pdf,3,images/dev/2022/2022_038-2022_p03.png,801.95,1522.65,278.4,143.95,single annotator,Geron
+dev,2022,040-2022-2.pdf,1,images/dev/2022/2022_040-2022-2_p01.png,803.13,1509.72,258.36,193.64,single annotator,Geron
+dev,2022,040-2022-2.pdf,1,images/dev/2022/2022_040-2022-2_p01.png,330.83,1688.27,215.95,105.22,single annotator,Geron
+dev,2022,040-2022-2.pdf,1,images/dev/2022/2022_040-2022-2_p01.png,810.38,1763.9,327.66,149.53,single annotator,Geron
+dev,2022,046-2022.pdf,2,images/dev/2022/2022_046-2022_p02.png,780.57,778.52,323.92,166.65,single annotator,Ben
+dev,2022,046-2022.pdf,2,images/dev/2022/2022_046-2022_p02.png,294.34,994.11,309.49,138.51,single annotator,Ben
+dev,2022,046-2022.pdf,2,images/dev/2022/2022_046-2022_p02.png,768.31,1197.55,274.14,156.55,single annotator,Ben
+dev,2022,049-2022.pdf,2,images/dev/2022/2022_049-2022_p02.png,743.14,679.04,328.97,170.76,single annotator,Ben
+dev,2022,049-2022.pdf,2,images/dev/2022/2022_049-2022_p02.png,317.69,857.26,225.07,163.24,single annotator,Ben
+dev,2022,049-2022.pdf,2,images/dev/2022/2022_049-2022_p02.png,787.84,1095.67,283.78,133.0,single annotator,Ben
+dev,2022,050-2022.pdf,2,images/dev/2022/2022_050-2022_p02.png,749.29,976.85,214.26,243.84,single annotator,Ben
+dev,2022,050-2022.pdf,2,images/dev/2022/2022_050-2022_p02.png,312.11,1164.42,214.98,182.52,single annotator,Ben
+dev,2022,050-2022.pdf,2,images/dev/2022/2022_050-2022_p02.png,743.52,1380.85,274.14,147.17,single annotator,Ben
+dev,2022,052-2022.pdf,2,images/dev/2022/2022_052-2022_p02.png,762.45,1018.75,194.78,224.75,single annotator,Ben
+dev,2022,052-2022.pdf,2,images/dev/2022/2022_052-2022_p02.png,315.18,1270.14,247.5,112.1,single annotator,Ben
+dev,2022,052-2022.pdf,2,images/dev/2022/2022_052-2022_p02.png,758.57,1408.31,223.64,135.4,single annotator,Ben
+dev,2022,053-2022.pdf,2,images/dev/2022/2022_053-2022_p02.png,747.36,1123.22,223.08,218.09,single annotator,Ben
+dev,2022,053-2022.pdf,2,images/dev/2022/2022_053-2022_p02.png,312.43,1323.52,240.84,152.05,single annotator,Ben
+dev,2022,053-2022.pdf,2,images/dev/2022/2022_053-2022_p02.png,775.8,1510.54,192.01,122.09,single annotator,Ben
+dev,2022,054-2022.pdf,2,images/dev/2022/2022_054-2022_p02.png,766.1,1142.88,198.32,212.43,single annotator,Geron
+dev,2022,054-2022.pdf,2,images/dev/2022/2022_054-2022_p02.png,283.08,1346.28,225.46,138.29,single annotator,Geron
+dev,2022,054-2022.pdf,2,images/dev/2022/2022_054-2022_p02.png,752.92,1532.16,172.49,122.25,single annotator,Geron
+dev,2022,057-2022.pdf,2,images/dev/2022/2022_057-2022_p02.png,750.81,1032.27,156.49,114.55,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,057-2022.pdf,2,images/dev/2022/2022_057-2022_p02.png,269.1,1260.12,278.38,107.29,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,057-2022.pdf,2,images/dev/2022/2022_057-2022_p02.png,780.61,1425.27,315.01,162.96,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,059-2022.pdf,2,images/dev/2022/2022_059-2022_p02.png,786.58,922.69,175.87,126.78,single annotator,Ben
+dev,2022,059-2022.pdf,2,images/dev/2022/2022_059-2022_p02.png,289.7,1138.26,233.5,134.89,single annotator,Ben
+dev,2022,059-2022.pdf,2,images/dev/2022/2022_059-2022_p02.png,795.12,1317.12,299.67,148.55,single annotator,Ben
+dev,2022,061-2022.pdf,5,images/dev/2022/2022_061-2022_p05.png,784.33,543.2,198.49,213.59,single annotator,Geron
+dev,2022,061-2022.pdf,5,images/dev/2022/2022_061-2022_p05.png,310.14,748.66,227.08,143.47,single annotator,Geron
+dev,2022,061-2022.pdf,5,images/dev/2022/2022_061-2022_p05.png,784.87,897.78,255.13,168.09,single annotator,Geron
+dev,2022,062-2022.pdf,2,images/dev/2022/2022_062-2022_p02.png,780.35,622.08,213.65,258.05,single annotator,Ben
+dev,2022,062-2022.pdf,2,images/dev/2022/2022_062-2022_p02.png,282.01,812.98,284.13,189.23,single annotator,Ben
+dev,2022,062-2022.pdf,2,images/dev/2022/2022_062-2022_p02.png,753.16,994.44,268.03,200.89,single annotator,Ben
+dev,2022,065-2022.pdf,2,images/dev/2022/2022_065-2022_p02.png,784.98,930.29,272.47,169.26,single annotator,Ben
+dev,2022,065-2022.pdf,2,images/dev/2022/2022_065-2022_p02.png,317.17,1152.81,207.55,98.22,single annotator,Ben
+dev,2022,065-2022.pdf,2,images/dev/2022/2022_065-2022_p02.png,788.31,1319.85,325.19,130.41,single annotator,Ben
+dev,2022,066-2022.pdf,2,images/dev/2022/2022_066-2022_p02.png,817.88,539.41,191.79,216.0,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,066-2022.pdf,2,images/dev/2022/2022_066-2022_p02.png,343.14,746.12,228.56,156.31,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,066-2022.pdf,2,images/dev/2022/2022_066-2022_p02.png,795.56,906.21,211.2,140.31,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2022,067-2022.pdf,4,images/dev/2022/2022_067-2022_p04.png,802.3,338.93,145.47,111.97,single annotator,Ben
+dev,2022,067-2022.pdf,4,images/dev/2022/2022_067-2022_p04.png,304.83,539.23,237.08,127.73,single annotator,Ben
+dev,2022,067-2022.pdf,4,images/dev/2022/2022_067-2022_p04.png,801.68,738.79,335.07,144.34,single annotator,Ben
+dev,2022,068-2022.pdf,2,images/dev/2022/2022_068-2022_p02.png,811.48,541.62,180.6,122.48,single annotator,Ben
+dev,2022,068-2022.pdf,2,images/dev/2022/2022_068-2022_p02.png,310.5,708.53,241.09,161.39,single annotator,Ben
+dev,2022,068-2022.pdf,2,images/dev/2022/2022_068-2022_p02.png,781.07,921.71,329.51,147.22,single annotator,Ben
+dev,2022,072-2022.pdf,5,images/dev/2022/2022_072-2022_p05.png,783.59,613.05,180.91,240.29,single annotator,Ben
+dev,2022,072-2022.pdf,5,images/dev/2022/2022_072-2022_p05.png,288.58,882.65,229.19,90.0,single annotator,Ben
+dev,2022,072-2022.pdf,5,images/dev/2022/2022_072-2022_p05.png,774.5,1033.3,350.01,153.33,single annotator,Ben
+dev,2022,073-2022.pdf,3,images/dev/2022/2022_073-2022_p03.png,819.04,1012.18,204.13,149.78,single annotator,Geron
+dev,2022,073-2022.pdf,3,images/dev/2022/2022_073-2022_p03.png,334.14,1210.27,218.85,141.15,single annotator,Geron
+dev,2022,073-2022.pdf,3,images/dev/2022/2022_073-2022_p03.png,757.09,1428.2,358.01,147.49,single annotator,Geron
+dev,2022,075-2022.pdf,2,images/dev/2022/2022_075-2022_p02.png,772.52,894.44,201.06,129.93,single annotator,Ben
+dev,2022,075-2022.pdf,2,images/dev/2022/2022_075-2022_p02.png,302.6,1122.09,225.42,88.4,single annotator,Ben
+dev,2022,075-2022.pdf,2,images/dev/2022/2022_075-2022_p02.png,756.86,1266.05,310.3,147.51,single annotator,Ben
+dev,2022,078-2022.pdf,2,images/dev/2022/2022_078-2022_p02.png,725.64,1412.01,312.84,153.1,single annotator,Geron
+dev,2022,078-2022.pdf,2,images/dev/2022/2022_078-2022_p02.png,332.05,1583.15,196.52,125.79,single annotator,Geron
+dev,2022,078-2022.pdf,2,images/dev/2022/2022_078-2022_p02.png,815.3,1715.84,295.71,150.88,single annotator,Geron
+dev,2022,079-2022.pdf,3,images/dev/2022/2022_079-2022_p03.png,783.0,328.18,247.26,134.3,single annotator,Ben
+dev,2022,079-2022.pdf,3,images/dev/2022/2022_079-2022_p03.png,297.42,558.63,241.67,104.58,single annotator,Ben
+dev,2022,079-2022.pdf,3,images/dev/2022/2022_079-2022_p03.png,786.87,723.51,337.6,135.87,single annotator,Ben
+dev,2022,081-2022.pdf,2,images/dev/2022/2022_081-2022_p02.png,713.03,1428.6,344.55,168.92,single annotator,Ben
+dev,2022,081-2022.pdf,2,images/dev/2022/2022_081-2022_p02.png,288.73,1624.19,243.25,103.43,single annotator,Ben
+dev,2022,081-2022.pdf,2,images/dev/2022/2022_081-2022_p02.png,774.95,1707.9,360.29,167.12,single annotator,Ben
+dev,2023,003-2023.pdf,6,images/dev/2023/2023_003-2023_p06.png,770.23,351.16,196.74,105.96,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,003-2023.pdf,6,images/dev/2023/2023_003-2023_p06.png,333.45,530.2,218.28,126.93,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,003-2023.pdf,6,images/dev/2023/2023_003-2023_p06.png,805.97,682.41,334.01,155.67,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,004-2023.pdf,2,images/dev/2023/2023_004-2023_p02.png,792.56,1079.48,233.58,132.2,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,004-2023.pdf,2,images/dev/2023/2023_004-2023_p02.png,325.12,1248.97,216.94,156.12,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,004-2023.pdf,2,images/dev/2023/2023_004-2023_p02.png,798.53,1446.26,355.21,166.45,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,015-2023.pdf,5,images/dev/2023/2023_015-2023_p05.png,775.59,631.75,271.36,159.82,single annotator,Ben
+dev,2023,015-2023.pdf,5,images/dev/2023/2023_015-2023_p05.png,338.67,824.66,206.76,142.75,single annotator,Ben
+dev,2023,015-2023.pdf,5,images/dev/2023/2023_015-2023_p05.png,814.35,1062.14,310.47,157.46,single annotator,Ben
+dev,2023,016-2023.pdf,2,images/dev/2023/2023_016-2023_p02.png,765.28,381.76,271.36,150.39,single annotator,Ben
+dev,2023,016-2023.pdf,2,images/dev/2023/2023_016-2023_p02.png,312.73,551.68,212.61,143.65,single annotator,Ben
+dev,2023,016-2023.pdf,2,images/dev/2023/2023_016-2023_p02.png,781.99,747.53,327.05,163.76,single annotator,Ben
+dev,2023,026-2023.pdf,2,images/dev/2023/2023_026-2023_p02.png,782.02,501.38,235.68,131.86,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,026-2023.pdf,2,images/dev/2023/2023_026-2023_p02.png,306.01,688.9,214.67,151.55,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,026-2023.pdf,2,images/dev/2023/2023_026-2023_p02.png,796.62,896.34,305.62,143.28,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,028-2023.pdf,3,images/dev/2023/2023_028-2023_p03.png,769.59,615.91,247.59,156.61,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,028-2023.pdf,3,images/dev/2023/2023_028-2023_p03.png,296.27,794.76,204.41,130.79,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,028-2023.pdf,3,images/dev/2023/2023_028-2023_p03.png,783.01,999.66,318.73,142.87,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,037-2023.pdf,2,images/dev/2023/2023_037-2023_p02.png,785.62,346.81,238.62,161.79,single annotator,Ben
+dev,2023,037-2023.pdf,2,images/dev/2023/2023_037-2023_p02.png,335.69,561.53,119.1,90.07,single annotator,Ben
+dev,2023,037-2023.pdf,2,images/dev/2023/2023_037-2023_p02.png,794.71,732.53,358.39,174.03,single annotator,Ben
+dev,2023,039-2023.pdf,5,images/dev/2023/2023_039-2023_p05.png,779.63,1126.22,286.32,155.35,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,039-2023.pdf,5,images/dev/2023/2023_039-2023_p05.png,331.84,1333.44,110.86,75.87,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,039-2023.pdf,5,images/dev/2023/2023_039-2023_p05.png,792.35,1500.18,337.91,146.87,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,041-2023.pdf,3,images/dev/2023/2023_041-2023_p03.png,820.14,925.88,259.16,137.56,single annotator,Geron
+dev,2023,041-2023.pdf,3,images/dev/2023/2023_041-2023_p03.png,309.98,1095.52,228.05,140.34,single annotator,Geron
+dev,2023,041-2023.pdf,3,images/dev/2023/2023_041-2023_p03.png,803.63,1317.98,351.48,144.4,single annotator,Geron
+dev,2023,042-2023.pdf,3,images/dev/2023/2023_042-2023_p03.png,783.67,1485.82,219.41,125.5,single annotator,Ben
+dev,2023,042-2023.pdf,3,images/dev/2023/2023_042-2023_p03.png,299.85,1627.88,196.56,122.92,single annotator,Ben
+dev,2023,042-2023.pdf,3,images/dev/2023/2023_042-2023_p03.png,797.11,1749.56,305.02,144.13,single annotator,Ben
+dev,2023,043-2023.pdf,2,images/dev/2023/2023_043-2023_p02.png,764.12,685.03,213.44,279.3,single annotator,Ben
+dev,2023,043-2023.pdf,2,images/dev/2023/2023_043-2023_p02.png,318.52,941.84,218.09,151.5,single annotator,Ben
+dev,2023,043-2023.pdf,2,images/dev/2023/2023_043-2023_p02.png,797.83,1109.18,207.65,165.95,single annotator,Ben
+dev,2023,044-2023.pdf,4,images/dev/2023/2023_044-2023_p04.png,781.02,782.1,202.81,268.61,single annotator,Geron
+dev,2023,044-2023.pdf,4,images/dev/2023/2023_044-2023_p04.png,347.36,1009.71,182.31,144.55,single annotator,Geron
+dev,2023,044-2023.pdf,4,images/dev/2023/2023_044-2023_p04.png,774.27,1169.33,223.92,129.5,single annotator,Geron
+dev,2023,046-2023.pdf,2,images/dev/2023/2023_046-2023_p02.png,792.35,1179.16,210.32,257.49,single annotator,Ben
+dev,2023,046-2023.pdf,2,images/dev/2023/2023_046-2023_p02.png,315.59,1471.6,231.97,123.2,single annotator,Ben
+dev,2023,046-2023.pdf,2,images/dev/2023/2023_046-2023_p02.png,750.09,1604.17,251.0,148.91,single annotator,Ben
+dev,2023,048-2023.pdf,2,images/dev/2023/2023_048-2023_p02.png,759.57,660.3,298.84,172.36,single annotator,Ben
+dev,2023,048-2023.pdf,2,images/dev/2023/2023_048-2023_p02.png,328.96,858.34,219.01,151.78,single annotator,Ben
+dev,2023,048-2023.pdf,2,images/dev/2023/2023_048-2023_p02.png,790.72,1053.92,302.21,138.53,single annotator,Ben
+dev,2023,050-2023.pdf,2,images/dev/2023/2023_050-2023_p02.png,781.5,1044.86,294.54,163.49,single annotator,Ben
+dev,2023,050-2023.pdf,2,images/dev/2023/2023_050-2023_p02.png,315.37,1226.97,233.12,133.34,single annotator,Ben
+dev,2023,050-2023.pdf,2,images/dev/2023/2023_050-2023_p02.png,793.39,1422.18,318.53,145.1,single annotator,Ben
+dev,2023,052-2023.pdf,2,images/dev/2023/2023_052-2023_p02.png,778.79,1129.23,224.54,131.9,single annotator,Ben
+dev,2023,052-2023.pdf,2,images/dev/2023/2023_052-2023_p02.png,339.54,1294.43,191.59,147.27,single annotator,Ben
+dev,2023,052-2023.pdf,2,images/dev/2023/2023_052-2023_p02.png,801.42,1504.89,330.81,142.3,single annotator,Ben
+dev,2023,056-2023.pdf,2,images/dev/2023/2023_056-2023_p02.png,792.14,1372.35,274.16,135.64,single annotator,Geron
+dev,2023,056-2023.pdf,2,images/dev/2023/2023_056-2023_p02.png,327.19,1539.68,193.56,156.49,single annotator,Geron
+dev,2023,056-2023.pdf,2,images/dev/2023/2023_056-2023_p02.png,801.43,1743.89,293.06,147.81,single annotator,Geron
+dev,2023,059-2023.pdf,2,images/dev/2023/2023_059-2023_p02.png,796.2,1294.74,238.99,134.43,single annotator,Geron
+dev,2023,059-2023.pdf,2,images/dev/2023/2023_059-2023_p02.png,329.84,1459.04,208.28,168.45,single annotator,Geron
+dev,2023,059-2023.pdf,2,images/dev/2023/2023_059-2023_p02.png,789.46,1661.74,316.8,141.03,single annotator,Geron
+dev,2023,062-2023.pdf,2,images/dev/2023/2023_062-2023_p02.png,814.1,1286.86,255.01,134.05,single annotator,Geron
+dev,2023,062-2023.pdf,2,images/dev/2023/2023_062-2023_p02.png,342.21,1439.15,199.91,164.75,single annotator,Geron
+dev,2023,062-2023.pdf,2,images/dev/2023/2023_062-2023_p02.png,808.27,1654.35,300.11,146.23,single annotator,Geron
+dev,2023,065-2023.pdf,7,images/dev/2023/2023_065-2023_p07.png,780.27,328.68,285.68,137.79,single annotator,Ben
+dev,2023,065-2023.pdf,7,images/dev/2023/2023_065-2023_p07.png,305.98,504.0,247.08,157.54,single annotator,Ben
+dev,2023,065-2023.pdf,7,images/dev/2023/2023_065-2023_p07.png,796.79,712.04,316.03,148.44,single annotator,Ben
+dev,2023,068-2023.pdf,2,images/dev/2023/2023_068-2023_p02.png,790.44,298.13,214.13,260.52,single annotator,Geron
+dev,2023,068-2023.pdf,2,images/dev/2023/2023_068-2023_p02.png,326.06,519.8,211.68,146.46,single annotator,Geron
+dev,2023,068-2023.pdf,2,images/dev/2023/2023_068-2023_p02.png,754.21,670.11,297.87,184.6,single annotator,Geron
+dev,2023,070-2023.pdf,2,images/dev/2023/2023_070-2023_p02.png,780.42,424.16,292.41,176.73,single annotator,Ben
+dev,2023,070-2023.pdf,2,images/dev/2023/2023_070-2023_p02.png,322.68,678.12,217.87,104.58,single annotator,Ben
+dev,2023,070-2023.pdf,2,images/dev/2023/2023_070-2023_p02.png,791.26,828.11,336.27,173.47,single annotator,Ben
+dev,2023,072-2023.pdf,2,images/dev/2023/2023_072-2023_p02.png,785.4,455.24,238.77,154.8,single annotator,Ben
+dev,2023,072-2023.pdf,2,images/dev/2023/2023_072-2023_p02.png,323.96,625.05,182.06,147.34,single annotator,Ben
+dev,2023,072-2023.pdf,2,images/dev/2023/2023_072-2023_p02.png,788.6,827.82,313.57,148.73,single annotator,Ben
+dev,2023,075-2023.pdf,2,images/dev/2023/2023_075-2023_p02.png,765.68,1049.37,299.67,158.16,single annotator,Ben
+dev,2023,075-2023.pdf,2,images/dev/2023/2023_075-2023_p02.png,322.23,1275.66,206.19,108.89,single annotator,Ben
+dev,2023,075-2023.pdf,2,images/dev/2023/2023_075-2023_p02.png,780.69,1427.58,319.18,178.9,single annotator,Ben
+dev,2023,077-2023.pdf,1,images/dev/2023/2023_077-2023_p01.png,197.75,1084.99,538.32,185.69,single annotator,Ben
+dev,2023,077-2023.pdf,4,images/dev/2023/2023_077-2023_p04.png,774.31,1034.56,221.12,139.16,single annotator,Ben
+dev,2023,077-2023.pdf,4,images/dev/2023/2023_077-2023_p04.png,312.21,1277.67,208.54,101.72,single annotator,Ben
+dev,2023,077-2023.pdf,4,images/dev/2023/2023_077-2023_p04.png,790.89,1428.21,298.65,167.59,single annotator,Ben
+dev,2023,078-2023.pdf,2,images/dev/2023/2023_078-2023_p02.png,757.48,1456.39,275.25,148.72,single annotator,Ben
+dev,2023,078-2023.pdf,2,images/dev/2023/2023_078-2023_p02.png,314.75,1648.65,216.39,99.13,single annotator,Ben
+dev,2023,078-2023.pdf,2,images/dev/2023/2023_078-2023_p02.png,783.8,1755.56,309.45,150.6,single annotator,Ben
+dev,2023,079-2023.pdf,3,images/dev/2023/2023_079-2023_p03.png,756.34,1265.38,327.6,184.68,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,079-2023.pdf,3,images/dev/2023/2023_079-2023_p03.png,283.13,1419.45,245.2,168.96,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,079-2023.pdf,3,images/dev/2023/2023_079-2023_p03.png,777.67,1647.54,334.21,150.6,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2023,080-2023.pdf,2,images/dev/2023/2023_080-2023_p02.png,784.77,416.65,174.16,215.57,single annotator,Ben
+dev,2023,080-2023.pdf,2,images/dev/2023/2023_080-2023_p02.png,328.02,660.82,213.44,140.01,single annotator,Ben
+dev,2023,080-2023.pdf,2,images/dev/2023/2023_080-2023_p02.png,769.53,811.28,283.0,150.01,single annotator,Ben
+dev,2023,081-2023.pdf,1,images/dev/2023/2023_081-2023_p01.png,270.77,1083.69,387.37,119.39,single annotator,Geron
+dev,2023,081-2023.pdf,4,images/dev/2023/2023_081-2023_p04.png,818.55,282.83,184.6,259.51,single annotator,Geron
+dev,2023,081-2023.pdf,4,images/dev/2023/2023_081-2023_p04.png,397.64,524.85,222.39,154.97,single annotator,Geron
+dev,2023,081-2023.pdf,4,images/dev/2023/2023_081-2023_p04.png,810.51,765.95,276.14,146.21,single annotator,Geron
+dev,2023,084-2023.pdf,2,images/dev/2023/2023_084-2023_p02.png,757.09,435.24,277.47,168.93,single annotator,Geron
+dev,2023,084-2023.pdf,2,images/dev/2023/2023_084-2023_p02.png,307.78,654.65,227.39,140.95,single annotator,Geron
+dev,2023,084-2023.pdf,2,images/dev/2023/2023_084-2023_p02.png,780.04,839.34,272.37,134.02,single annotator,Geron
+dev,2023,087-2023.pdf,1,images/dev/2023/2023_087-2023_p01.png,141.18,1273.29,479.02,129.13,single annotator,Ben
+dev,2023,087-2023.pdf,3,images/dev/2023/2023_087-2023_p03.png,739.46,1290.25,249.72,150.26,single annotator,Ben
+dev,2023,087-2023.pdf,3,images/dev/2023/2023_087-2023_p03.png,287.17,1515.03,231.82,104.14,single annotator,Ben
+dev,2023,087-2023.pdf,3,images/dev/2023/2023_087-2023_p03.png,779.75,1691.66,298.95,133.0,single annotator,Ben
+dev,2023,088-2023.pdf,1,images/dev/2023/2023_088-2023_p01.png,167.4,1147.07,451.38,114.64,single annotator,Geron
+dev,2023,088-2023.pdf,6,images/dev/2023/2023_088-2023_p06.png,792.05,637.95,196.28,156.07,single annotator,Geron
+dev,2023,088-2023.pdf,6,images/dev/2023/2023_088-2023_p06.png,325.21,868.31,209.44,119.58,single annotator,Geron
+dev,2023,088-2023.pdf,6,images/dev/2023/2023_088-2023_p06.png,774.64,1040.87,277.84,130.49,single annotator,Geron
+dev,2023,089-2023.pdf,1,images/dev/2023/2023_089-2023_p01.png,183.05,1137.71,421.2,120.98,single annotator,Ben
+dev,2023,089-2023.pdf,9,images/dev/2023/2023_089-2023_p09.png,760.49,334.93,214.42,124.78,single annotator,Ben
+dev,2023,089-2023.pdf,9,images/dev/2023/2023_089-2023_p09.png,304.35,574.71,219.53,103.87,single annotator,Ben
+dev,2023,089-2023.pdf,9,images/dev/2023/2023_089-2023_p09.png,777.31,736.76,295.42,145.85,single annotator,Ben
+dev,2023,092-2023.pdf,2,images/dev/2023/2023_092-2023_p02.png,780.44,435.49,256.98,169.04,single annotator,Ben
+dev,2023,092-2023.pdf,2,images/dev/2023/2023_092-2023_p02.png,303.62,621.61,238.2,160.93,single annotator,Ben
+dev,2023,092-2023.pdf,2,images/dev/2023/2023_092-2023_p02.png,782.23,860.59,289.85,139.04,single annotator,Ben
+dev,2023,095-2023.pdf,1,images/dev/2023/2023_095-2023_p01.png,193.79,1317.05,330.74,114.87,single annotator,Ben
+dev,2023,095-2023.pdf,3,images/dev/2023/2023_095-2023_p03.png,782.7,1356.58,271.36,170.37,single annotator,Ben
+dev,2023,095-2023.pdf,3,images/dev/2023/2023_095-2023_p03.png,312.92,1573.36,214.69,92.9,single annotator,Ben
+dev,2023,095-2023.pdf,3,images/dev/2023/2023_095-2023_p03.png,779.12,1694.02,287.2,136.52,single annotator,Ben
+dev,2023,096-2023.pdf,4,images/dev/2023/2023_096-2023_p04.png,812.64,537.94,138.73,144.28,single annotator,Ben
+dev,2023,096-2023.pdf,4,images/dev/2023/2023_096-2023_p04.png,301.82,693.67,241.81,181.0,single annotator,Ben
+dev,2023,096-2023.pdf,4,images/dev/2023/2023_096-2023_p04.png,784.54,935.84,309.88,143.37,single annotator,Ben
+dev,2023,101-2023.pdf,5,images/dev/2023/2023_101-2023_p05.png,655.25,313.39,526.19,237.6,single annotator,Ben
+dev,2023,101-2023.pdf,5,images/dev/2023/2023_101-2023_p05.png,311.85,569.0,235.34,111.02,single annotator,Ben
+dev,2023,101-2023.pdf,5,images/dev/2023/2023_101-2023_p05.png,788.58,756.94,312.85,138.71,single annotator,Ben
+dev,2023,105-2023.pdf,2,images/dev/2023/2023_105-2023_p02.png,721.44,865.17,310.07,210.18,single annotator,Geron
+dev,2023,105-2023.pdf,2,images/dev/2023/2023_105-2023_p02.png,302.52,1141.34,211.58,90.93,single annotator,Geron
+dev,2023,105-2023.pdf,2,images/dev/2023/2023_105-2023_p02.png,776.77,1291.52,318.93,148.32,single annotator,Geron
+dev,2023,109-2023.pdf,2,images/dev/2023/2023_109-2023_p02.png,765.73,324.48,267.48,237.51,single annotator,Ben
+dev,2023,109-2023.pdf,2,images/dev/2023/2023_109-2023_p02.png,343.6,622.13,227.89,90.63,single annotator,Ben
+dev,2023,109-2023.pdf,2,images/dev/2023/2023_109-2023_p02.png,800.54,783.17,319.81,122.76,single annotator,Ben
+dev,2023,113-2023.pdf,2,images/dev/2023/2023_113-2023_p02.png,716.79,1056.84,350.29,165.11,single annotator,Ben
+dev,2023,113-2023.pdf,2,images/dev/2023/2023_113-2023_p02.png,297.99,1289.48,256.22,104.03,single annotator,Ben
+dev,2023,113-2023.pdf,2,images/dev/2023/2023_113-2023_p02.png,765.13,1459.56,298.31,144.39,single annotator,Ben
+dev,2024,003-2024.pdf,4,images/dev/2024/2024_003-2024_p04.png,798.68,735.98,227.56,135.61,single annotator,Ben
+dev,2024,003-2024.pdf,4,images/dev/2024/2024_003-2024_p04.png,303.38,900.46,238.46,178.13,single annotator,Ben
+dev,2024,003-2024.pdf,4,images/dev/2024/2024_003-2024_p04.png,780.56,1149.63,282.2,126.85,single annotator,Ben
+dev,2024,007-2024.pdf,4,images/dev/2024/2024_007-2024_p04.png,759.2,1418.47,271.07,142.15,single annotator,Ben
+dev,2024,007-2024.pdf,4,images/dev/2024/2024_007-2024_p04.png,316.03,1614.79,218.42,93.56,single annotator,Ben
+dev,2024,007-2024.pdf,4,images/dev/2024/2024_007-2024_p04.png,778.5,1755.22,281.51,114.42,single annotator,Ben
+dev,2024,009-2024.pdf,2,images/dev/2024/2024_009-2024_p02.png,793.19,454.91,223.73,158.3,single annotator,Geron
+dev,2024,009-2024.pdf,2,images/dev/2024/2024_009-2024_p02.png,326.62,689.03,195.12,104.9,single annotator,Geron
+dev,2024,009-2024.pdf,2,images/dev/2024/2024_009-2024_p02.png,792.78,843.82,303.44,129.77,single annotator,Geron
+dev,2024,010-2024.pdf,2,images/dev/2024/2024_010-2024_p02.png,792.5,457.46,232.03,149.05,single annotator,Geron
+dev,2024,010-2024.pdf,2,images/dev/2024/2024_010-2024_p02.png,295.79,687.95,190.46,97.02,single annotator,Geron
+dev,2024,010-2024.pdf,2,images/dev/2024/2024_010-2024_p02.png,780.94,842.32,317.57,155.72,single annotator,Geron
+dev,2024,014-2024.pdf,2,images/dev/2024/2024_014-2024_p02.png,810.79,358.54,183.55,113.88,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,014-2024.pdf,2,images/dev/2024/2024_014-2024_p02.png,333.61,588.96,181.0,90.5,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,014-2024.pdf,2,images/dev/2024/2024_014-2024_p02.png,809.18,750.54,320.2,151.39,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,017-2024.pdf,2,images/dev/2024/2024_017-2024_p02.png,795.46,667.38,206.87,180.13,single annotator,Ben
+dev,2024,017-2024.pdf,2,images/dev/2024/2024_017-2024_p02.png,329.22,914.9,194.6,76.91,single annotator,Ben
+dev,2024,017-2024.pdf,2,images/dev/2024/2024_017-2024_p02.png,792.0,1072.76,312.38,162.55,single annotator,Ben
+dev,2024,020-2024.pdf,2,images/dev/2024/2024_020-2024_p02.png,804.6,446.47,253.99,137.88,single annotator,Ben
+dev,2024,020-2024.pdf,2,images/dev/2024/2024_020-2024_p02.png,333.94,686.15,195.79,74.8,single annotator,Ben
+dev,2024,020-2024.pdf,2,images/dev/2024/2024_020-2024_p02.png,803.14,841.33,329.8,171.88,single annotator,Ben
+dev,2024,021-2024.pdf,5,images/dev/2024/2024_021-2024_p05.png,790.64,567.88,183.98,143.0,single annotator,Ben
+dev,2024,021-2024.pdf,5,images/dev/2024/2024_021-2024_p05.png,294.19,751.0,205.33,139.59,single annotator,Ben
+dev,2024,021-2024.pdf,5,images/dev/2024/2024_021-2024_p05.png,781.25,943.23,357.21,155.62,single annotator,Ben
+dev,2024,023-2024.pdf,2,images/dev/2024/2024_023-2024_p02.png,802.6,1511.38,164.77,135.32,single annotator,Ben
+dev,2024,023-2024.pdf,2,images/dev/2024/2024_023-2024_p02.png,318.35,1664.74,172.38,82.88,single annotator,Ben
+dev,2024,023-2024.pdf,2,images/dev/2024/2024_023-2024_p02.png,784.11,1758.79,279.72,144.61,single annotator,Ben
+dev,2024,024-2024.pdf,2,images/dev/2024/2024_024-2024_p02.png,797.59,467.02,229.74,107.1,single annotator,Ben
+dev,2024,024-2024.pdf,2,images/dev/2024/2024_024-2024_p02.png,332.07,684.26,194.65,85.57,single annotator,Ben
+dev,2024,024-2024.pdf,2,images/dev/2024/2024_024-2024_p02.png,791.17,843.52,277.42,144.84,single annotator,Ben
+dev,2024,025-2024.pdf,5,images/dev/2024/2024_025-2024_p05.png,802.96,1282.87,212.54,116.43,single annotator,Ben
+dev,2024,025-2024.pdf,5,images/dev/2024/2024_025-2024_p05.png,324.3,1463.58,239.3,134.33,single annotator,Ben
+dev,2024,025-2024.pdf,5,images/dev/2024/2024_025-2024_p05.png,772.59,1674.25,295.66,137.07,single annotator,Ben
+dev,2024,026-2024.pdf,3,images/dev/2024/2024_026-2024_p03.png,783.48,654.63,231.39,156.39,single annotator,Geron
+dev,2024,026-2024.pdf,3,images/dev/2024/2024_026-2024_p03.png,322.94,896.47,169.34,73.03,single annotator,Geron
+dev,2024,026-2024.pdf,3,images/dev/2024/2024_026-2024_p03.png,788.81,1048.12,284.73,143.77,single annotator,Geron
+dev,2024,033-2024.pdf,2,images/dev/2024/2024_033-2024_p02.png,745.02,330.07,232.52,213.65,single annotator,Ben
+dev,2024,033-2024.pdf,2,images/dev/2024/2024_033-2024_p02.png,334.16,556.78,201.18,130.85,single annotator,Ben
+dev,2024,033-2024.pdf,2,images/dev/2024/2024_033-2024_p02.png,799.94,771.99,330.54,133.4,single annotator,Ben
+dev,2024,034-2024.pdf,2,images/dev/2024/2024_034-2024_p02.png,775.63,310.92,223.41,175.86,single annotator,Geron
+dev,2024,034-2024.pdf,2,images/dev/2024/2024_034-2024_p02.png,319.61,504.71,235.61,132.52,single annotator,Geron
+dev,2024,034-2024.pdf,2,images/dev/2024/2024_034-2024_p02.png,795.57,703.6,320.46,152.76,single annotator,Geron
+dev,2024,035-2024.pdf,2,images/dev/2024/2024_035-2024_p02.png,815.13,742.04,239.37,135.0,single annotator,Geron
+dev,2024,035-2024.pdf,2,images/dev/2024/2024_035-2024_p02.png,329.05,914.97,222.29,133.57,single annotator,Geron
+dev,2024,035-2024.pdf,2,images/dev/2024/2024_035-2024_p02.png,793.88,1116.91,316.02,146.43,single annotator,Geron
+dev,2024,036-2024.pdf,4,images/dev/2024/2024_036-2024_p04.png,775.83,303.11,213.1,247.5,single annotator,Ben
+dev,2024,036-2024.pdf,4,images/dev/2024/2024_036-2024_p04.png,316.21,600.62,200.53,86.82,single annotator,Ben
+dev,2024,036-2024.pdf,4,images/dev/2024/2024_036-2024_p04.png,801.43,739.37,285.22,138.58,single annotator,Ben
+dev,2024,042-2024.pdf,3,images/dev/2024/2024_042-2024_p03.png,796.5,626.72,213.44,148.55,single annotator,Ben
+dev,2024,042-2024.pdf,3,images/dev/2024/2024_042-2024_p03.png,309.12,816.48,212.61,145.09,single annotator,Ben
+dev,2024,042-2024.pdf,3,images/dev/2024/2024_042-2024_p03.png,791.81,1014.08,347.53,150.4,single annotator,Ben
+dev,2024,044-2024.pdf,2,images/dev/2024/2024_044-2024_p02.png,787.36,1180.04,263.89,183.13,single annotator,Ben
+dev,2024,044-2024.pdf,2,images/dev/2024/2024_044-2024_p02.png,320.1,1349.89,221.49,145.58,single annotator,Ben
+dev,2024,044-2024.pdf,2,images/dev/2024/2024_044-2024_p02.png,774.58,1566.45,285.73,129.97,single annotator,Ben
+dev,2024,046-2024.pdf,1,images/dev/2024/2024_046-2024_p01.png,173.13,1129.72,467.48,121.2,single annotator,Ben
+dev,2024,046-2024.pdf,4,images/dev/2024/2024_046-2024_p04.png,750.18,1248.45,265.48,173.86,single annotator,Ben
+dev,2024,046-2024.pdf,4,images/dev/2024/2024_046-2024_p04.png,293.36,1419.18,233.46,159.85,single annotator,Ben
+dev,2024,046-2024.pdf,4,images/dev/2024/2024_046-2024_p04.png,782.96,1658.72,280.12,113.01,single annotator,Ben
+dev,2024,047-2024.pdf,2,images/dev/2024/2024_047-2024_p02.png,714.66,1365.56,304.26,143.56,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,047-2024.pdf,2,images/dev/2024/2024_047-2024_p02.png,285.95,1487.68,230.35,132.64,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,047-2024.pdf,2,images/dev/2024/2024_047-2024_p02.png,774.94,1637.56,318.07,155.14,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,048-2024.pdf,4,images/dev/2024/2024_048-2024_p04.png,823.31,349.73,244.79,128.3,single annotator,Geron
+dev,2024,048-2024.pdf,4,images/dev/2024/2024_048-2024_p04.png,307.16,519.58,210.33,128.73,single annotator,Geron
+dev,2024,048-2024.pdf,4,images/dev/2024/2024_048-2024_p04.png,810.53,711.33,305.15,131.56,single annotator,Geron
+dev,2024,049-2024.pdf,2,images/dev/2024/2024_049-2024_p02.png,813.48,462.24,227.1,119.1,single annotator,Ben
+dev,2024,049-2024.pdf,2,images/dev/2024/2024_049-2024_p02.png,333.71,685.72,165.79,87.94,single annotator,Ben
+dev,2024,049-2024.pdf,2,images/dev/2024/2024_049-2024_p02.png,800.91,825.44,320.2,133.78,single annotator,Ben
+dev,2024,053-2024.pdf,2,images/dev/2024/2024_053-2024_p02.png,796.64,448.66,240.33,156.66,single annotator,Ben
+dev,2024,053-2024.pdf,2,images/dev/2024/2024_053-2024_p02.png,312.99,625.33,187.12,142.18,single annotator,Ben
+dev,2024,053-2024.pdf,2,images/dev/2024/2024_053-2024_p02.png,791.7,832.13,298.65,132.13,single annotator,Ben
+dev,2024,059-2024.pdf,4,images/dev/2024/2024_059-2024_p04.png,749.48,1453.63,163.61,62.92,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,059-2024.pdf,4,images/dev/2024/2024_059-2024_p04.png,324.17,1586.15,193.76,92.04,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,059-2024.pdf,4,images/dev/2024/2024_059-2024_p04.png,799.14,1638.6,209.16,228.94,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,060-2024-2.pdf,9,images/dev/2024/2024_060-2024-2_p09.png,762.28,591.83,175.54,61.6,single annotator,Geron
+dev,2024,060-2024-2.pdf,9,images/dev/2024/2024_060-2024-2_p09.png,297.92,710.97,233.27,142.37,single annotator,Geron
+dev,2024,060-2024-2.pdf,9,images/dev/2024/2024_060-2024-2_p09.png,789.12,838.53,220.92,241.34,single annotator,Geron
+dev,2024,062-2024.pdf,5,images/dev/2024/2024_062-2024_p05.png,750.66,382.06,198.2,74.68,single annotator,Geron
+dev,2024,062-2024.pdf,5,images/dev/2024/2024_062-2024_p05.png,316.72,569.07,206.57,104.54,single annotator,Geron
+dev,2024,062-2024.pdf,5,images/dev/2024/2024_062-2024_p05.png,774.15,653.23,216.71,235.35,single annotator,Geron
+dev,2024,066-2024.pdf,4,images/dev/2024/2024_066-2024_p04.png,746.82,443.76,222.4,187.4,single annotator,Ben
+dev,2024,066-2024.pdf,4,images/dev/2024/2024_066-2024_p04.png,338.3,687.39,188.66,90.98,single annotator,Ben
+dev,2024,066-2024.pdf,4,images/dev/2024/2024_066-2024_p04.png,804.47,819.18,300.12,157.1,single annotator,Ben
+dev,2024,067-2024.pdf,2,images/dev/2024/2024_067-2024_p02.png,765.31,1110.76,331.61,207.45,single annotator,Geron
+dev,2024,067-2024.pdf,2,images/dev/2024/2024_067-2024_p02.png,317.44,1388.28,196.91,97.21,single annotator,Geron
+dev,2024,067-2024.pdf,2,images/dev/2024/2024_067-2024_p02.png,802.05,1537.06,306.42,131.72,single annotator,Geron
+dev,2024,068-2025.pdf,3,images/dev/2024/2024_068-2025_p03.png,774.21,1105.72,209.53,148.54,single annotator,Geron
+dev,2024,068-2025.pdf,3,images/dev/2024/2024_068-2025_p03.png,296.29,1321.62,239.46,101.97,single annotator,Geron
+dev,2024,068-2025.pdf,3,images/dev/2024/2024_068-2025_p03.png,798.62,1466.9,265.05,140.67,single annotator,Geron
+dev,2024,070-2024.pdf,2,images/dev/2024/2024_070-2024_p02.png,687.44,1456.67,302.65,187.82,single annotator,Ben
+dev,2024,070-2024.pdf,2,images/dev/2024/2024_070-2024_p02.png,338.34,1634.24,181.71,89.33,single annotator,Ben
+dev,2024,070-2024.pdf,2,images/dev/2024/2024_070-2024_p02.png,791.91,1728.46,312.25,136.46,single annotator,Ben
+dev,2024,071-2024.pdf,3,images/dev/2024/2024_071-2024_p03.png,776.16,503.38,276.3,160.15,single annotator,Ben
+dev,2024,071-2024.pdf,3,images/dev/2024/2024_071-2024_p03.png,319.97,696.59,198.26,147.85,single annotator,Ben
+dev,2024,071-2024.pdf,3,images/dev/2024/2024_071-2024_p03.png,787.27,905.31,292.59,120.27,single annotator,Ben
+dev,2024,072-2024.pdf,1,images/dev/2024/2024_072-2024_p01.png,144.42,1206.97,460.99,131.3,single annotator,Ben
+dev,2024,072-2024.pdf,4,images/dev/2024/2024_072-2024_p04.png,720.7,1115.54,375.14,222.92,single annotator,Ben
+dev,2024,072-2024.pdf,4,images/dev/2024/2024_072-2024_p04.png,320.61,1308.34,237.17,163.72,single annotator,Ben
+dev,2024,072-2024.pdf,4,images/dev/2024/2024_072-2024_p04.png,786.58,1535.23,324.97,127.84,single annotator,Ben
+dev,2024,074-2024.pdf,2,images/dev/2024/2024_074-2024_p02.png,819.36,333.67,242.4,150.5,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,074-2024.pdf,2,images/dev/2024/2024_074-2024_p02.png,336.13,495.51,215.15,162.1,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,074-2024.pdf,2,images/dev/2024/2024_074-2024_p02.png,794.96,699.31,304.69,150.89,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,076-2024.pdf,2,images/dev/2024/2024_076-2024_p02.png,825.83,364.34,204.77,151.5,single annotator,Ben
+dev,2024,076-2024.pdf,2,images/dev/2024/2024_076-2024_p02.png,327.7,528.13,235.74,157.3,single annotator,Ben
+dev,2024,076-2024.pdf,2,images/dev/2024/2024_076-2024_p02.png,798.02,738.44,305.58,116.09,single annotator,Ben
+dev,2024,077-2024.pdf,1,images/dev/2024/2024_077-2024_p01.png,128.54,1124.55,499.22,170.98,single annotator,Ben
+dev,2024,077-2024.pdf,6,images/dev/2024/2024_077-2024_p06.png,766.37,298.61,216.43,214.21,single annotator,Ben
+dev,2024,077-2024.pdf,6,images/dev/2024/2024_077-2024_p06.png,323.18,504.42,191.54,159.86,single annotator,Ben
+dev,2024,077-2024.pdf,6,images/dev/2024/2024_077-2024_p06.png,798.24,698.06,302.36,156.17,single annotator,Ben
+dev,2024,078-2024.pdf,1,images/dev/2024/2024_078-2024_p01.png,197.92,1148.57,405.44,153.66,single annotator,Ben
+dev,2024,078-2024.pdf,14,images/dev/2024/2024_078-2024_p14.png,759.43,306.95,250.58,183.98,single annotator,Ben
+dev,2024,078-2024.pdf,14,images/dev/2024/2024_078-2024_p14.png,328.31,501.92,196.52,142.92,single annotator,Ben
+dev,2024,078-2024.pdf,14,images/dev/2024/2024_078-2024_p14.png,779.77,721.84,326.71,137.62,single annotator,Ben
+dev,2024,079-2024.pdf,16,images/dev/2024/2024_079-2024_p16.png,706.94,1082.63,339.53,263.32,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,079-2024.pdf,16,images/dev/2024/2024_079-2024_p16.png,324.63,1331.86,191.07,135.54,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,079-2024.pdf,16,images/dev/2024/2024_079-2024_p16.png,787.86,1507.89,327.41,137.84,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,081-2024.pdf,3,images/dev/2024/2024_081-2024_p03.png,819.6,1243.9,155.01,150.79,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,081-2024.pdf,3,images/dev/2024/2024_081-2024_p03.png,356.6,1431.75,203.0,150.31,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,081-2024.pdf,3,images/dev/2024/2024_081-2024_p03.png,791.79,1627.21,302.95,146.1,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2024,082-2025.pdf,2,images/dev/2024/2024_082-2025_p02.png,783.95,959.1,265.52,134.89,single annotator,Ben
+dev,2024,082-2025.pdf,2,images/dev/2024/2024_082-2025_p02.png,319.32,1128.29,210.73,148.41,single annotator,Ben
+dev,2024,082-2025.pdf,2,images/dev/2024/2024_082-2025_p02.png,789.72,1323.86,313.98,144.56,single annotator,Ben
+dev,2024,086-2024.pdf,2,images/dev/2024/2024_086-2024_p02.png,789.24,333.0,232.22,150.26,single annotator,Ben
+dev,2024,086-2024.pdf,2,images/dev/2024/2024_086-2024_p02.png,329.31,506.12,203.93,155.56,single annotator,Ben
+dev,2024,086-2024.pdf,2,images/dev/2024/2024_086-2024_p02.png,788.34,706.94,318.35,145.51,single annotator,Ben
+dev,2025,008-2025.pdf,2,images/dev/2025/2025_008-2025_p02.png,807.9,517.1,216.43,139.23,single annotator,Ben
+dev,2025,008-2025.pdf,2,images/dev/2025/2025_008-2025_p02.png,331.21,679.76,212.43,171.07,single annotator,Ben
+dev,2025,008-2025.pdf,2,images/dev/2025/2025_008-2025_p02.png,784.21,900.78,285.12,122.32,single annotator,Ben
+dev,2025,009-2025.pdf,2,images/dev/2025/2025_009-2025_p02.png,798.73,575.03,227.95,142.58,single annotator,Ben
+dev,2025,009-2025.pdf,2,images/dev/2025/2025_009-2025_p02.png,318.04,735.69,241.84,162.97,single annotator,Ben
+dev,2025,009-2025.pdf,2,images/dev/2025/2025_009-2025_p02.png,791.63,964.51,294.35,107.96,single annotator,Ben
+dev,2025,012-2025.pdf,2,images/dev/2025/2025_012-2025_p02.png,795.38,743.48,233.07,157.52,single annotator,Ben
+dev,2025,012-2025.pdf,2,images/dev/2025/2025_012-2025_p02.png,313.33,921.47,210.03,148.15,single annotator,Ben
+dev,2025,012-2025.pdf,2,images/dev/2025/2025_012-2025_p02.png,789.27,1112.51,340.01,127.79,single annotator,Ben
+dev,2025,019-2025.pdf,2,images/dev/2025/2025_019-2025_p02.png,800.41,1393.53,212.58,120.38,single annotator,Ben
+dev,2025,019-2025.pdf,2,images/dev/2025/2025_019-2025_p02.png,327.89,1557.89,215.26,92.33,single annotator,Ben
+dev,2025,019-2025.pdf,2,images/dev/2025/2025_019-2025_p02.png,786.89,1679.61,294.67,120.5,single annotator,Ben
+dev,2025,021-2025.pdf,3,images/dev/2025/2025_021-2025_p03.png,798.2,330.6,232.52,130.41,single annotator,Ben
+dev,2025,021-2025.pdf,3,images/dev/2025/2025_021-2025_p03.png,324.18,519.16,229.42,147.28,single annotator,Ben
+dev,2025,021-2025.pdf,3,images/dev/2025/2025_021-2025_p03.png,798.44,712.22,317.45,126.63,single annotator,Ben
+dev,2025,023-2025.pdf,2,images/dev/2025/2025_023-2025_p02.png,769.97,373.59,246.11,154.38,single annotator,Ben
+dev,2025,023-2025.pdf,2,images/dev/2025/2025_023-2025_p02.png,315.09,570.8,226.27,133.13,single annotator,Ben
+dev,2025,023-2025.pdf,2,images/dev/2025/2025_023-2025_p02.png,777.17,762.93,315.27,129.04,single annotator,Ben
+dev,2025,024-2025.pdf,2,images/dev/2025/2025_024-2025_p02.png,771.12,440.31,252.45,147.77,single annotator,Geron
+dev,2025,024-2025.pdf,2,images/dev/2025/2025_024-2025_p02.png,319.22,616.98,202.24,147.36,single annotator,Geron
+dev,2025,024-2025.pdf,2,images/dev/2025/2025_024-2025_p02.png,784.36,826.37,305.52,131.2,single annotator,Geron
+dev,2025,027-2025.pdf,3,images/dev/2025/2025_027-2025_p03.png,764.6,560.7,235.63,169.04,single annotator,Ben
+dev,2025,027-2025.pdf,3,images/dev/2025/2025_027-2025_p03.png,325.56,747.06,248.46,140.21,single annotator,Ben
+dev,2025,027-2025.pdf,3,images/dev/2025/2025_027-2025_p03.png,790.68,948.37,313.16,122.1,single annotator,Ben
+dev,2025,033-2025.pdf,2,images/dev/2025/2025_033-2025_p02.png,802.44,811.04,225.24,153.43,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,033-2025.pdf,2,images/dev/2025/2025_033-2025_p02.png,340.74,993.43,202.23,160.36,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,033-2025.pdf,2,images/dev/2025/2025_033-2025_p02.png,783.5,1200.81,309.94,144.79,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,035-2025.pdf,2,images/dev/2025/2025_035-2025_p02.png,796.59,1097.19,152.71,128.97,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,035-2025.pdf,2,images/dev/2025/2025_035-2025_p02.png,330.46,1318.33,234.12,106.2,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,035-2025.pdf,2,images/dev/2025/2025_035-2025_p02.png,775.32,1478.99,327.2,127.66,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,038-2025.pdf,3,images/dev/2025/2025_038-2025_p03.png,780.35,308.89,172.42,278.47,single annotator,Ben
+dev,2025,038-2025.pdf,3,images/dev/2025/2025_038-2025_p03.png,302.05,536.86,230.13,154.38,single annotator,Ben
+dev,2025,038-2025.pdf,3,images/dev/2025/2025_038-2025_p03.png,780.32,705.7,238.62,140.44,single annotator,Ben
+dev,2025,042-2025.pdf,5,images/dev/2025/2025_042-2025_p05.png,784.45,724.37,230.75,157.03,single annotator,Geron
+dev,2025,042-2025.pdf,5,images/dev/2025/2025_042-2025_p05.png,271.1,909.99,277.41,90.51,single annotator,Geron
+dev,2025,042-2025.pdf,5,images/dev/2025/2025_042-2025_p05.png,777.46,1013.95,349.27,151.68,single annotator,Geron
+dev,2025,042-2025.pdf,7,images/dev/2025/2025_042-2025_p07.png,538.33,601.39,232.09,200.54,single annotator,Geron
+dev,2025,042-2025.pdf,7,images/dev/2025/2025_042-2025_p07.png,584.79,832.31,252.43,133.93,single annotator,Geron
+dev,2025,043-2025.pdf,3,images/dev/2025/2025_043-2025_p03.png,763.04,1306.26,191.45,174.8,single annotator,Ben
+dev,2025,043-2025.pdf,3,images/dev/2025/2025_043-2025_p03.png,290.29,1474.4,237.32,159.44,single annotator,Ben
+dev,2025,043-2025.pdf,3,images/dev/2025/2025_043-2025_p03.png,771.77,1674.35,289.94,151.02,single annotator,Ben
+dev,2025,044-2025.pdf,2,images/dev/2025/2025_044-2025_p02.png,774.18,827.48,229.66,189.11,single annotator,Ben
+dev,2025,044-2025.pdf,2,images/dev/2025/2025_044-2025_p02.png,321.78,1008.81,233.5,159.22,single annotator,Ben
+dev,2025,044-2025.pdf,2,images/dev/2025/2025_044-2025_p02.png,773.9,1211.5,346.76,143.13,single annotator,Ben
+dev,2025,046-2025.pdf,6,images/dev/2025/2025_046-2025_p06.png,795.59,828.31,189.62,126.03,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,046-2025.pdf,6,images/dev/2025/2025_046-2025_p06.png,306.27,985.41,216.0,153.29,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,046-2025.pdf,6,images/dev/2025/2025_046-2025_p06.png,769.2,1193.33,325.97,157.47,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,049-2025.pdf,2,images/dev/2025/2025_049-2025_p02.png,748.34,342.69,256.12,170.75,single annotator,Ben
+dev,2025,049-2025.pdf,2,images/dev/2025/2025_049-2025_p02.png,301.8,528.52,223.04,156.95,single annotator,Ben
+dev,2025,049-2025.pdf,2,images/dev/2025/2025_049-2025_p02.png,766.81,740.83,340.78,154.18,single annotator,Ben
+dev,2025,050-2025.pdf,1,images/dev/2025/2025_050-2025_p01.png,771.47,1501.68,268.03,202.06,single annotator,Geron
+dev,2025,050-2025.pdf,1,images/dev/2025/2025_050-2025_p01.png,309.04,1614.06,226.66,155.91,single annotator,Geron
+dev,2025,050-2025.pdf,1,images/dev/2025/2025_050-2025_p01.png,775.53,1734.02,329.0,139.64,single annotator,Geron
+dev,2025,053-2025.pdf,2,images/dev/2025/2025_053-2025_p02.png,789.53,722.53,220.31,158.16,single annotator,Ben
+dev,2025,053-2025.pdf,2,images/dev/2025/2025_053-2025_p02.png,324.41,901.2,234.68,150.64,single annotator,Ben
+dev,2025,053-2025.pdf,2,images/dev/2025/2025_053-2025_p02.png,784.51,1101.85,314.22,133.37,single annotator,Ben
+dev,2025,054-2025.pdf,2,images/dev/2025/2025_054-2025_p02.png,790.6,322.46,276.36,171.48,single annotator,Ben
+dev,2025,054-2025.pdf,2,images/dev/2025/2025_054-2025_p02.png,317.33,531.28,250.43,126.41,single annotator,Ben
+dev,2025,054-2025.pdf,2,images/dev/2025/2025_054-2025_p02.png,795.07,723.4,321.44,135.75,single annotator,Ben
+dev,2025,055-2025.pdf,2,images/dev/2025/2025_055-2025_p02.png,789.99,696.35,253.99,165.63,single annotator,Ben
+dev,2025,055-2025.pdf,2,images/dev/2025/2025_055-2025_p02.png,326.75,924.25,245.73,98.93,single annotator,Ben
+dev,2025,055-2025.pdf,2,images/dev/2025/2025_055-2025_p02.png,766.46,1070.96,362.24,140.2,single annotator,Ben
+dev,2025,057-2025.pdf,2,images/dev/2025/2025_057-2025_p02.png,804.88,447.23,148.09,140.87,single annotator,Ben
+dev,2025,057-2025.pdf,2,images/dev/2025/2025_057-2025_p02.png,312.63,639.07,222.62,136.41,single annotator,Ben
+dev,2025,057-2025.pdf,2,images/dev/2025/2025_057-2025_p02.png,780.26,823.39,306.5,130.49,single annotator,Ben
+dev,2025,060-2025.pdf,6,images/dev/2025/2025_060-2025_p06.png,813.47,606.72,214.76,154.27,single annotator,Ben
+dev,2025,060-2025.pdf,6,images/dev/2025/2025_060-2025_p06.png,309.82,837.4,246.2,91.07,single annotator,Ben
+dev,2025,060-2025.pdf,6,images/dev/2025/2025_060-2025_p06.png,787.32,978.54,347.04,135.88,single annotator,Ben
+dev,2025,062-2025.pdf,2,images/dev/2025/2025_062-2025_p02.png,659.57,1349.54,468.18,126.75,single annotator,Geron
+dev,2025,062-2025.pdf,2,images/dev/2025/2025_062-2025_p02.png,290.37,1522.61,231.08,111.74,single annotator,Geron
+dev,2025,062-2025.pdf,2,images/dev/2025/2025_062-2025_p02.png,786.33,1653.69,343.16,121.7,single annotator,Geron
+dev,2025,063-2025.pdf,5,images/dev/2025/2025_063-2025_p05.png,825.43,570.94,222.83,115.68,single annotator,Ben
+dev,2025,063-2025.pdf,5,images/dev/2025/2025_063-2025_p05.png,299.95,740.99,256.61,162.01,single annotator,Ben
+dev,2025,063-2025.pdf,5,images/dev/2025/2025_063-2025_p05.png,784.1,936.32,300.79,142.88,single annotator,Ben
+dev,2025,064-2025.pdf,2,images/dev/2025/2025_064-2025_p02.png,801.32,780.82,255.17,171.77,single annotator,Geron
+dev,2025,064-2025.pdf,2,images/dev/2025/2025_064-2025_p02.png,297.96,1003.97,211.98,103.68,single annotator,Geron
+dev,2025,064-2025.pdf,2,images/dev/2025/2025_064-2025_p02.png,755.88,1152.38,383.07,145.25,single annotator,Geron
+dev,2025,065-2025.pdf,3,images/dev/2025/2025_065-2025_p03.png,773.01,332.83,289.85,160.93,single annotator,Ben
+dev,2025,065-2025.pdf,3,images/dev/2025/2025_065-2025_p03.png,294.21,498.77,278.88,153.38,single annotator,Ben
+dev,2025,065-2025.pdf,3,images/dev/2025/2025_065-2025_p03.png,789.29,737.41,313.32,138.82,single annotator,Ben
+dev,2025,070-2025.pdf,2,images/dev/2025/2025_070-2025_p02.png,816.61,617.58,192.49,127.78,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,070-2025.pdf,2,images/dev/2025/2025_070-2025_p02.png,327.31,786.88,235.32,163.14,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,070-2025.pdf,2,images/dev/2025/2025_070-2025_p02.png,795.11,984.52,341.92,148.06,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,073-2025.pdf,2,images/dev/2025/2025_073-2025_p02.png,637.53,1178.13,564.45,111.78,single annotator,Ben
+dev,2025,073-2025.pdf,2,images/dev/2025/2025_073-2025_p02.png,341.97,1382.36,205.96,86.31,single annotator,Ben
+dev,2025,073-2025.pdf,2,images/dev/2025/2025_073-2025_p02.png,803.58,1488.13,231.44,176.93,single annotator,Ben
+dev,2025,076-2025.pdf,4,images/dev/2025/2025_076-2025_p04.png,782.54,436.58,254.53,157.49,single annotator,Geron
+dev,2025,076-2025.pdf,4,images/dev/2025/2025_076-2025_p04.png,290.19,673.49,254.19,93.08,single annotator,Geron
+dev,2025,076-2025.pdf,4,images/dev/2025/2025_076-2025_p04.png,785.37,844.05,340.97,131.56,single annotator,Geron
+dev,2025,079-2025.pdf,2,images/dev/2025/2025_079-2025_p02.png,786.25,1405.27,216.66,138.07,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,079-2025.pdf,2,images/dev/2025/2025_079-2025_p02.png,319.52,1542.87,245.01,138.91,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,079-2025.pdf,2,images/dev/2025/2025_079-2025_p02.png,790.09,1650.62,300.02,126.61,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,081-2025.pdf,8,images/dev/2025/2025_081-2025_p08.png,816.73,1093.12,145.54,133.73,single annotator,Geron
+dev,2025,081-2025.pdf,8,images/dev/2025/2025_081-2025_p08.png,307.5,1313.19,255.75,107.51,single annotator,Geron
+dev,2025,081-2025.pdf,8,images/dev/2025/2025_081-2025_p08.png,785.11,1473.81,325.98,114.57,single annotator,Geron
+dev,2025,083-2025.pdf,2,images/dev/2025/2025_083-2025_p02.png,753.54,344.42,243.52,156.07,single annotator,Geron
+dev,2025,083-2025.pdf,2,images/dev/2025/2025_083-2025_p02.png,269.65,577.01,261.38,98.74,single annotator,Geron
+dev,2025,083-2025.pdf,2,images/dev/2025/2025_083-2025_p02.png,791.06,746.08,301.92,114.98,single annotator,Geron
+dev,2025,084-2025.pdf,2,images/dev/2025/2025_084-2025_p02.png,746.76,357.62,213.01,138.31,single annotator,Ben
+dev,2025,084-2025.pdf,2,images/dev/2025/2025_084-2025_p02.png,285.78,589.04,265.88,91.85,single annotator,Ben
+dev,2025,084-2025.pdf,2,images/dev/2025/2025_084-2025_p02.png,792.42,746.06,297.81,121.14,single annotator,Ben
+dev,2025,086-2025.pdf,1,images/dev/2025/2025_086-2025_p01.png,157.99,1090.06,460.99,118.31,single annotator,Ben
+dev,2025,086-2025.pdf,33,images/dev/2025/2025_086-2025_p33.png,795.31,364.3,189.11,99.03,single annotator,Ben
+dev,2025,086-2025.pdf,33,images/dev/2025/2025_086-2025_p33.png,312.09,542.73,283.87,136.6,single annotator,Ben
+dev,2025,086-2025.pdf,33,images/dev/2025/2025_086-2025_p33.png,795.5,746.59,273.9,118.75,single annotator,Ben
+dev,2025,089-2025.pdf,2,images/dev/2025/2025_089-2025_p02.png,806.91,910.52,178.09,116.17,single annotator,Geron
+dev,2025,089-2025.pdf,2,images/dev/2025/2025_089-2025_p02.png,304.03,1145.44,228.05,88.07,single annotator,Geron
+dev,2025,089-2025.pdf,2,images/dev/2025/2025_089-2025_p02.png,778.97,1298.84,312.44,129.72,single annotator,Geron
+dev,2025,091-2025.pdf,2,images/dev/2025/2025_091-2025_p02.png,771.08,1049.9,283.23,147.6,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,091-2025.pdf,2,images/dev/2025/2025_091-2025_p02.png,298.17,1234.0,237.02,101.25,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,091-2025.pdf,2,images/dev/2025/2025_091-2025_p02.png,782.58,1406.29,315.47,125.38,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2025,100-2025.pdf,2,images/dev/2025/2025_100-2025_p02.png,601.39,399.2,474.69,125.53,single annotator,Ben
+dev,2025,100-2025.pdf,2,images/dev/2025/2025_100-2025_p02.png,322.79,593.25,221.0,89.14,single annotator,Ben
+dev,2025,100-2025.pdf,2,images/dev/2025/2025_100-2025_p02.png,768.28,695.61,229.52,130.47,single annotator,Ben
+dev,2025,104-2025.pdf,3,images/dev/2025/2025_104-2025_p03.png,822.65,1172.21,147.79,134.29,single annotator,Geron
+dev,2025,104-2025.pdf,3,images/dev/2025/2025_104-2025_p03.png,293.23,1339.08,249.67,144.35,single annotator,Geron
+dev,2025,104-2025.pdf,3,images/dev/2025/2025_104-2025_p03.png,803.82,1582.35,329.31,122.89,single annotator,Geron
+dev,2025,105-2025.pdf,2,images/dev/2025/2025_105-2025_p02.png,810.6,1125.84,175.45,160.5,single annotator,Ben
+dev,2025,105-2025.pdf,2,images/dev/2025/2025_105-2025_p02.png,294.66,1293.6,228.74,142.92,single annotator,Ben
+dev,2025,105-2025.pdf,2,images/dev/2025/2025_105-2025_p02.png,790.55,1493.6,320.51,139.3,single annotator,Ben
+dev,2025,106-2025.pdf,3,images/dev/2025/2025_106-2025_p03.png,761.91,900.64,311.76,213.59,single annotator,Geron
+dev,2025,106-2025.pdf,3,images/dev/2025/2025_106-2025_p03.png,275.94,1120.39,273.99,110.44,single annotator,Geron
+dev,2025,106-2025.pdf,3,images/dev/2025/2025_106-2025_p03.png,774.76,1260.6,336.22,130.83,single annotator,Geron
+dev,2026,001-2026.pdf,2,images/dev/2026/2026_001-2026_p02.png,770.0,944.29,284.3,125.5,single annotator,Ben
+dev,2026,001-2026.pdf,2,images/dev/2026/2026_001-2026_p02.png,313.55,1083.4,216.85,163.49,single annotator,Ben
+dev,2026,001-2026.pdf,2,images/dev/2026/2026_001-2026_p02.png,784.87,1317.34,363.23,128.6,single annotator,Ben
+dev,2026,006-2026.pdf,2,images/dev/2026/2026_006-2026_p02.png,807.55,650.15,156.3,113.61,single annotator,Ben
+dev,2026,006-2026.pdf,2,images/dev/2026/2026_006-2026_p02.png,333.61,861.96,214.26,93.1,single annotator,Ben
+dev,2026,006-2026.pdf,2,images/dev/2026/2026_006-2026_p02.png,792.65,1032.17,332.12,114.49,single annotator,Ben
+dev,2026,007-2026.pdf,1,images/dev/2026/2026_007-2026_p01.png,172.19,1184.56,248.94,134.84,single annotator,Geron
+dev,2026,007-2026.pdf,10,images/dev/2026/2026_007-2026_p10.png,809.93,1442.35,181.18,99.92,single annotator,Geron
+dev,2026,007-2026.pdf,10,images/dev/2026/2026_007-2026_p10.png,311.54,1575.31,261.61,129.66,single annotator,Geron
+dev,2026,007-2026.pdf,10,images/dev/2026/2026_007-2026_p10.png,790.19,1698.57,386.28,139.6,single annotator,Geron
+dev,2026,008-2026.pdf,6,images/dev/2026/2026_008-2026_p06.png,816.41,992.9,152.56,105.64,single annotator,Geron
+dev,2026,008-2026.pdf,6,images/dev/2026/2026_008-2026_p06.png,288.51,1145.3,294.29,158.6,single annotator,Geron
+dev,2026,008-2026.pdf,6,images/dev/2026/2026_008-2026_p06.png,785.69,1360.52,341.36,119.68,single annotator,Geron
+dev,2026,009-2026.pdf,1,images/dev/2026/2026_009-2026_p01.png,199.83,1209.43,406.88,134.18,single annotator,Ben
+dev,2026,009-2026.pdf,4,images/dev/2026/2026_009-2026_p04.png,722.58,1048.61,377.36,120.42,single annotator,Ben
+dev,2026,009-2026.pdf,4,images/dev/2026/2026_009-2026_p04.png,314.76,1188.11,238.41,150.64,single annotator,Ben
+dev,2026,009-2026.pdf,4,images/dev/2026/2026_009-2026_p04.png,787.0,1367.73,270.3,138.33,single annotator,Ben
+dev,2026,010-2026.pdf,6,images/dev/2026/2026_010-2026_p06.png,697.98,590.69,398.44,121.53,single annotator,Ben
+dev,2026,010-2026.pdf,6,images/dev/2026/2026_010-2026_p06.png,328.75,731.35,226.02,170.51,single annotator,Ben
+dev,2026,010-2026.pdf,6,images/dev/2026/2026_010-2026_p06.png,809.73,903.26,206.43,135.89,single annotator,Ben
+dev,2026,011-2026.pdf,4,images/dev/2026/2026_011-2026_p04.png,731.0,366.39,420.03,106.65,single annotator,Geron
+dev,2026,011-2026.pdf,4,images/dev/2026/2026_011-2026_p04.png,308.8,492.46,243.53,163.66,single annotator,Geron
+dev,2026,011-2026.pdf,4,images/dev/2026/2026_011-2026_p04.png,825.27,706.36,196.22,149.96,single annotator,Geron
+dev,2026,012-2026.pdf,2,images/dev/2026/2026_012-2026_p02.png,1058.05,632.76,656.1,208.76,single annotator,Geron
+dev,2026,012-2026.pdf,2,images/dev/2026/2026_012-2026_p02.png,452.34,906.99,374.25,205.87,single annotator,Geron
+dev,2026,012-2026.pdf,2,images/dev/2026/2026_012-2026_p02.png,1214.01,1134.84,308.93,186.32,single annotator,Geron
+dev,2026,015-2026.pdf,15,images/dev/2026/2026_015-2026_p15.png,793.68,1065.71,205.9,116.4,single annotator,Ben
+dev,2026,015-2026.pdf,15,images/dev/2026/2026_015-2026_p15.png,285.05,1285.19,250.79,87.61,single annotator,Ben
+dev,2026,015-2026.pdf,15,images/dev/2026/2026_015-2026_p15.png,786.45,1449.24,314.55,118.09,single annotator,Ben
+dev,2026,016-2026.pdf,3,images/dev/2026/2026_016-2026_p03.png,1238.16,512.33,289.49,230.79,single annotator,Ben
+dev,2026,016-2026.pdf,3,images/dev/2026/2026_016-2026_p03.png,491.31,875.94,354.66,155.63,single annotator,Ben
+dev,2026,016-2026.pdf,3,images/dev/2026/2026_016-2026_p03.png,1234.61,1142.17,508.46,179.85,single annotator,Ben
+dev,2026,017-2026.pdf,2,images/dev/2026/2026_017-2026_p02.png,784.66,461.29,251.5,132.13,single annotator,Geron
+dev,2026,017-2026.pdf,2,images/dev/2026/2026_017-2026_p02.png,323.8,690.1,219.03,89.97,single annotator,Geron
+dev,2026,017-2026.pdf,2,images/dev/2026/2026_017-2026_p02.png,790.6,841.43,328.24,124.38,single annotator,Geron
+dev,2026,018-2026.pdf,2,images/dev/2026/2026_018-2026_p02.png,793.37,573.88,197.88,123.2,single annotator,Geron
+dev,2026,018-2026.pdf,2,images/dev/2026/2026_018-2026_p02.png,305.58,739.44,259.33,157.47,single annotator,Geron
+dev,2026,018-2026.pdf,2,images/dev/2026/2026_018-2026_p02.png,783.03,958.19,329.43,115.43,single annotator,Geron
+dev,2026,019-2026.pdf,2,images/dev/2026/2026_019-2026_p02.png,811.5,1329.86,203.46,147.15,single annotator,Ben
+dev,2026,019-2026.pdf,2,images/dev/2026/2026_019-2026_p02.png,326.51,1445.36,243.91,155.44,single annotator,Ben
+dev,2026,019-2026.pdf,2,images/dev/2026/2026_019-2026_p02.png,782.26,1665.42,327.71,129.9,single annotator,Ben
+dev,2026,022-2026.pdf,2,images/dev/2026/2026_022-2026_p02.png,1257.15,1305.49,265.34,235.99,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,022-2026.pdf,2,images/dev/2026/2026_022-2026_p02.png,479.23,1623.83,377.85,208.0,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,022-2026.pdf,2,images/dev/2026/2026_022-2026_p02.png,1230.92,1960.94,471.18,176.1,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,023-2026.pdf,2,images/dev/2026/2026_023-2026_p02.png,779.33,813.82,170.75,140.21,single annotator,Ben
+dev,2026,023-2026.pdf,2,images/dev/2026/2026_023-2026_p02.png,294.62,980.29,228.6,151.17,single annotator,Ben
+dev,2026,023-2026.pdf,2,images/dev/2026/2026_023-2026_p02.png,786.16,1221.75,313.19,118.17,single annotator,Ben
+dev,2026,025-2026.pdf,10,images/dev/2026/2026_025-2026_p10.png,812.59,345.96,175.72,127.51,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,025-2026.pdf,10,images/dev/2026/2026_025-2026_p10.png,259.1,547.42,293.55,105.11,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,025-2026.pdf,10,images/dev/2026/2026_025-2026_p10.png,798.4,728.44,351.61,139.04,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,027-2026.pdf,8,images/dev/2026/2026_027-2026_p08.png,815.95,380.37,173.31,142.58,single annotator,Ben
+dev,2026,027-2026.pdf,8,images/dev/2026/2026_027-2026_p08.png,290.91,614.39,286.72,118.09,single annotator,Ben
+dev,2026,027-2026.pdf,8,images/dev/2026/2026_027-2026_p08.png,779.92,778.26,326.46,111.24,single annotator,Ben
+dev,2026,028-2026.pdf,2,images/dev/2026/2026_028-2026_p02.png,786.7,539.75,268.73,147.45,single annotator,Geron
+dev,2026,028-2026.pdf,2,images/dev/2026/2026_028-2026_p02.png,293.06,769.23,268.09,110.96,single annotator,Geron
+dev,2026,028-2026.pdf,2,images/dev/2026/2026_028-2026_p02.png,799.81,935.23,363.72,124.97,single annotator,Geron
+dev,2026,029-2026.pdf,2,images/dev/2026/2026_029-2026_p02.png,811.46,568.0,196.48,172.03,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,029-2026.pdf,2,images/dev/2026/2026_029-2026_p02.png,311.56,789.13,278.06,88.46,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,029-2026.pdf,2,images/dev/2026/2026_029-2026_p02.png,800.61,978.88,370.96,119.16,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,030-2026.pdf,3,images/dev/2026/2026_030-2026_p03.png,827.66,349.37,175.02,134.47,single annotator,Ben
+dev,2026,030-2026.pdf,3,images/dev/2026/2026_030-2026_p03.png,301.08,566.75,257.96,128.11,single annotator,Ben
+dev,2026,030-2026.pdf,3,images/dev/2026/2026_030-2026_p03.png,807.01,721.22,295.96,146.1,single annotator,Ben
+dev,2026,032-2026.pdf,2,images/dev/2026/2026_032-2026_p02.png,789.36,1154.05,194.65,131.9,single annotator,Ben
+dev,2026,032-2026.pdf,2,images/dev/2026/2026_032-2026_p02.png,333.47,1320.21,220.27,152.49,single annotator,Ben
+dev,2026,032-2026.pdf,2,images/dev/2026/2026_032-2026_p02.png,782.39,1550.24,280.11,106.78,single annotator,Ben
+dev,2026,033-2026.pdf,2,images/dev/2026/2026_033-2026_p02.png,743.5,858.46,419.14,107.49,single annotator,Ben
+dev,2026,033-2026.pdf,2,images/dev/2026/2026_033-2026_p02.png,322.62,1044.62,230.32,120.67,single annotator,Ben
+dev,2026,033-2026.pdf,2,images/dev/2026/2026_033-2026_p02.png,784.34,1224.27,334.33,118.29,single annotator,Ben
+dev,2026,034-2026.pdf,3,images/dev/2026/2026_034-2026_p03.png,725.67,462.62,460.13,166.38,single annotator,Geron
+dev,2026,034-2026.pdf,3,images/dev/2026/2026_034-2026_p03.png,316.67,686.27,251.79,115.89,single annotator,Geron
+dev,2026,034-2026.pdf,3,images/dev/2026/2026_034-2026_p03.png,794.28,843.39,327.7,105.62,single annotator,Geron
+dev,2026,036-2026.pdf,2,images/dev/2026/2026_036-2026_p02.png,817.19,1245.55,234.78,110.99,single annotator,Ben
+dev,2026,036-2026.pdf,2,images/dev/2026/2026_036-2026_p02.png,293.52,1464.63,246.12,108.7,single annotator,Ben
+dev,2026,036-2026.pdf,2,images/dev/2026/2026_036-2026_p02.png,788.52,1646.64,337.86,122.47,single annotator,Ben
+dev,2026,038-2026.pdf,1,images/dev/2026/2026_038-2026_p01.png,146.52,1142.3,367.03,148.98,single annotator,Ben
+dev,2026,038-2026.pdf,5,images/dev/2026/2026_038-2026_p05.png,701.68,406.48,409.07,111.78,single annotator,Ben
+dev,2026,038-2026.pdf,5,images/dev/2026/2026_038-2026_p05.png,319.65,563.68,128.23,115.78,single annotator,Ben
+dev,2026,038-2026.pdf,5,images/dev/2026/2026_038-2026_p05.png,787.63,743.56,329.79,116.92,single annotator,Ben
+dev,2026,040-2026.pdf,2,images/dev/2026/2026_040-2026_p02.png,715.11,1289.86,526.13,200.7,single annotator,Ben
+dev,2026,040-2026.pdf,2,images/dev/2026/2026_040-2026_p02.png,315.59,1533.35,129.85,97.88,single annotator,Ben
+dev,2026,040-2026.pdf,2,images/dev/2026/2026_040-2026_p02.png,788.64,1707.09,298.8,98.64,single annotator,Ben
+dev,2026,041-2026.pdf,2,images/dev/2026/2026_041-2026_p02.png,706.73,469.86,530.74,186.3,single annotator,Ben
+dev,2026,041-2026.pdf,2,images/dev/2026/2026_041-2026_p02.png,310.39,709.66,123.88,102.09,single annotator,Ben
+dev,2026,041-2026.pdf,2,images/dev/2026/2026_041-2026_p02.png,796.21,900.78,325.55,103.5,single annotator,Ben
+dev,2026,042-2026.pdf,2,images/dev/2026/2026_042-2026_p02.png,727.44,560.81,480.46,186.85,single annotator,Ben
+dev,2026,042-2026.pdf,2,images/dev/2026/2026_042-2026_p02.png,321.59,795.79,143.8,107.63,single annotator,Ben
+dev,2026,042-2026.pdf,2,images/dev/2026/2026_042-2026_p02.png,778.41,992.85,326.71,109.29,single annotator,Ben
+dev,2026,043-2026.pdf,3,images/dev/2026/2026_043-2026_p03.png,827.65,1157.91,203.11,133.74,single annotator,Ben
+dev,2026,043-2026.pdf,3,images/dev/2026/2026_043-2026_p03.png,314.44,1367.8,271.41,111.43,single annotator,Ben
+dev,2026,043-2026.pdf,3,images/dev/2026/2026_043-2026_p03.png,809.69,1558.58,309.71,109.75,single annotator,Ben
+dev,2026,044-2026.pdf,4,images/dev/2026/2026_044-2026_p04.png,806.05,692.58,173.84,127.91,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,044-2026.pdf,4,images/dev/2026/2026_044-2026_p04.png,336.76,868.64,255.99,140.75,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,044-2026.pdf,4,images/dev/2026/2026_044-2026_p04.png,802.44,1093.35,319.06,129.18,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,045-2026.pdf,2,images/dev/2026/2026_045-2026_p02.png,811.9,708.2,207.03,146.42,single annotator,Ben
+dev,2026,045-2026.pdf,2,images/dev/2026/2026_045-2026_p02.png,308.37,928.95,282.52,95.77,single annotator,Ben
+dev,2026,045-2026.pdf,2,images/dev/2026/2026_045-2026_p02.png,794.74,1113.15,314.78,115.35,single annotator,Ben
+dev,2026,047-2026.pdf,1,images/dev/2026/2026_047-2026_p01.png,143.55,1245.06,486.68,150.59,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,047-2026.pdf,4,images/dev/2026/2026_047-2026_p04.png,813.76,454.96,182.8,140.01,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,047-2026.pdf,4,images/dev/2026/2026_047-2026_p04.png,309.82,681.57,228.79,102.52,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,047-2026.pdf,4,images/dev/2026/2026_047-2026_p04.png,803.97,850.68,295.13,113.62,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,050-2026.pdf,4,images/dev/2026/2026_050-2026_p04.png,784.96,378.42,258.6,164.82,single annotator,Ben
+dev,2026,050-2026.pdf,4,images/dev/2026/2026_050-2026_p04.png,299.03,588.86,283.23,99.6,single annotator,Ben
+dev,2026,050-2026.pdf,4,images/dev/2026/2026_050-2026_p04.png,787.27,766.18,306.7,108.5,single annotator,Ben
+dev,2026,051-2026.pdf,5,images/dev/2026/2026_051-2026_p05.png,789.22,1090.17,236.4,172.03,single annotator,Ben
+dev,2026,051-2026.pdf,5,images/dev/2026/2026_051-2026_p05.png,331.94,1314.44,237.5,111.57,single annotator,Ben
+dev,2026,051-2026.pdf,5,images/dev/2026/2026_051-2026_p05.png,804.87,1487.42,308.7,95.03,single annotator,Ben
+dev,2026,053-2026.pdf,5,images/dev/2026/2026_053-2026_p05.png,831.01,996.48,143.94,93.51,single annotator,Geron
+dev,2026,053-2026.pdf,5,images/dev/2026/2026_053-2026_p05.png,293.05,1133.33,264.82,181.16,single annotator,Geron
+dev,2026,053-2026.pdf,5,images/dev/2026/2026_053-2026_p05.png,798.97,1383.09,290.79,106.82,single annotator,Geron
+dev,2026,054-2026.pdf,2,images/dev/2026/2026_054-2026_p02.png,801.8,481.89,183.13,131.52,single annotator,Ben
+dev,2026,054-2026.pdf,2,images/dev/2026/2026_054-2026_p02.png,280.67,632.39,263.94,164.34,single annotator,Ben
+dev,2026,054-2026.pdf,2,images/dev/2026/2026_054-2026_p02.png,796.76,872.07,352.42,118.29,single annotator,Ben
+dev,2026,057-2026.pdf,4,images/dev/2026/2026_057-2026_p04.png,736.09,1267.23,255.83,159.82,single annotator,Ben
+dev,2026,057-2026.pdf,4,images/dev/2026/2026_057-2026_p04.png,332.7,1509.07,215.41,139.26,single annotator,Ben
+dev,2026,057-2026.pdf,4,images/dev/2026/2026_057-2026_p04.png,786.08,1675.86,293.81,116.56,single annotator,Ben
+dev,2026,058-2026.pdf,1,images/dev/2026/2026_058-2026_p01.png,167.05,1140.19,474.89,148.58,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,058-2026.pdf,4,images/dev/2026/2026_058-2026_p04.png,809.7,846.3,183.13,112.1,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,058-2026.pdf,4,images/dev/2026/2026_058-2026_p04.png,296.8,1053.29,285.19,133.28,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,058-2026.pdf,4,images/dev/2026/2026_058-2026_p04.png,786.62,1228.28,324.66,122.0,pilot r1 consensus 3/3,Ben+Ferrer+Geron
+dev,2026,060-2026.pdf,3,images/dev/2026/2026_060-2026_p03.png,780.74,327.63,235.86,127.98,single annotator,Geron
+dev,2026,060-2026.pdf,3,images/dev/2026/2026_060-2026_p03.png,300.82,448.0,258.08,162.09,single annotator,Geron
+dev,2026,060-2026.pdf,3,images/dev/2026/2026_060-2026_p03.png,795.02,654.42,321.14,115.42,single annotator,Geron
+dev,2026,062-2026.pdf,2,images/dev/2026/2026_062-2026_p02.png,799.64,956.67,165.63,136.6,single annotator,Ben
+dev,2026,062-2026.pdf,2,images/dev/2026/2026_062-2026_p02.png,308.75,1119.58,277.04,153.23,single annotator,Ben
+dev,2026,062-2026.pdf,2,images/dev/2026/2026_062-2026_p02.png,780.07,1335.06,287.3,100.56,single annotator,Ben

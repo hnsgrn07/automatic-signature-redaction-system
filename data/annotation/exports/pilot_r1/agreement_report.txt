@@ -1,0 +1,24 @@
+Ben: pilot_r1_ben.json, 136 pages, 129 boxes
+Ferrer: pilot_r1_ferrer.json, 136 pages, 129 boxes
+Geron: pilot_r1_geron.json, 136 pages, 131 boxes
+
+Pages: 136
+Pages not submitted by everyone: none
+
+PAIRWISE AGREEMENT (match at IoU >= 0.50, pass at mean IoU >= 0.80)
+Pair               Matched  Mean IoU  Min IoU  Only 1st  Only 2nd  Identical  Result
+Ben-Ferrer             129     0.989    0.873         0         0         24  PASS
+Ben-Geron              129     0.985    0.870         0         2          5  PASS
+Ferrer-Geron           129     0.987    0.941         0         2          9  PASS
+
+Overall: PASS - every pair has mean IoU >= 0.80
+
+PAGES TO DISCUSS (box counts per annotator, then each disagreement)
+
+2020/113-2020.pdf page 3  boxes: Ben 3, Ferrer 3, Geron 4
+  - Geron only: box [x=963, y=1448, w=3, h=13] (no match from Ben)
+  - Geron only: box [x=963, y=1448, w=3, h=13] (no match from Ferrer)
+
+2021/031-2021-2.pdf page 4  boxes: Ben 3, Ferrer 3, Geron 4
+  - Geron only: box [x=785, y=808, w=2, h=1] (no match from Ben)
+  - Geron only: box [x=785, y=808, w=2, h=1] (no match from Ferrer)

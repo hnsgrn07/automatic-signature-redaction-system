@@ -1,0 +1,8 @@
+Merge of pilot_r1: annotators Ben, Ferrer, Geron; 136 pages
+Clusters by number of annotators: 1 annotator(s): 2, 3 annotator(s): 129
+Single-annotator boxes needing a decision: 2 (pending: 0)
+Pages with annotator notes: 0
+Single boxes kept: 0, dropped: 2
+Ground truth: 129 signature boxes on 136 pages (91 pages with no signature)
+Lowest IoU of any member box to its consensus box: 0.878
+Written: D:\Thesis\ground_truth\pilot_r1\pilot_r1_ground_truth.csv, D:\Thesis\ground_truth\pilot_r1\pilot_r1_ground_truth_coco.json  (2026-11-16T21:02:11)

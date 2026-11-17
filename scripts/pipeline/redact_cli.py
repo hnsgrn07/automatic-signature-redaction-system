@@ -269,10 +269,11 @@ def main():
             print(f"[{k}/{len(pdfs)}] {os.path.join(sub, row['file'])}: {row.get('pages', '?')} p, "
                   f"{row.get('boxes', '?')} boxes, {row.get('wall_s', '?')}s, {row['status']}{flag}", flush=True)
 
-    try:
-        os.removedirs(os.path.join(out, '_tmp'))
-    except OSError:
-        pass
+    for root, _, _ in os.walk(os.path.join(out, '_tmp'), topdown=False):   # remove the empty temp tree
+        try:
+            os.rmdir(root)
+        except OSError:
+            pass
     total = time.perf_counter() - t_run
     review = [r for r in rows if r['status'] != STATUS_SAFE]
     walls = [r['wall_s'] for r in rows if isinstance(r.get('wall_s'), float)]

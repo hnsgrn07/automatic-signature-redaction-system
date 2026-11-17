@@ -15,11 +15,15 @@ import numpy as np
 
 from anchors import find_anchors, PAGE_WIDTH_IN
 
-INK_THRESHOLD = 150            # grey level; darker = ink
+INK_THRESHOLD = 150            # grey level; darker = ink (seeds)
+INK_WEAK = 190                 # lighter ink kept when connected to a seed (hysteresis); dev sweep 175-205 equal
+TEXT_HEIGHT_IN = 0.25          # a component this short that lies inside ANY OCR word is print; dev sweep 0.25-0.30 equal
 PRINT_WORD_CONF = 0.5          # OCR words at least this confident count as print
 PRINT_INSIDE_SHARE = 0.85      # a component with this share of its ink inside print words is print
 MIN_COMPONENT_PX_IN2 = 0.0004  # ignore specks smaller than this (in square inches)
 CLUSTER_GAP_IN = 0.20          # handwriting components closer than this belong to one cluster
+ROW_EXTEND_IN = 1.0            # also add owned handwriting on the same row within this gap (tails past the printed name); dev sweep 1.0-1.5 equal
+ROW_OVERLAP = 0.5              # 'same row' = vertical overlap of at least this share of the smaller height
 MIN_SIGNATURE_INK_IN2 = 0.010  # a cluster with less ink than this is not a signature
 MIN_BOX_AREA_IN2 = 0.25        # smallest dev signature box is 0.30 in2; stray marks are <= 0.21 in2
 
@@ -33,22 +37,32 @@ MERGE_OVERLAP = 0.5            # boxes overlapping this much (share of the small
 
 
 def binarise(gray):
-    return (gray < INK_THRESHOLD).astype(np.uint8)
+    strong = gray < INK_THRESHOLD
+    if INK_WEAK <= INK_THRESHOLD:
+        return strong.astype(np.uint8)
+    weak = (gray < INK_WEAK).astype(np.uint8)
+    n, lab = cv2.connectedComponents(weak, connectivity=8)
+    keep = np.zeros(n, bool)
+    keep[np.unique(lab[strong])] = True
+    keep[0] = False
+    return keep[lab].astype(np.uint8)
 
 
-def print_mask(rec, shape):
+def print_mask(rec, shape, min_conf=None):
+    min_conf = PRINT_WORD_CONF if min_conf is None else min_conf
     m = np.zeros(shape, np.uint8)
     for ln in rec['lines']:
         for w in ln['words']:
-            if w['conf'] >= PRINT_WORD_CONF:
+            if w['conf'] >= min_conf:
                 x0, y0, x1, y1 = (int(round(v)) for v in w['box'])
                 m[max(0, y0):y1 + 1, max(0, x0):x1 + 1] = 1
     return m
 
 
-def components(ink, pmask, ppi):
+def components(ink, pmask, ppi, anymask=None):
     n, lab, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
     inside = np.bincount(lab[pmask == 1].ravel(), minlength=n)
+    inside_any = np.bincount(lab[anymask == 1].ravel(), minlength=n) if anymask is not None else None
     min_px = MIN_COMPONENT_PX_IN2 * ppi * ppi
     comps = []
     for i in range(1, n):
@@ -56,6 +70,8 @@ def components(ink, pmask, ppi):
         if area < min_px:
             continue
         hand = inside[i] / area < PRINT_INSIDE_SHARE
+        if hand and inside_any is not None and h <= TEXT_HEIGHT_IN * ppi and inside_any[i] / area >= PRINT_INSIDE_SHARE:
+            hand = False   # text-sized and inside a word OCR read with low confidence: still print
         comps.append(dict(box=[x, y, x + w, y + h], area=int(area), hand=hand))
     return comps
 
@@ -152,7 +168,8 @@ def detect(gray, rec, anchors=None):
     if not anchors:
         return []
     ink = binarise(gray)
-    comps = [c for c in components(ink, print_mask(rec, gray.shape), ppi) if c['hand']]
+    anymask = print_mask(rec, gray.shape, min_conf=0.0) if TEXT_HEIGHT_IN > 0 else None
+    comps = [c for c in components(ink, print_mask(rec, gray.shape), ppi, anymask) if c['hand']]
     groups = anchor_groups(anchors, ppi)
     # each handwriting component goes to the anchor group whose expected box centre is nearest,
     # among the groups whose search region contains the component's centre
@@ -172,7 +189,23 @@ def detect(gray, rec, anchors=None):
         def score(cl):
             d = np.hypot(*(np.subtract(centre(union([c['box'] for c in cl])), ec))) / ppi
             return sum(c['area'] for c in cl) * np.exp(-d / DIST_SCALE_IN)
-        best = max(clusters(mine, CLUSTER_GAP_IN * ppi), key=score)
+        groups_ = clusters(mine, CLUSTER_GAP_IN * ppi)
+        best = max(groups_, key=score)
+        if ROW_EXTEND_IN > 0:
+            # a long tail separated from the signature by the printed name: same row, short gap
+            grown = True
+            while grown:
+                grown = False
+                bb = union([c['box'] for c in best])
+                for other in groups_:
+                    if other is best or any(c in best for c in other):
+                        continue
+                    ob = union([c['box'] for c in other])
+                    v = min(bb[3], ob[3]) - max(bb[1], ob[1])
+                    hgap = max(bb[0], ob[0]) - min(bb[2], ob[2])
+                    if v >= ROW_OVERLAP * min(bb[3] - bb[1], ob[3] - ob[1]) and hgap <= ROW_EXTEND_IN * ppi:
+                        best = best + other
+                        grown = True
         ink_px = sum(c['area'] for c in best)
         box = union([c['box'] for c in best])
         if ink_px < MIN_SIGNATURE_INK_IN2 * ppi * ppi or (box[2] - box[0]) * (box[3] - box[1]) < MIN_BOX_AREA_IN2 * ppi * ppi:

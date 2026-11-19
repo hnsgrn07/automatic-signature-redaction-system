@@ -12,6 +12,7 @@ import numpy as np
 import pymupdf
 
 COVERAGE_MIN = 0.98   # the image must cover at least 98% of the page to be extracted as-is
+RENDER_DPI_MIN, RENDER_DPI_MAX = 150, 300   # pages that are not one scan (digital PDFs) are rendered in this range
 
 
 def _single_upright_image(page):
@@ -68,6 +69,7 @@ def page_scan(doc, page):
         zoom = big['width'] / pymupdf.Rect(big['bbox']).width
     else:
         zoom = 150 / 72.0
+    zoom = min(max(zoom, RENDER_DPI_MIN / 72.0), RENDER_DPI_MAX / 72.0)   # a small hi-res image must not set it
     pix = page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False)
     return dict(pix=pix, method='rendered', xref=None, to_pt=(0.0, 0.0, 1 / zoom, 1 / zoom))
 

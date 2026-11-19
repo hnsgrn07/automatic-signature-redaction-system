@@ -54,8 +54,8 @@
   .legend i { display: inline-block; width: 14px; height: 14px; border: 3px solid; border-radius: 2px; vertical-align: -2px; margin: 0 4px 0 12px; }
   .proof { display: grid; grid-template-columns: repeat(var(--cols, 4), 1fr); gap: 14px; align-items: start; padding: 14px 0; border-top: 1px solid var(--line); }
   .proof:first-of-type { border-top: 0; }
-  .proof h3 { font-size: 15px; margin: 0 0 6px; }
-  .proof .verdict { font-weight: 650; margin-top: 6px; }
+  .proof h3 { font-size: 14px; margin: 0 0 6px; line-height: 1.3; min-height: 2.6em; }
+  .proof .verdict { font-weight: 650; margin-top: 6px; font-size: 14px; line-height: 1.35; }
   .verdict.bad { color: var(--bad); } .verdict.ok { color: var(--ok); }
   .checks { margin: 0; padding-left: 20px; }
   .downloads a { margin-right: 18px; color: var(--accent); }
@@ -164,7 +164,7 @@ function render(s) {
   if (r.recoverable && (r.recoverable.total || (r.recoverable_marks || {}).total)) {
     const rc = r.recoverable, rm = r.recoverable_marks || {total: 0};
     const verdict = (rec, hidden) => `<div class="verdict ${rec ? 'bad' : 'ok'}">${rec
-      ? 'Signature recoverable' + (hidden ? ': a hidden copy of the original scan is still inside the file' : '')
+      ? 'Recoverable' + (hidden ? ': hidden copy of the original scan' : '')
       : 'Not recoverable'}</div>`;
     const markLine = rm.total ? ` Staff and margin signatures (all ${rm.total} boxes tested, crops not shown):
       usual method on the same boxes <b>${rm.naive}/${rm.total}</b>, this system <b>${rm.ours}/${rm.total}</b>.` : '';
@@ -176,24 +176,29 @@ function render(s) {
       Its leak needs a page left unredacted: those pages still point to the original scans of the redacted pages, so (a) leaks and (b) does not.
       This system is safe either way, and proves it with the checks below.</p>
       <p class="legend">Full signatures recoverable from the file: usual method (a) <b>${rc.naive_sig}/${rc.total}</b>,
-      (b) <b>${rc.naive}/${rc.total}</b>, this system <b>${rc.ours}/${rc.total}</b>.${markLine}</p>`
+      (b) <b>${rc.naive}/${rc.total}</b>, this system <b>${rc.ours}/${rc.total}</b>.${markLine}</p>
+      <p class="legend"><b>(a)</b> usual PyMuPDF redaction, signature pages only &nbsp;&middot;&nbsp; <b>(b)</b> usual PyMuPDF
+      redaction, same boxes as this system &nbsp;&middot;&nbsp; <i style="border:0;width:auto;margin:0"></i>&ldquo;Inside the file&rdquo; =
+      the stored image closest to the original, found by extracting every image in the saved PDF</p>`
       : `<div class="card"><h2>Is the signature really gone?</h2>
       <p class="legend">Same boxes, two methods. Every image stored inside each saved PDF is extracted (what any free tool such as
       <code>pdfimages</code> does), and the one closest to the original is compared.
       Full signatures recoverable from the file: usual method <b>${rc.naive}/${rc.total}</b>, this system <b>${rc.ours}/${rc.total}</b>.</p>`;
     for (const p of r.proof) {
+      const ours = `<figure><h3>This system: inside the file</h3><img src="${f(p.ours)}">
+          <div class="verdict ${p.ours_recoverable ? 'bad' : 'ok'}">${p.ours_recoverable ? 'Recoverable'
+            : 'Not recoverable: pixels destroyed, no other copy'}</div></figure>`;
       html += two ? `<div class="proof" style="--cols:5">
-        <figure><h3>Original (p${p.page}, #${p.sig})</h3><img src="${f(p.orig)}"></figure>
-        <figure><h3>Usual method (a), signature pages only: on screen</h3><img src="${f(p.screen)}"><figcaption>Looks redacted</figcaption></figure>
-        <figure><h3>Usual method (a): images in the file</h3><img src="${f(p.sigonly)}">${verdict(p.sig_recoverable, p.sig_hidden)}</figure>
-        <figure><h3>Usual method (b), same boxes: images in the file</h3><img src="${f(p.naive)}">${verdict(p.naive_recoverable, p.naive_hidden)}</figure>
-        <figure><h3>This system: images in the file</h3><img src="${f(p.ours)}">` : `<div class="proof">
-        <figure><h3>Original (p${p.page}, #${p.sig})</h3><img src="${f(p.orig)}"></figure>
-        <figure><h3>Usual PyMuPDF redaction: on screen</h3><img src="${f(p.screen)}"><figcaption>Looks redacted</figcaption></figure>
-        <figure><h3>Usual PyMuPDF redaction: images in the file</h3><img src="${f(p.naive)}">${verdict(p.naive_recoverable, p.naive_hidden)}</figure>
-        <figure><h3>This system: images in the file</h3><img src="${f(p.ours)}">
-          <div class="verdict ${p.ours_recoverable ? 'bad' : 'ok'}">${p.ours_recoverable ? 'Signature recoverable'
-            : 'Not recoverable: pixels destroyed, no other copy in the file'}</div></figure>
+        <figure><h3>Original &middot; p${p.page} #${p.sig}</h3><img src="${f(p.orig)}"></figure>
+        <figure><h3>(a) On screen</h3><img src="${f(p.screen)}"><figcaption>Looks redacted</figcaption></figure>
+        <figure><h3>(a) Inside the file</h3><img src="${f(p.sigonly)}">${verdict(p.sig_recoverable, p.sig_hidden)}</figure>
+        <figure><h3>(b) Inside the file</h3><img src="${f(p.naive)}">${verdict(p.naive_recoverable, p.naive_hidden)}</figure>
+        ${ours}
+      </div>` : `<div class="proof">
+        <figure><h3>Original &middot; p${p.page} #${p.sig}</h3><img src="${f(p.orig)}"></figure>
+        <figure><h3>Usual method: on screen</h3><img src="${f(p.screen)}"><figcaption>Looks redacted</figcaption></figure>
+        <figure><h3>Usual method: inside the file</h3><img src="${f(p.naive)}">${verdict(p.naive_recoverable, p.naive_hidden)}</figure>
+        ${ours}
       </div>`;
     }
     html += '</div>';

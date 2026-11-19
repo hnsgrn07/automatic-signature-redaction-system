@@ -33,6 +33,7 @@ import detect as D
 
 # candidates
 LINE_LEN_IN = 0.6          # straight ink runs at least this long are table rules / underlines (removed)
+STUB_LEN_IN = 0.15         # shorter straight runs joining removed rules AT BOTH ENDS (cell walls) also removed
 WORD_CONF = 0.5            # an OCR word read at least this confidently ...
 WORD_MIN_ALNUM = 2         # ... with at least this many letters/digits is text
 WORD_ANYCONF_ALNUM = 3     # a word with this many letters/digits is text whatever its confidence ...
@@ -41,6 +42,11 @@ WORD_ANYCONF_CAPS = 0.8    # ... but inside a staff-name zone only if it is in c
 LETTER_H_IN = 0.22         # a print component is at most this tall (dev sweep 0.18-0.30 equal)
 PRINT_INSIDE = 0.85        # share of a component's ink inside text words to call it print
 GAP_IN = 0.06              # cluster gap (dev sweep 0.04-0.08: F1 0.913-0.901)
+# size-aware clustering: two BIG pieces (each a mark on its own) are one mark only if their boxes overlap;
+# small pieces (pen lifts, dots) join the nearest cluster within GAP_IN
+BIG_BOX_IN2 = 0.06
+BIG_H_IN = 0.20
+BIG_OVERLAP = 0.25         # share of the smaller box
 MIN_INK_IN2 = 0.0015       # a cluster needs at least this much ink
 MIN_BOX_IN2 = 0.008        # ... and a box at least this large
 FULL_PAD_IN = 0.05         # full-signature boxes are blanked with this padding
@@ -62,15 +68,34 @@ STAFF_MIN_AREA_IN2, STAFF_MIN_H_IN = 0.02, 0.10
 MARGIN_Y = 0.90            # bottom strip: cluster centre below this share of the page height (sweep .88-.92)
 MARGIN_MIN_AREA_IN2 = 0.02
 MARGIN_MIN_H_IN, MARGIN_MIN_W_IN = 0.15, 0.08
+# margin marks above the bottom strip
+REF_ZONE_X = 0.30          # left zone below the lowest signatory block (mark beside typed reference initials) ...
+REF_ZONE_DOWN_IN = 2.0     # ... at most this far below the block
+CORNER_X, CORNER_Y = 0.85, 0.85
 # touching marks on stacked staff names (a large mark's loop reaching the mark on the next name)
 STAFF_SPLIT = True
 
 
 def remove_lines(ink, ppi):
-    k = max(3, int(LINE_LEN_IN * ppi))
-    h = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (k, 1)))
-    v = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (1, k)))
-    return ink & ~((h | v) > 0).astype(np.uint8)
+    def straight(n):
+        h = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (n, 1)))
+        v = cv2.morphologyEx(ink, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_RECT, (1, n)))
+        return ((h | v) > 0).astype(np.uint8)
+    rules = straight(max(3, int(LINE_LEN_IN * ppi)))
+    if STUB_LEN_IN:
+        stubs = straight(max(3, int(STUB_LEN_IN * ppi))) & (1 - rules)
+        n, lab, st, _ = cv2.connectedComponentsWithStats(stubs, connectivity=8)
+        near = cv2.dilate(rules, np.ones((5, 5), np.uint8)) > 0
+        hit = np.zeros(n, bool)
+        for i in range(1, n):
+            x, y, w, h, _ = st[i]
+            if h >= w:     # vertical stub: rule at its top and at its bottom
+                ends = near[y, x:x + w].any() and near[y + h - 1, x:x + w].any()
+            else:          # horizontal stub: rule at its left and at its right end
+                ends = near[y:y + h, x].any() and near[y:y + h, x + w - 1].any()
+            hit[i] = ends
+        rules = rules | hit[lab].astype(np.uint8)
+    return ink & (1 - rules)
 
 
 def text_mask(rec, shape, zones=()):
@@ -86,6 +111,55 @@ def text_mask(rec, shape, zones=()):
                 x0, y0, x1, y1 = (int(round(v)) for v in w['box'])
                 m[max(0, y0):y1 + 1, max(0, x0):x1 + 1] = 1
     return m
+
+
+def size_clusters(comps, ppi):
+    if not BIG_BOX_IN2:
+        return D.clusters(comps, GAP_IN * ppi)
+    def big(c):
+        b = c['box']
+        return (b[2] - b[0]) * (b[3] - b[1]) >= BIG_BOX_IN2 * ppi * ppi and b[3] - b[1] >= BIG_H_IN * ppi
+    parent = list(range(len(comps)))
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]; i = parent[i]
+        return i
+    isbig = [big(c) for c in comps]
+    gap = GAP_IN * ppi
+    order = sorted(range(len(comps)), key=lambda i: comps[i]['box'][0])
+    for a in range(len(order)):
+        i = order[a]
+        for b in range(a + 1, len(order)):
+            j = order[b]
+            if comps[j]['box'][0] > comps[i]['box'][2] + gap:
+                break
+            if not D.touches(comps[i]['box'], comps[j]['box'], gap):
+                continue
+            if isbig[i] and isbig[j] and D.overlap_share(comps[i]['box'], comps[j]['box']) < BIG_OVERLAP:
+                continue
+            parent[find(i)] = find(j)
+    # two big pieces must not end up in one cluster through small pieces in between
+    groups = {}
+    for i, c in enumerate(comps):
+        groups.setdefault(find(i), []).append(i)
+    out = []
+    for g in groups.values():
+        bigs = [i for i in g if isbig[i]]
+        if len(bigs) <= 1:
+            out.append([comps[i] for i in g]); continue
+        # big pieces joined only through small pieces: regroup the big ones by touching boxes,
+        # then attach each small piece to the nearest group
+        merged = D.clusters([comps[i] for i in bigs], 0)
+        boxes = [D.union([c['box'] for c in cl]) for cl in merged]
+        for i in g:
+            if isbig[i]:
+                continue
+            cc = D.centre(comps[i]['box'])
+            k = min(range(len(boxes)), key=lambda k: max(0, boxes[k][0] - cc[0], cc[0] - boxes[k][2]) +
+                    max(0, boxes[k][1] - cc[1], cc[1] - boxes[k][3]))
+            merged[k].append(comps[i])
+        out.extend(merged)
+    return out
 
 
 def staff_zone(a, ppi):
@@ -115,7 +189,7 @@ def candidates(gray, rec, full_boxes, want_mask=False, zones=()):
         comps.append(dict(box=[int(x), int(y), int(x + w), int(y + h)], area=int(a)))
         keep[i] = True
     out = []
-    for cl in D.clusters(comps, GAP_IN * ppi):
+    for cl in size_clusters(comps, ppi):
         b = D.union([c['box'] for c in cl])
         a = sum(c['area'] for c in cl)
         if a >= MIN_INK_IN2 * ppi * ppi and (b[2] - b[0]) * (b[3] - b[1]) >= MIN_BOX_IN2 * ppi * ppi:
@@ -239,6 +313,8 @@ def detect_marks(gray, rec, full_dets, anchors=None):
     if anchors is None:
         anchors = A.find_anchors(rec)
     sa = staff_anchors(rec, anchors)
+    blocks = [a for a in anchors if a['kind'] == 'block']
+    low = max(a['box'][3] for a in blocks) if blocks else None
     cands, hand = candidates(gray, rec, [f['box'] for f in full_dets], want_mask=True,
                              zones=[staff_zone(a, ppi) for a in sa])
     if STAFF_SPLIT and sa:
@@ -255,8 +331,10 @@ def detect_marks(gray, rec, full_dets, anchors=None):
                 typ = 'staff_signature'
             else:
                 continue
-        elif (cy >= MARGIN_Y * H and w * h >= MARGIN_MIN_AREA_IN2 and h >= MARGIN_MIN_H_IN
-              and w >= MARGIN_MIN_W_IN):
+        elif w * h >= MARGIN_MIN_AREA_IN2 and h >= MARGIN_MIN_H_IN and w >= MARGIN_MIN_W_IN and (
+                cy >= MARGIN_Y * H
+                or (REF_ZONE_X and low is not None and cx <= REF_ZONE_X * W and low < cy <= low + REF_ZONE_DOWN_IN * ppi)
+                or (CORNER_X and cx >= CORNER_X * W and cy >= CORNER_Y * H)):
             typ = 'margin_signature'
         if typ:
             out.append(dict(box=b, ink=d['ink'], type=typ))

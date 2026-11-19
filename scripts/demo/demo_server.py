@@ -10,8 +10,12 @@ The page lists the PDFs in <THESIS_ROOT>\\demo\\unseen (portal ordinances that a
 For each run it shows: live stage progress; the anchors and signature boxes found (full signatures,
 staff signatures, margin signatures - each in its own colour); before/after; and the recoverability
 comparison - PyMuPDF's ordinary redaction (looks black on screen, but the signature is still in the
-image data) vs. this system (the image pixels themselves are black). The side-by-side crops are shown
-for the full signatures; the recovery test itself is run on every redacted box.
+image data) vs. this system (the image pixels themselves are black). The usual method is run twice:
+on the signature pages only (what a clerk redacting signatures by hand would do) and on exactly the
+same boxes as this system (every page that has a mark). Its leak needs a page left unredacted: the
+original scans of redacted pages stay referenced by the unredacted pages, so the first variant leaks
+and the second does not. The side-by-side crops are shown for the full signatures; the recovery
+test itself is run on every redacted box.
 --no-marks redacts full signatures only (the demo as it was before round v1.1).
 Sealed TEST documents (by SHA-256 in sample.csv) are refused. Outputs: <THESIS_ROOT>\\demo\\runs\\.
 Listens on 127.0.0.1 only.
@@ -194,18 +198,32 @@ def run_job(job, pdf_path):
             step(f'Verification: {"PASSED" if ok else "FAILED"}' + (f' - {"; ".join(problems)}' if problems else ''))
             pipeline_s = sum(T.values())
 
-            # comparison with ordinary PyMuPDF redaction (not part of the pipeline timing)
+            # comparison with ordinary PyMuPDF redaction (not part of the pipeline timing):
+            # (a) signature pages only - the full-signature boxes, other pages untouched
+            # (b) the same boxes as this system (every page with a full, staff or margin signature)
             naive = os.path.join(out, 'naive_pymupdf.pdf')
             naive_redact(pdf_path, naive, boxes, scans)
-            step('Comparison: same boxes redacted with PyMuPDF apply_redactions (the usual method)')
+            full_boxes = {i: [b for b, t_ in zip(boxes[i], types[i]) if t_ == 'full'] for i in boxes}
+            full_boxes = {i: v for i, v in full_boxes.items() if v}
+            if USE_MARKS:
+                naive_sig = os.path.join(out, 'naive_pymupdf_signature_pages.pdf')
+                naive_redact(pdf_path, naive_sig, full_boxes, scans)
+                step(f'Comparison: PyMuPDF apply_redactions (the usual method) (a) on the signature pages only '
+                     f'({len(full_boxes)} of {n} page(s)), (b) on the same boxes as this system ({len(boxes)} page(s))')
+            else:
+                naive_sig = naive
+                step('Comparison: same boxes redacted with PyMuPDF apply_redactions (the usual method)')
 
             res = dict(file=os.path.basename(pdf_path), provenance=job['provenance'], pages=n, signatures=nsig,
                        by_type=by_type, marks=USE_MARKS,
                        boxes={str(i + 1): [dict(box=b, type=t_) for b, t_ in zip(boxes[i], types[i])] for i in boxes},
                        ok=ok, problems=problems, timings={k: round(v, 2) for k, v in T.items()},
                        pipeline_s=round(pipeline_s, 2), verify=vstats, views=[], proof=[], recovery=[],
-                       downloads=dict(redacted='redacted.pdf', naive='naive_pymupdf.pdf', original='original.pdf'))
-            with pymupdf.open(pdf_path) as d_orig, pymupdf.open(red) as d_red, pymupdf.open(naive) as d_nav:
+                       downloads=dict(redacted='redacted.pdf', naive='naive_pymupdf.pdf', original='original.pdf',
+                                      naive_sig=os.path.basename(naive_sig)),
+                       sig_pages=len(full_boxes))
+            with pymupdf.open(pdf_path) as d_orig, pymupdf.open(red) as d_red, pymupdf.open(naive) as d_nav, \
+                    pymupdf.open(naive_sig) as d_sig:
                 show = sorted(boxes) or [n - 1]
                 for i in show:
                     s = scans[i]
@@ -230,36 +248,48 @@ def run_job(job, pdf_path):
                     if i not in boxes:
                         continue
                     if not job.get('imgs'):
-                        job['imgs'] = (decoded_images(d_nav), decoded_images(d_red))
-                        n_nav, n_red = job['imgs']
-                        step(f'Searching every image stored in each file: usual method {len(n_nav)} image object(s) '
-                             f'({sum(not x[1] for x in n_nav)} not shown on any page), this system {len(n_red)} '
-                             f'({sum(not x[1] for x in n_red)} not shown)')
-                    imgs_nav, imgs_red = job['imgs']
+                        job['imgs'] = (decoded_images(d_nav), decoded_images(d_red),
+                                       decoded_images(d_sig) if USE_MARKS else None)
+                        n_nav, n_red, n_sig = job['imgs']
+                        hid = lambda xs: sum(not x[1] for x in xs)
+                        step('Searching every image stored in each file: '
+                             + (f'usual method, signature pages only {len(n_sig)} image object(s) ({hid(n_sig)} not shown '
+                                f'on any page); ' if USE_MARKS else '')
+                             + f'usual method{", same boxes" if USE_MARKS else ""} {len(n_nav)} ({hid(n_nav)} not shown); '
+                             f'this system {len(n_red)} ({hid(n_red)} not shown)')
+                    imgs_nav, imgs_red, imgs_sig = job['imgs']
+                    imgs_sig = imgs_sig if imgs_sig is not None else imgs_nav
                     g_orig = to_gray(s['pix'])
-                    zoom = W / d_nav[i].rect.width
+                    zoom = W / d_sig[i].rect.width
                     own_red = page_scan(d_red, d_red[i])['pix']          # this page's own stored image
                     k = -1
                     for b, t_ in zip(boxes[i], types[i]):
                         pb = padded(b, PAD_IN * ppi, W, H)
                         bn = best_copy(imgs_nav, g_orig, pb)
                         br = best_copy(imgs_red, g_orig, pb)
+                        bs = best_copy(imgs_sig, g_orig, pb) if t_ == 'full' else bn
                         res['recovery'].append(dict(type=t_, naive=bool(bn[0] < RECOVERABLE_DIFF),
+                                                    naive_sig=bool(bs[0] < RECOVERABLE_DIFF),
                                                     ours=bool(br[0] < RECOVERABLE_DIFF)))
                         if t_ != 'full':
                             continue          # side-by-side crops only for the full signatures
                         k += 1
                         c_orig, win = crop(bgr(to_rgb(s['pix'])), pb, ppi, H, W)
                         rect = px_to_pt(win, s['to_pt'])
-                        c_screen = bgr(to_rgb(d_nav[i].get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), clip=rect)))
-                        c_nav, _ = crop(bn[1][3], pb, ppi, H, W)
+                        c_screen = bgr(to_rgb(d_sig[i].get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), clip=rect)))
+                        # a recoverable copy is shown where it was found; otherwise the page's own stored image
+                        own = lambda d_: bgr(to_rgb(page_scan(d_, d_[i])['pix']))
+                        c_nav, _ = crop(bn[1][3] if bn[0] < RECOVERABLE_DIFF else own(d_nav), pb, ppi, H, W)
+                        c_sig, _ = crop(bs[1][3] if bs[0] < RECOVERABLE_DIFF else own(d_sig), pb, ppi, H, W)
                         c_red, _ = crop(bgr(to_rgb(own_red)), pb, ppi, H, W)
                         tag = f'p{i + 1}_s{k + 1}'
-                        for name, im in (('orig', c_orig), ('screen', c_screen), ('naive', c_nav), ('ours', c_red)):
+                        for name, im in (('orig', c_orig), ('screen', c_screen), ('naive', c_nav), ('sigonly', c_sig),
+                                         ('ours', c_red)):
                             save_view(im, os.path.join(out, f'{tag}_{name}.png'), width=420)
                         res['proof'].append(dict(
                             page=i + 1, sig=k + 1, orig=f'{tag}_orig.png', screen=f'{tag}_screen.png',
-                            naive=f'{tag}_naive.png', ours=f'{tag}_ours.png',
+                            naive=f'{tag}_naive.png', ours=f'{tag}_ours.png', sigonly=f'{tag}_sigonly.png',
+                            sig_recoverable=bs[0] < RECOVERABLE_DIFF, sig_hidden=not bs[1][1],
                             naive_recoverable=bn[0] < RECOVERABLE_DIFF, naive_diff=round(bn[0], 1),
                             naive_hidden=not bn[1][1], naive_xref=bn[1][0],
                             ours_recoverable=br[0] < RECOVERABLE_DIFF, ours_diff=round(br[0], 1),
@@ -269,16 +299,20 @@ def run_job(job, pdf_path):
 
                 def tally(sel):
                     xs = [x for x in rv if sel(x['type'])]
-                    return dict(naive=sum(x['naive'] for x in xs), ours=sum(x['ours'] for x in xs), total=len(xs))
+                    return dict(naive=sum(x['naive'] for x in xs), naive_sig=sum(x['naive_sig'] for x in xs),
+                                ours=sum(x['ours'] for x in xs), total=len(xs))
                 res['recoverable'] = tally(lambda t_: t_ == 'full')
                 res['recoverable_marks'] = tally(lambda t_: t_ != 'full')
                 rc, rm = res['recoverable'], res['recoverable_marks']
-                step(f"Recovery test: usual method - {rc['naive']}/{rc['total']} full signature(s)"
-                     + (f" and {rm['naive']}/{rm['total']} staff/margin signature(s)" if rm['total'] else '')
-                     + f" recoverable from the file; this system - {rc['ours']}/{rc['total']}"
-                     + (f" and {rm['ours']}/{rm['total']}" if rm['total'] else ''))
+                step('Recovery test (full signatures recoverable from the file): '
+                     + (f"usual method, signature pages only {rc['naive_sig']}/{rc['total']}; " if USE_MARKS else '')
+                     + f"usual method{', same boxes' if USE_MARKS else ''} {rc['naive']}/{rc['total']}"
+                     + (f" (+ {rm['naive']}/{rm['total']} staff/margin)" if rm['total'] else '')
+                     + f"; this system {rc['ours']}/{rc['total']}"
+                     + (f" (+ {rm['ours']}/{rm['total']})" if rm['total'] else ''))
             job.pop('imgs', None)
-            sizes = dict(original=os.path.getsize(pdf_path), redacted=os.path.getsize(red), naive=os.path.getsize(naive))
+            sizes = dict(original=os.path.getsize(pdf_path), redacted=os.path.getsize(red), naive=os.path.getsize(naive),
+                         naive_sig=os.path.getsize(naive_sig))
             res['sizes_kb'] = {k: v // 1024 for k, v in sizes.items()}
             with open(os.path.join(out, 'result.json'), 'w', encoding='utf-8') as f:
                 json.dump(res, f, indent=1, default=lambda o: o.item() if hasattr(o, 'item') else str(o))

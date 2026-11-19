@@ -17,6 +17,8 @@ original scans of redacted pages stay referenced by the unredacted pages, so the
 and the second does not. The side-by-side crops are shown for the full signatures; the recovery
 test itself is run on every redacted box.
 --no-marks redacts full signatures only (the demo as it was before round v1.1).
+Digital (typed / exported) PDFs are redacted with digital.redact_digital: 'flatten' (default, image-only output)
+or 'keep text' (chosen on the page); the usual-method comparison is shown for scanned documents only.
 Sealed TEST documents (by SHA-256 in sample.csv) are refused. Outputs: <THESIS_ROOT>\\demo\\runs\\.
 Listens on 127.0.0.1 only.
 """
@@ -36,6 +38,7 @@ from ingest import load_pages, page_scan, to_gray, to_rgb, px_to_pt
 from anchors import find_anchors
 from detect import detect
 from marks import detect_marks
+from digital import redact_digital
 from redact import redact_pdf, verify, padded, PAD_IN, PAGE_WIDTH_IN, BLACK_MAX
 
 DEMO_DIR = thesis_path('demo', 'unseen')
@@ -164,9 +167,10 @@ def run_job(job, pdf_path):
                      f'(~{s0.width / PAGE_WIDTH_IN:.0f} DPI), '
                      + (f'text layer on page(s) {text_pages}' if text_pages else 'no text layer'))
             else:
-                step(f'Stage 1 - ingest: {n} page(s); page(s) {not_scan} are NOT a single scanned image '
-                     f'(a digital / typed PDF{", with a text layer" if text_pages else ""}) - outside the scope of this '
-                     f'system, which redacts scanned ordinances. Detection still runs, nothing will be redacted.')
+                step(f'Stage 1 - ingest: {n} page(s); page(s) {not_scan} are digital (typed / exported'
+                     f'{", with a text layer" if text_pages else ""}), not a scanned image - rendered at '
+                     f'~{scans[not_scan[0] - 1]["pix"].width / PAGE_WIDTH_IN:.0f} DPI for detection; redaction method: '
+                     + ('flatten to images' if job.get('digital') != 'keep_text' else 'keep text selectable'))
             boxes, types, pages = {}, {}, []
             for i, s in enumerate(scans):
                 rec, dt = OCR_ENGINE.page_record(s['pix'])
@@ -203,26 +207,44 @@ def run_job(job, pdf_path):
             if by_type['full'] == 0:
                 warnings.append('no_full_signature')
             if not_scan:
+                mode = 'keep_text' if job.get('digital') == 'keep_text' else 'flatten'
+                red = os.path.join(out, 'redacted.pdf')
+                t = time.perf_counter()
+                done, ok, problems, vstats = redact_digital(pdf_path, red, boxes, mode=mode, scans=scans)
+                T['redact'] = time.perf_counter() - t
+                step(f'Stage 4 - redaction ({"flattened: every page rebuilt as one image, nothing else kept" if mode == "flatten" else "text kept: images, strokes and text under each box removed, annotations / fields on boxes deleted"})'
+                     f', {nsig} padded box(es), metadata and attachments removed')
+                step(f'Verification: {"PASSED" if ok else "FAILED"}' + (f' - {"; ".join(problems)}' if problems else '')
+                     + (f' (notice: {"; ".join(vstats["notices"])})' if vstats.get('notices') else ''))
                 pipeline_s = sum(T.values())
-                for i in range(n):
-                    sc = scans[i]
-                    over = bgr(to_rgb(sc['pix']))
-                    for b, t_ in zip(boxes.get(i, []), types.get(i, [])):
-                        cv2.rectangle(over, (b[0], b[1]), (b[2], b[3]), TYPE_BGR[t_], 4)
-                    save_view(over, os.path.join(out, f'p{i + 1}_found.png'))
+                views = []
+                with pymupdf.open(red) as d_red:
+                    for i in range(n):
+                        sc = scans[i]
+                        over = bgr(to_rgb(sc['pix']))
+                        for a in pages[i]['anchors']:
+                            x0, y0, x1, y1 = (int(v) for v in a['box'])
+                            cv2.rectangle(over, (x0, y0), (x1, y1), (20, 120, 230), 3)
+                        for b, t_ in zip(boxes.get(i, []), types.get(i, [])):
+                            cv2.rectangle(over, (b[0], b[1]), (b[2], b[3]), TYPE_BGR[t_], 4)
+                        save_view(over, os.path.join(out, f'p{i + 1}_found.png'))
+                        zoom = 1 / sc['to_pt'][2]
+                        after = bgr(to_rgb(d_red[i].get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False)))
+                        save_view(after, os.path.join(out, f'p{i + 1}_after.png'))
+                        views.append(dict(page=i + 1, found=f'p{i + 1}_found.png', after=f'p{i + 1}_after.png',
+                                          counts={k: types.get(i, []).count(k) for k in TYPE_NAMES}))
+                    out_text = sum(len(pg.get_text().strip()) for pg in d_red)
                 res = dict(file=os.path.basename(pdf_path), provenance=job['provenance'], pages=n, signatures=nsig,
-                           by_type=by_type, marks=USE_MARKS, scope='not_scanned', not_scan=not_scan,
-                           text_pages=text_pages, warnings=warnings, ok=False,
-                           problems=[f'page(s) {not_scan} are not a single scanned image: nothing was redacted'],
-                           timings={k: round(v, 2) for k, v in T.items()}, pipeline_s=round(pipeline_s, 2),
-                           views=[dict(page=i + 1, found=f'p{i + 1}_found.png', after=None,
-                                       counts={k: types.get(i, []).count(k) for k in TYPE_NAMES}) for i in range(n)],
-                           proof=[], recovery=[], downloads=dict(original='original.pdf'),
-                           sizes_kb=dict(original=os.path.getsize(pdf_path) // 1024))
+                           by_type=by_type, marks=USE_MARKS, scope='digital', digital_mode=mode, not_scan=not_scan,
+                           text_pages=text_pages, out_text_chars=out_text, warnings=warnings, ok=ok, problems=problems,
+                           verify=vstats, timings={k: round(v, 2) for k, v in T.items()}, pipeline_s=round(pipeline_s, 2),
+                           views=views, proof=[], recovery=[],
+                           downloads=dict(original='original.pdf', redacted='redacted.pdf'),
+                           sizes_kb=dict(original=os.path.getsize(pdf_path) // 1024, redacted=os.path.getsize(red) // 1024))
                 with open(os.path.join(out, 'result.json'), 'w', encoding='utf-8') as f:
                     json.dump(res, f, indent=1, default=lambda o: o.item() if hasattr(o, 'item') else str(o))
                 job['result'] = json.loads(json.dumps(res, default=lambda o: o.item() if hasattr(o, 'item') else str(o)))
-                step('Not redacted: this is not a scanned document (outside the scope of the system)')
+                step(f'Done - pipeline time {pipeline_s:.1f}s for {n} page(s)')
                 job['state'] = 'done'
                 return
             if warnings:
@@ -369,7 +391,7 @@ def run_job(job, pdf_path):
             traceback.print_exc()
 
 
-def start_job(pdf_path, display_name):
+def start_job(pdf_path, display_name, digital='flatten'):
     prov = provenance(pdf_path)
     if prov == 'sealed test document':
         return None, 'This is a sealed TEST document. It is not used before the single final test run.'
@@ -379,7 +401,7 @@ def start_job(pdf_path, display_name):
     with open(pdf_path, 'rb') as fi, open(os.path.join(d, 'original.pdf'), 'wb') as fo:
         fo.write(fi.read())
     job = dict(id=jid, dir=d, name=display_name, provenance=prov, state='queued', log=[], result=None, error=None,
-               t0=time.perf_counter())
+               t0=time.perf_counter(), digital='keep_text' if digital == 'keep_text' else 'flatten')
     JOBS[jid] = job
     threading.Thread(target=run_job, args=(job, os.path.join(d, 'original.pdf')), daemon=True).start()
     return jid, None
@@ -431,12 +453,13 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         u = urlparse(self.path)
+        digital = parse_qs(u.query).get('digital', ['flatten'])[0]
         if u.path == '/api/run':
             name = os.path.basename(parse_qs(u.query).get('name', [''])[0])
             p = os.path.join(DEMO_DIR, name)
             if not name or not os.path.isfile(p):
                 return self.send(404, dict(error='no such demo document'))
-            jid, err = start_job(p, name)
+            jid, err = start_job(p, name, digital)
         elif u.path == '/api/upload':
             n = int(self.headers.get('Content-Length', 0))
             if n <= 0 or n > MAX_UPLOAD:
@@ -449,7 +472,7 @@ class Handler(BaseHTTPRequestHandler):
             p = os.path.join(UPLOAD_DIR, f'{sha256_bytes(data)[:12]}_{name}')
             with open(p, 'wb') as f:
                 f.write(data)
-            jid, err = start_job(p, name)
+            jid, err = start_job(p, name, digital)
         else:
             return self.send(404, dict(error='not found'))
         if err:

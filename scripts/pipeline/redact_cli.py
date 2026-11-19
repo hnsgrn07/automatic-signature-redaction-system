@@ -1,6 +1,7 @@
 """Batch CLI: redact the signatures (full + staff + margin) in scanned ordinance PDFs.
 
   python redact_cli.py INPUT [--out DIR] [--cpu] [--save-ocr] [--limit N] [--no-marks]
+                       [--digital flatten|keep-text|off]
 
 INPUT is one PDF or a folder (searched recursively for *.pdf). For every document:
 
@@ -10,6 +11,9 @@ INPUT is one PDF or a folder (searched recursively for *.pdf). For every documen
   stage 3 detect   - full-signature boxes (detect.detect)
   stage 3b marks   - staff and margin signatures (marks.detect_marks); off with --no-marks
   stage 4 redact   - overwrite the scan pixels under the boxes (redact.redact_pdf)
+                     digital (typed / exported) PDFs: digital.redact_digital - 'flatten' (default: image-only
+                     output, strictly verified) or 'keep-text' (PyMuPDF redaction, text stays selectable);
+                     --digital off sends them to needs_review as before
          verify    - re-open the output and prove nothing is recoverable (redact.verify)
 
 Output folder (default: Desktop/Redacted_Outputs/run_YYYYMMDD_HHMMSS):
@@ -37,6 +41,8 @@ import anchors as anchors_mod
 import detect as detect_mod
 import marks as marks_mod
 import redact as redact_mod
+import digital as digital_mod
+from digital import is_digital, redact_digital
 from ingest import load_pages, to_gray, to_rgb
 from anchors import find_anchors
 from detect import detect
@@ -130,7 +136,7 @@ class OCR:
         return dict(width=W, height=H, ocr_s=round(dt, 3), lines=lines), dt
 
 
-def process(path, sub, ocr, out, save_ocr, use_marks=True):
+def process(path, sub, ocr, out, save_ocr, use_marks=True, digital='flatten'):
     name = os.path.splitext(os.path.basename(path))[0]
     t_doc = time.perf_counter()
     times = dict(ingest_s=0.0, ocr_s=0.0, detect_s=0.0, redact_s=0.0, verify_s=0.0)
@@ -173,14 +179,24 @@ def process(path, sub, ocr, out, save_ocr, use_marks=True):
     os.makedirs(tmp, exist_ok=True)
     tmp_pdf = os.path.join(tmp, f'{name}.pdf')
     ok, problems, done = False, [], {}
+    log['document_kind'] = 'digital' if is_digital(scans) else 'scanned'
     try:
-        t = time.perf_counter()
-        done = redact_pdf(path, tmp_pdf, boxes)
-        times['redact_s'] = time.perf_counter() - t
-        t = time.perf_counter()
-        ok, problems, vstats = verify(path, tmp_pdf, done)
-        times['verify_s'] = time.perf_counter() - t
-        log['verify'] = dict(ok=ok, problems=problems, **{k: v for k, v in vstats.items()})
+        if log['document_kind'] == 'digital' and digital != 'off':
+            mode = 'keep_text' if digital == 'keep-text' else 'flatten'
+            t = time.perf_counter()
+            done, ok, problems, vstats = redact_digital(path, tmp_pdf, boxes, mode=mode, scans=scans)
+            times['redact_s'] = time.perf_counter() - t     # includes its verification (one call)
+            log['digital_mode'] = mode
+            log['verify'] = dict(ok=ok, problems=problems, **{k: v for k, v in vstats.items()})
+            manual_pages = []                                # handled: not sent to review for being digital
+        else:
+            t = time.perf_counter()
+            done = redact_pdf(path, tmp_pdf, boxes)
+            times['redact_s'] = time.perf_counter() - t
+            t = time.perf_counter()
+            ok, problems, vstats = verify(path, tmp_pdf, done)
+            times['verify_s'] = time.perf_counter() - t
+            log['verify'] = dict(ok=ok, problems=problems, **{k: v for k, v in vstats.items()})
     except ValueError as e:          # redact.py refuses pages that are not a single full-page scan
         problems = [f'redaction refused: {e}']
         log['verify'] = dict(ok=False, problems=problems)
@@ -203,7 +219,7 @@ def process(path, sub, ocr, out, save_ocr, use_marks=True):
         log['output'] = None
     wall = time.perf_counter() - t_doc
 
-    row = dict(sub=sub, file=os.path.basename(path), status=log['status'], pages=len(scans),
+    row = dict(sub=sub, file=os.path.basename(path), kind=log['document_kind'], status=log['status'], pages=len(scans),
                boxes=sum(len(v) for v in boxes.values()),
                marks=sum(len(p.get('marks', [])) for p in log['pages']),
                **{k: round(v, 3) for k, v in times.items()}, wall_s=round(wall, 3),
@@ -226,6 +242,9 @@ def main():
     ap.add_argument('--save-ocr', action='store_true', help='also save the live OCR of every page (for checks)')
     ap.add_argument('--limit', type=int, default=0, help='process only the first N PDFs (for quick tests)')
     ap.add_argument('--no-marks', action='store_true', help='full signatures only (skip staff/margin signatures)')
+    ap.add_argument('--digital', choices=['flatten', 'keep-text', 'off'], default='flatten',
+                    help='digital (typed/exported) PDFs: flatten to images (default, strictly verified), keep text '
+                         'selectable (PyMuPDF redaction, verified less strictly), or off (send to needs_review)')
     args = ap.parse_args()
 
     t_run = time.perf_counter()
@@ -252,12 +271,12 @@ def main():
                 git=git_info(), python=platform.python_version(), platform=platform.platform(),
                 versions=dict(torch=torch.__version__, doctr=doctr.__version__, pymupdf=pymupdf.VersionBind,
                               opencv=cv2.__version__, numpy=np.__version__),
-                marks=not args.no_marks,
+                marks=not args.no_marks, digital=args.digital,
                 settings=dict(detect=module_settings(detect_mod), anchors=module_settings(anchors_mod),
-                              marks=module_settings(marks_mod),
+                              marks=module_settings(marks_mod), digital=module_settings(digital_mod),
                               redact=module_settings(redact_mod)))
 
-    fields = ['sub', 'file', 'status', 'pages', 'boxes', 'marks', 'ingest_s', 'ocr_s', 'detect_s', 'redact_s',
+    fields = ['sub', 'file', 'kind', 'status', 'pages', 'boxes', 'marks', 'ingest_s', 'ocr_s', 'detect_s', 'redact_s',
               'verify_s', 'wall_s', 'size_in_kb', 'size_out_kb', 'problems']
     rows = []
     with open(os.path.join(out, 'timings.csv'), 'w', newline='', encoding='utf-8') as fcsv:
@@ -265,7 +284,7 @@ def main():
         w.writeheader()
         for k, (path, sub) in enumerate(pdfs, 1):
             try:
-                row = process(path, sub, ocr, out, args.save_ocr, use_marks=not args.no_marks)
+                row = process(path, sub, ocr, out, args.save_ocr, use_marks=not args.no_marks, digital=args.digital)
             except Exception as e:
                 row = dict(sub=sub, file=os.path.basename(path), status=STATUS_REVIEW,
                            problems=f'ERROR {type(e).__name__}: {e}')

@@ -28,6 +28,10 @@
           color: var(--muted); cursor: pointer; }
   #drop.over { border-color: var(--accent); color: var(--accent); }
   .device { margin-top: 14px; font-size: 13px; color: var(--muted); }
+  .opt { margin-top: 16px; font-size: 14px; }
+  .opt b { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 6px; }
+  .opt label { display: block; padding: 3px 0; cursor: pointer; }
+  .opt small { display: block; color: var(--muted); margin: 0 0 4px 22px; line-height: 1.35; }
   main { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
   .intro { color: var(--muted); font-size: 19px; padding: 40px 10px; text-align: center; }
   #log { font: 15px/1.6 Consolas, "Cascadia Mono", monospace; margin: 0; padding: 0; list-style: none; }
@@ -81,6 +85,11 @@
       <div id="docs">Loading&hellip;</div>
       <div id="drop">Drop a PDF here<br><small>or click to choose</small></div>
       <input id="file" type="file" accept="application/pdf" hidden>
+      <div class="opt"><b>Digital (typed) PDFs</b>
+        <label><input type="radio" name="digital" value="flatten" checked> Flatten to images</label>
+        <small>Safest: nothing but page images is kept. Text is no longer selectable.</small>
+        <label><input type="radio" name="digital" value="keep_text"> Keep text selectable</label>
+        <small>Removes only what is under each box; verified less strictly.</small></div>
       <div class="device" id="device"></div>
     </div>
   </aside>
@@ -92,6 +101,9 @@
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let poll = null;
+const digitalMode = () => (document.querySelector('input[name="digital"]:checked') || {}).value || 'flatten';
+try { const m = localStorage.getItem('digitalMode'); if (m) { const el = document.querySelector(`input[name="digital"][value="${m}"]`); if (el) el.checked = true; } } catch (e) {}
+document.querySelectorAll('input[name="digital"]').forEach(el => el.onchange = () => { try { localStorage.setItem('digitalMode', digitalMode()); } catch (e) {} });
 
 fetch('/api/docs').then(r => r.json()).then(d => {
   $('#device').textContent = `OCR on ${d.device.toUpperCase()} (${d.device_name}), model loaded`;
@@ -101,7 +113,7 @@ fetch('/api/docs').then(r => r.json()).then(d => {
   document.querySelectorAll('.doc').forEach(b => b.onclick = () => {
     document.querySelectorAll('.doc').forEach(x => x.classList.remove('active'));
     b.classList.add('active');
-    start(fetch('/api/run?name=' + encodeURIComponent(b.dataset.name), {method: 'POST'}), b.dataset.name);
+    start(fetch('/api/run?name=' + encodeURIComponent(b.dataset.name) + '&digital=' + digitalMode(), {method: 'POST'}), b.dataset.name);
   });
 });
 
@@ -112,7 +124,7 @@ drop.ondragover = e => { e.preventDefault(); drop.classList.add('over'); };
 drop.ondragleave = () => drop.classList.remove('over');
 drop.ondrop = e => { e.preventDefault(); drop.classList.remove('over'); e.dataTransfer.files[0] && upload(e.dataTransfer.files[0]); };
 function upload(f) {
-  start(fetch('/api/upload', {method: 'POST', headers: {'X-Filename': encodeURIComponent(f.name)}, body: f}), f.name);
+  start(fetch('/api/upload?digital=' + digitalMode(), {method: 'POST', headers: {'X-Filename': encodeURIComponent(f.name)}, body: f}), f.name);
 }
 
 function start(req, name) {
@@ -136,9 +148,13 @@ function start(req, name) {
 function render(s) {
   const r = s.result, f = n => `/files/${s.id}/${n}`;
   const two = !!r.marks;      // marks on: two usual-method variants (signature pages only / same boxes)
-  const warn = r.warnings || [], notScanned = r.scope === 'not_scanned';
+  const warn = r.warnings || [], notScanned = r.scope === 'not_scanned', isDigital = r.scope === 'digital';
+  const keep = r.digital_mode === 'keep_text';
   const status = notScanned ? '<span class="badge bad">NOT REDACTED &mdash; not a scanned document</span>'
     : !r.ok ? '<span class="badge bad">NOT SAFE &mdash; needs review</span>'
+    : isDigital && warn.includes('no_full_signature') ? '<span class="badge warn">CHECK BY EYE &mdash; no signature found</span>'
+      + `<span class="badge muted">digital PDF, ${keep ? 'text kept' : 'flattened'}</span>`
+    : isDigital ? `<span class="badge ok">SAFE &mdash; digital PDF, ${keep ? 'text kept' : 'flattened'}</span>`
     : warn.includes('no_full_signature') ? '<span class="badge warn">CHECK BY EYE &mdash; no signature found</span>'
       + '<span class="badge muted">file verification passed</span>'
     : '<span class="badge ok">SAFE &mdash; verification passed</span>';
@@ -158,6 +174,20 @@ function render(s) {
     <div class="stat"><div>${(t.redact + t.verify).toFixed(1)} s</div><span>redact + verify</span></div></div>`);
 
   let html = '';
+  if (isDigital) {
+    const notes = (r.verify || {}).notices || [];
+    html += `<div class="card notice" style="border-left-color:var(--accent);background:#f3f7fc"><h2 style="color:var(--accent)">Digital PDF &mdash; ${keep ? 'text kept selectable' : 'flattened to images'}</h2>
+      <p>Page(s) ${r.not_scan.join(', ')} ${r.not_scan.length > 1 ? 'are' : 'is'} digital (typed or exported${(r.text_pages || []).length ? ', with a text layer' : ''}),
+      not a scan. Each page was rendered to an image and searched exactly like a scan.</p>
+      ${keep ? `<p>Under every box the image pixels, the vector strokes and the text were removed with PyMuPDF and a black box drawn;
+      annotations and form / signature fields on a box were deleted; metadata and attachments removed. The rest of the text stays
+      selectable (${r.out_text_chars} characters). A PDF can hide content in many places, so this mode is verified less strictly than
+      flattening &mdash; but the file is still searched for any surviving copy of an original image under a box.</p>`
+      : `<p>The output was rebuilt from page images only: the boxes are black in the pixels, and nothing else was carried over &mdash;
+      no text layer, vector graphics, annotations, signature fields, links, attachments or metadata &mdash; so no hidden copy of a signature
+      can survive. Text in the output is no longer selectable.</p>`}
+      ${notes.length ? `<p><b>Notice:</b> ${notes.map(esc).join('; ')}.</p>` : ''}</div>`;
+  }
   if (notScanned) {
     html += `<div class="card notice bad"><h2>Outside the scope of this system</h2>
       <p>Page(s) ${r.not_scan.join(', ')} ${r.not_scan.length > 1 ? 'are' : 'is'} not a single scanned image &mdash; this is a digital
@@ -233,6 +263,23 @@ function render(s) {
     html += '</div>';
   }
   const vs = r.verify || {};
+  if (isDigital) {
+    html += `<div class="card"><h2>Automatic verification of the output file</h2><ul class="checks">
+      ${keep ? `<li>Every box is solid black on the rendered page (${vs.boxes ?? 0} box(es))</li>
+        <li>Everything outside the boxes looks unchanged (max mean grey difference ${(vs.outside_diff_max ?? 0).toFixed(2)})</li>
+        <li>No character that was inside a box survived; no annotation or form field left on a box</li>
+        <li>No copy of an original image that lay under a box anywhere in the file (${vs.fragment_probes ?? 0} fragments searched)</li>`
+      : `<li>Every page is exactly one full-page image; no text layer, annotations, fields or links</li>
+        <li>Every box is solid black in the stored pixels (${vs.boxes ?? 0} box(es)); outside the boxes the pixels are identical</li>
+        <li>No original image that lay under a box survives in the file (${vs.fragment_probes ?? 0} fragments searched)</li>`}
+      <li>No metadata or attachments; single file revision; same page count and page sizes</li>
+      ${r.problems.length ? `<li class="error">${r.problems.map(esc).join('<br>')}</li>` : ''}</ul>
+      <p class="downloads" style="margin-top:12px">
+      <a href="${f(r.downloads.original)}" target="_blank">Original PDF (${r.sizes_kb.original} KB)</a>
+      <a href="${f(r.downloads.redacted)}" target="_blank">Redacted PDF (${r.sizes_kb.redacted} KB)</a></p></div>`;
+    $('#main').insertAdjacentHTML('beforeend', html);
+    return;
+  }
   if (notScanned) {
     html += `<div class="card"><p class="downloads"><a href="${f(r.downloads.original)}" target="_blank">Original PDF (${r.sizes_kb.original} KB)</a></p></div>`;
     $('#main').insertAdjacentHTML('beforeend', html);

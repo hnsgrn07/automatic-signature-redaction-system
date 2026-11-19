@@ -4,6 +4,8 @@ A local web page that runs the full pipeline on one PDF and shows each step: the
 
 Since round v1.1 the demo redacts full signatures **and** staff and margin signatures (stage 3b, `scripts/pipeline/marks.py`), each drawn in its own colour (green full, purple staff, blue margin; staff-name anchors in pink). The recovery test runs on every redacted box; the side-by-side crops are shown for the full signatures only. Start with `--no-marks` to redact full signatures only.
 
+Digital (typed / exported) PDFs are redacted too (`scripts/pipeline/digital.py`): choose **Flatten to images** (default; output is image-only, nothing else kept, strictly verified) or **Keep text selectable** (PyMuPDF removes images, strokes and text under each box; verified less strictly, but the file is searched for surviving copies) in the sidebar. A document with no signature found shows CHECK BY EYE. Test files: `<THESIS_ROOT>\demo\digital_tests\` and `out_of_scope_tests\`.
+
 The usual PyMuPDF method is run twice for the comparison: **(a) on the signature pages only** (the full-signature boxes; the way signatures are usually redacted by hand) and **(b) on exactly the same boxes as this system**. Its leak needs a page left unredacted: those pages still reference the original scans of the redacted pages. On the 14 demo documents (2026-11-19): full signatures recoverable (a) 43/43, (b) 0/43, this system 0/43 (marks: (b) 0/95, this system 0/95).
 
 ## Run it

@@ -129,6 +129,7 @@ function start(req, name) {
 
 function render(s) {
   const r = s.result, f = n => `/files/${s.id}/${n}`;
+  const two = !!r.marks;      // marks on: two usual-method variants (signature pages only / same boxes)
   $('#state').outerHTML = `<span class="badge info">${esc(r.provenance)}</span>` +
     (r.ok ? '<span class="badge ok">SAFE &mdash; verification passed</span>' : '<span class="badge bad">NOT SAFE &mdash; needs review</span>');
   const t = r.timings;
@@ -161,7 +162,7 @@ function render(s) {
       </div></div>`;
   }
   if (r.recoverable && (r.recoverable.total || (r.recoverable_marks || {}).total)) {
-    const rc = r.recoverable, rm = r.recoverable_marks || {total: 0}, two = r.marks;
+    const rc = r.recoverable, rm = r.recoverable_marks || {total: 0};
     const verdict = (rec, hidden) => `<div class="verdict ${rec ? 'bad' : 'ok'}">${rec
       ? 'Signature recoverable' + (hidden ? ': a hidden copy of the original scan is still inside the file' : '')
       : 'Not recoverable'}</div>`;

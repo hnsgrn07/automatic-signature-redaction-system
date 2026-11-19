@@ -1,0 +1,2 @@
+cdf98ddedcab9a2b915cf758b5ea87b5620301005d3de634d66ae92bae1adfe1 *staff_pilot_ground_truth.csv
+6891e1323c5788380fd540edac81e3b13080d7cde6577d45863cf91eba42f5fa *staff_pilot_ground_truth_coco.json

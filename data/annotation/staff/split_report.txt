@@ -1,0 +1,27 @@
+Staff-mark annotation split: 399 documents, 1333 pages (all pages shown).
+Mini-pilot (seed 'staff-pilot-2026', 2 dev docs/year with <= 3 pages), all three annotators: 14 docs, 30 pages
+Full split (seed 'staff-split-2026', dev shares {'Ben': 0.4, 'Geron': 0.0, 'Ferrer': 0.6}), effort = 60 s + 4 s per extra page:
+
+Annotator   Docs  Pages  Dev docs  Dev p  Test docs  Test p  Est. h
+Ben          107    354       107    354          0       0     2.3
+Geron        119    357         0      0        119     357     2.5
+Ferrer       159    592       159    592          0       0     3.4
+(Est. h includes the mini-pilot.)
+
+Dev docs per year (Ben / Geron / Ferrer):
+  2020: 16 / 0 / 22
+  2021: 15 / 0 / 23
+  2022: 15 / 0 / 23
+  2023: 15 / 0 / 23
+  2024: 15 / 0 / 23
+  2025: 16 / 0 / 22
+  2026: 15 / 0 / 23
+
+Pilot documents: 2020/132-2020.pdf, 2020/092-2020.pdf, 2021/020-2021.pdf, 2021/107-2021.pdf, 2022/052-2022.pdf, 2022/054-2022.pdf, 2023/016-2023.pdf, 2023/050-2023.pdf, 2024/035-2024.pdf, 2024/020-2024.pdf, 2025/009-2025.pdf, 2025/033-2025.pdf, 2026/019-2026.pdf, 2026/060-2026.pdf
+staff_pilot: 14 docs, 30 pages -> D:/Thesis/baguio_annotation\staff\staff_pilot
+  zip: D:\Thesis\baguio_annotation\staff\staff_pilot.zip
+staff_ben_dev: 107 docs, 354 pages -> D:/Thesis/baguio_annotation\staff\staff_ben_dev
+  zip: D:\Thesis\baguio_annotation\staff\staff_ben_dev.zip
+staff_geron_test: 119 docs, 357 pages -> D:/Thesis/baguio_annotation\staff\staff_geron_test
+staff_ferrer_dev: 159 docs, 592 pages -> D:/Thesis/baguio_annotation\staff\staff_ferrer_dev
+  zip: D:\Thesis\baguio_annotation\staff\staff_ferrer_dev.zip

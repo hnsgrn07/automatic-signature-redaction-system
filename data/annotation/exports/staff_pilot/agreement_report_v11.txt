@@ -1,0 +1,21 @@
+v1.1 mini-pilot (staff + margin signatures) - agreement check, 2026-11-18
+Exports: staff_pilot_{ben,ferrer,geron}.json (SHA-256 4c7fe851..., db564a48..., 68ccf87c...)
+All three made with the OLD config (label full_signature only). Type assigned by page:
+page with >= 1 dev-GT full signature -> staff_signature, else margin_signature (checked by eye).
+Stray boxes < 8 px dropped: Ferrer 2 (016-2023 p1 5x7, 033-2025 p1 3x2), Geron 1 (019-2026 p1 1x1).
+Independence: no shared task/annotation ids, no identical box sets.
+
+Boxes: Ben 80 (36 staff / 44 margin), Geron 79 (36 / 43), Ferrer 121 = 43 full signatures (rule error,
+match the 43 GT full signatures at mean IoU 0.971) + 78 small marks.
+
+Pairwise (match IoU >= 0.50)        staff mean IoU   margin mean IoU   all
+  Ben-Geron                          0.952 (36)       0.961 (43)        0.957
+  Ben-Ferrer                         0.921 (36)       0.924 (42)        0.923
+  Ferrer-Geron                       0.929 (36)       0.939 (41)        0.934
+Pass rule: mean IoU >= 0.70 per label -> PASS for every pair and label.
+
+Which-mark disagreements (excluding Ferrer's full-signature boxes):
+  092-2020 p1 small lower-right corner mark (22x38 px): Ben + Ferrer, missed by Geron
+  020-2021 p1 two margin marks: Ben + Geron, missed by Ferrer
+Action: Ferrer must not box full signatures; everyone check the lower-right corner of body pages;
+full annotation must use labelstudio_config_staff.xml (staff_signature / margin_signature).

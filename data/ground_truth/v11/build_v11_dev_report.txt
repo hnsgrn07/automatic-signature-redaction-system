@@ -1,0 +1,26 @@
+v1.1 additional-signature ground truth, DEV  (2026-11-19T18:08:17)
+Protocol: Signature Annotation Protocol v1.0.1 + addendum v1.1 additional signatures (docs/annotation_protocol_v1.1_additional_signatures.md)
+
+DEV: 280 documents, 976 pages, 2634 boxes, 21 pages with no box
+  by type: staff_signature 729, margin_signature 1905
+  by source (pages; staff/margin): pilot 30 p; 35/45, Ben 354 p; 282/666, Ferrer 592 p; 412/1194
+  by year (staff/margin): 2020 90/260, 2021 94/309, 2022 111/181, 2023 111/236, 2024 101/302, 2025 114/295, 2026 108/322
+
+Corrections applied (6):
+  staff_ben_dev.json (2021, '111-2021.pdf', 5) [424, 518, 105, 103]: drop - full signature (finance certification), already in v1.0.1 dev GT (IoU >= 0.95); added because the system missed it, but GT boxes do not affect redaction and v1.1 holds staff/margin marks only
+  staff_ben_dev.json (2021, '111-2021.pdf', 5) [709, 513, 101, 97]: drop - full signature (finance certification), already in v1.0.1 dev GT (IoU >= 0.95); added because the system missed it, but GT boxes do not affect redaction and v1.1 holds staff/margin marks only
+  staff_ben_dev.json (2021, '111-2021.pdf', 5) [369, 640, 206, 33]: drop - full signature (finance certification), already in v1.0.1 dev GT (IoU >= 0.95); added because the system missed it, but GT boxes do not affect redaction and v1.1 holds staff/margin marks only
+  staff_ben_dev.json (2021, '111-2021.pdf', 5) [763, 625, 187, 94]: drop - full signature (finance certification), already in v1.0.1 dev GT (IoU >= 0.95); added because the system missed it, but GT boxes do not affect redaction and v1.1 holds staff/margin marks only
+  staff_ben_dev.json (2021, '111-2021.pdf', 5) [507, 699, 288, 124]: drop - full signature (finance certification), already in v1.0.1 dev GT (IoU >= 0.95); added because the system missed it, but GT boxes do not affect redaction and v1.1 holds staff/margin marks only
+  staff_pilot_ground_truth.csv (2021, '107-2021.pdf', 1) [165, 1365, 72, 50]: relabel margin_signature - mark beside typed reference initials on the certification page (no staff name) = margin, as in Ben/Ferrer dev and Geron test; pilot type came from the page-type recovery rule
+
+Notes:
+  Ferrer (2023, '039-2023.pdf', 5): unsubmitted draft ignored (submitted annotation used)
+
+SHA-256 (also in SHA256SUMS_v11_dev.txt):
+  f1693ddffaf14bb27eeadb0963328d85e3a6cd661ccdeb316ab7359cda7251d7  ground_truth_v11_dev.json
+  b181eddc0564e34dfd13731654f164912d90944ff43a1889189fe410365aef04  ground_truth_v11_dev.csv
+  cdf98ddedcab9a2b915cf758b5ea87b5620301005d3de634d66ae92bae1adfe1  input: D:\Thesis\ground_truth\staff_pilot\staff_pilot_ground_truth.csv
+  cec82475153010b79ef6129bdcb1a0df1ef07b6d51dd7779bd730e5007777859  input: D:\Thesis\exports\staff_full\staff_ben_dev.json
+  3a7b884cf1e840fa0d36f3f4033404abd93baf1c378edeb6285b64215d604a74  input: D:\Thesis\exports\staff_full\staff_ferrer_dev.json
+  d25101f509438737220fb11b6b8505a5e628101c929a3dd1f0660343cfcb084a  input: D:\Thesis\exports\staff_full\corrections_v11_dev.csv

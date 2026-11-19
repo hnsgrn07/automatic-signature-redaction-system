@@ -1,0 +1,9 @@
+<View>
+  <Image name="image" value="$image" zoom="true" zoomControl="true"/>
+  <RectangleLabels name="label" toName="image">
+    <Label value="staff_signature" background="#1d4ed8"/>
+    <Label value="margin_signature" background="#d97706"/>
+  </RectangleLabels>
+  <Header value="Notes (only if unsure): unsure if signature, unsure which label, marks touching, cut at edge, faint"/>
+  <TextArea name="note" toName="image" rows="2" editable="true" maxSubmissions="1"/>
+</View>

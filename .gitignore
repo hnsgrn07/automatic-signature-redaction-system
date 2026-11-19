@@ -9,3 +9,11 @@ __pycache__/
 *ground_truth_test*
 full_geron_test*
 *_test.json
+# v1.1 (staff + margin): sealed test ground truth and raw test export
+*ground_truth_v11_test.json
+*ground_truth_v11_test.csv
+staff_geron_test*
+# raw v1.1 Label Studio exports contain annotator e-mail addresses (hashes are in the reports)
+staff_*_dev.json
+staff_pilot_*.json
+!staff_pilot_ground_truth_coco.json

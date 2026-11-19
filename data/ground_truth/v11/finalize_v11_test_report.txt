@@ -1,0 +1,13 @@
+v1.1 additional-signature ground truth, TEST  (2026-11-19T13:33:59)
+Protocol: Signature Annotation Protocol v1.0.1 + addendum v1.1 additional signatures (docs/annotation_protocol_v1.1_additional_signatures.md)
+
+TEST: 119 documents, 357 pages, 961 boxes, 14 pages with no box
+  by type: staff_signature 312, margin_signature 649
+  by year (staff/margin): 2020 40/84, 2021 39/86, 2022 45/84, 2023 48/103, 2024 44/139, 2025 48/73, 2026 48/80
+
+SHA-256 (also in SHA256SUMS_v11_test.txt):
+  63252baf92aea113c51f12d5e1a79d45c4535d6ad5a3427fbf002015f4ca578b  ground_truth_v11_test.json
+  40ec16f26af793056239c76e7b9c33a48089c970f102df24d0863eb427bf02e7  ground_truth_v11_test.csv
+  d4f09d90bed97dcfae3aa238664f23a0ab6d4accd0b743ced7163adc3c04d0ef  input: D:\Thesis\exports\staff_full\staff_geron_test.json
+
+Test files are read-only. Open them once, for the single final test run.

@@ -1,0 +1,1639 @@
+{
+ "info": {
+  "description": "Signature ground truth, staff_pilot (adjudicated)",
+  "date_created": "2026-11-18T22:00:50",
+  "annotators": [
+   "Ben",
+   "Ferrer",
+   "Geron"
+  ],
+  "method": "median of >=2 matched annotator boxes (IoU>=0.50); single boxes by team decision",
+  "type_rule": "staff_signature if the page has >= 1 v1.0.1 full signature, else margin_signature"
+ },
+ "images": [
+  {
+   "id": 1,
+   "file_name": "images/dev/2020/2020_092-2020_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2020,
+   "pdf": "092-2020.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "7c8363e1f1f6546aa7c63d0bdf6b038d11a2e2672262181cce84827998a458c2"
+  },
+  {
+   "id": 2,
+   "file_name": "images/dev/2020/2020_092-2020_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2020,
+   "pdf": "092-2020.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "ea1b76d2d4e82d8f2cd5414d533af9ab67c4403e6fab6e78d48a480239999974"
+  },
+  {
+   "id": 3,
+   "file_name": "images/dev/2020/2020_132-2020_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2020,
+   "pdf": "132-2020.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "5eb963cb5c9952fcd4e5dd80c50e85458bdbcff263f75f1219229768b26ae0d4"
+  },
+  {
+   "id": 4,
+   "file_name": "images/dev/2020/2020_132-2020_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2020,
+   "pdf": "132-2020.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "f223067834150c4fdf298bf91211999fe594f29f4cd1b668e7bac7633cd34fa9"
+  },
+  {
+   "id": 5,
+   "file_name": "images/dev/2021/2021_020-2021_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2021,
+   "pdf": "020-2021.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "5c7a36334e3a795ac3b71d0136df825626d5afb1adc348da08a5cebda914c5d2"
+  },
+  {
+   "id": 6,
+   "file_name": "images/dev/2021/2021_020-2021_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2021,
+   "pdf": "020-2021.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "9599281a51bdd444d0d01fd42c3a74cc70828d634d6b869972559ff81cd876a6"
+  },
+  {
+   "id": 7,
+   "file_name": "images/dev/2021/2021_107-2021_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2021,
+   "pdf": "107-2021.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "b758a797b669b70aa2f8e515322b9099ac2a682fc6e361336a0ca47a19ead91c"
+  },
+  {
+   "id": 8,
+   "file_name": "images/dev/2021/2021_107-2021_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2021,
+   "pdf": "107-2021.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "a2bc4bf0ae72615a8a239ed2e850a0f2c0b049a17d5679a53ed5adc9cff7d48e"
+  },
+  {
+   "id": 9,
+   "file_name": "images/dev/2021/2021_107-2021_p03.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2021,
+   "pdf": "107-2021.pdf",
+   "page": 3,
+   "split": "dev",
+   "sha256": "750c89ab6dbac97c3df7cf03e9ab1ff74fae710b04958bd9be2bc0f9c345ca23"
+  },
+  {
+   "id": 10,
+   "file_name": "images/dev/2022/2022_052-2022_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2022,
+   "pdf": "052-2022.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "4d4dfd3faa940a7cc7a41bede30f79cc33030d9cde16afafe1dbad77ff53bdc1"
+  },
+  {
+   "id": 11,
+   "file_name": "images/dev/2022/2022_052-2022_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2022,
+   "pdf": "052-2022.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "283902512bf95bdeed5cf85ce13deb2a1d7342f67fa29c6ef65b117adfccd0b6"
+  },
+  {
+   "id": 12,
+   "file_name": "images/dev/2022/2022_054-2022_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2022,
+   "pdf": "054-2022.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "1c7f08b1c7f38a4ceece2b74be88f8c4567bc9ef7095475ed0bcd6f942a18e1a"
+  },
+  {
+   "id": 13,
+   "file_name": "images/dev/2022/2022_054-2022_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2022,
+   "pdf": "054-2022.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "249308f6b87d862437385210fe33bf9b590e729496f3a7c21b5ffc37e37b0815"
+  },
+  {
+   "id": 14,
+   "file_name": "images/dev/2023/2023_016-2023_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2023,
+   "pdf": "016-2023.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "9b87254b76c6ef14c8e4ddd9138bdd140a38eee121b26813ea4786190e9f7dd8"
+  },
+  {
+   "id": 15,
+   "file_name": "images/dev/2023/2023_016-2023_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2023,
+   "pdf": "016-2023.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "a470538f991ed224637def60d14c4fc6241c8b1e27ad16b48e34232751072acd"
+  },
+  {
+   "id": 16,
+   "file_name": "images/dev/2023/2023_050-2023_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2023,
+   "pdf": "050-2023.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "a9f5437e9524ebe56caca07031922154f5aa5caf0a7f288c036e5a552e011c42"
+  },
+  {
+   "id": 17,
+   "file_name": "images/dev/2023/2023_050-2023_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2023,
+   "pdf": "050-2023.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "f78fc1da201239c2396438d753389e68e0b8ae3c313428eb9147c0695de96612"
+  },
+  {
+   "id": 18,
+   "file_name": "images/dev/2024/2024_020-2024_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2024,
+   "pdf": "020-2024.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "c65c9701f59ca1a2860e82d7a59da38a5bf4712bfdc3ff799bba0ddaaeb03442"
+  },
+  {
+   "id": 19,
+   "file_name": "images/dev/2024/2024_020-2024_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2024,
+   "pdf": "020-2024.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "611116c5e9867931c95378ac5f79a5f112f6d444a7445af07c8ee69e0e4669cf"
+  },
+  {
+   "id": 20,
+   "file_name": "images/dev/2024/2024_035-2024_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2024,
+   "pdf": "035-2024.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "106307c001451324609c42b397c68a060c5640d463b093738849c896643ff779"
+  },
+  {
+   "id": 21,
+   "file_name": "images/dev/2024/2024_035-2024_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2024,
+   "pdf": "035-2024.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "e2bfb99c3dcaa04f6f3c0372e43b50dc39b2cc934931b4cf259dd4045c3c370a"
+  },
+  {
+   "id": 22,
+   "file_name": "images/dev/2025/2025_009-2025_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2025,
+   "pdf": "009-2025.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "bdc16844e36e663da0c6e50a9988693f374a8558e13585f8005a43664f85e6c2"
+  },
+  {
+   "id": 23,
+   "file_name": "images/dev/2025/2025_009-2025_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2025,
+   "pdf": "009-2025.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "06f926d5ff73f1bad14b4b5698fd26d25f3e8b6e66d53a339f07814a6bca6ce7"
+  },
+  {
+   "id": 24,
+   "file_name": "images/dev/2025/2025_033-2025_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2025,
+   "pdf": "033-2025.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "5eea26d8f658c7c549a013b9f783a348782f2edc14a6a856b0fcb56ee3c2ddcf"
+  },
+  {
+   "id": 25,
+   "file_name": "images/dev/2025/2025_033-2025_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2025,
+   "pdf": "033-2025.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "47b1ed69bb51497abce6d38af5166b4f3892d216b9057f3ed701a2667e6e5676"
+  },
+  {
+   "id": 26,
+   "file_name": "images/dev/2026/2026_019-2026_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2026,
+   "pdf": "019-2026.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "c4e3e17d3807942c220c637af167be283730f07e185529e39b16601abda4f06f"
+  },
+  {
+   "id": 27,
+   "file_name": "images/dev/2026/2026_019-2026_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2026,
+   "pdf": "019-2026.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "4c7a24c559c369e0dafabad78069bb7a69cf6ec00ee6b61f07d2410b1c9969cf"
+  },
+  {
+   "id": 28,
+   "file_name": "images/dev/2026/2026_060-2026_p01.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2026,
+   "pdf": "060-2026.pdf",
+   "page": 1,
+   "split": "dev",
+   "sha256": "03426dd1b7207393aca6fbc24ee431497e3f5c47201d7688b6222b5fa538c5c0"
+  },
+  {
+   "id": 29,
+   "file_name": "images/dev/2026/2026_060-2026_p02.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2026,
+   "pdf": "060-2026.pdf",
+   "page": 2,
+   "split": "dev",
+   "sha256": "b9995ced84d8164175608a6e29d78d2258c5850a752ad6af7e4ee3010e9d6ad7"
+  },
+  {
+   "id": 30,
+   "file_name": "images/dev/2026/2026_060-2026_p03.png",
+   "width": 1275,
+   "height": 1950,
+   "year": 2026,
+   "pdf": "060-2026.pdf",
+   "page": 3,
+   "split": "dev",
+   "sha256": "6331ee4b44fe58ace58cd33092912baaa17eed093806b38cdc1d27493b059a5a"
+  }
+ ],
+ "annotations": [
+  {
+   "id": 1,
+   "image_id": 1,
+   "category_id": 3,
+   "bbox": [
+    833.64,
+    1818.62,
+    160.81,
+    100.44
+   ],
+   "area": 16151.76,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 2,
+   "image_id": 1,
+   "category_id": 3,
+   "bbox": [
+    999.78,
+    1872.52,
+    110.62,
+    66.79
+   ],
+   "area": 7388.31,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 3,
+   "image_id": 1,
+   "category_id": 3,
+   "bbox": [
+    1220.76,
+    1879.08,
+    23.1,
+    39.42
+   ],
+   "area": 910.6,
+   "iscrowd": 0,
+   "source": "consensus 2/3",
+   "annotators": "Ben+Ferrer",
+   "type": "margin_signature"
+  },
+  {
+   "id": 4,
+   "image_id": 2,
+   "category_id": 2,
+   "bbox": [
+    257.31,
+    1004.91,
+    44.99,
+    23.52
+   ],
+   "area": 1058.16,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 5,
+   "image_id": 2,
+   "category_id": 2,
+   "bbox": [
+    226.56,
+    1071.13,
+    99.49,
+    73.24
+   ],
+   "area": 7286.65,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 6,
+   "image_id": 3,
+   "category_id": 3,
+   "bbox": [
+    713.13,
+    1822.36,
+    143.17,
+    106.55
+   ],
+   "area": 15254.76,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 7,
+   "image_id": 3,
+   "category_id": 3,
+   "bbox": [
+    941.25,
+    1795.04,
+    201.12,
+    111.61
+   ],
+   "area": 22447.0,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 8,
+   "image_id": 4,
+   "category_id": 2,
+   "bbox": [
+    222.58,
+    1614.09,
+    100.98,
+    78.91
+   ],
+   "area": 7968.33,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 9,
+   "image_id": 4,
+   "category_id": 2,
+   "bbox": [
+    231.71,
+    1684.09,
+    37.63,
+    44.06
+   ],
+   "area": 1657.98,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 10,
+   "image_id": 5,
+   "category_id": 3,
+   "bbox": [
+    516.22,
+    1805.72,
+    320.16,
+    107.0
+   ],
+   "area": 34257.12,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 11,
+   "image_id": 5,
+   "category_id": 3,
+   "bbox": [
+    835.72,
+    1808.22,
+    73.08,
+    90.59
+   ],
+   "area": 6620.32,
+   "iscrowd": 0,
+   "source": "consensus 2/3",
+   "annotators": "Ben+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 12,
+   "image_id": 5,
+   "category_id": 3,
+   "bbox": [
+    1203.16,
+    1885.36,
+    28.66,
+    30.22
+   ],
+   "area": 866.11,
+   "iscrowd": 0,
+   "source": "consensus 2/3",
+   "annotators": "Ben+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 13,
+   "image_id": 6,
+   "category_id": 2,
+   "bbox": [
+    261.42,
+    891.64,
+    27.99,
+    24.1
+   ],
+   "area": 674.56,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 14,
+   "image_id": 6,
+   "category_id": 2,
+   "bbox": [
+    225.38,
+    953.85,
+    90.84,
+    75.07
+   ],
+   "area": 6819.36,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 15,
+   "image_id": 7,
+   "category_id": 2,
+   "bbox": [
+    165.22,
+    1365.27,
+    71.7,
+    49.84
+   ],
+   "area": 3573.53,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 16,
+   "image_id": 8,
+   "category_id": 3,
+   "bbox": [
+    731.24,
+    1815.96,
+    133.18,
+    106.72
+   ],
+   "area": 14212.97,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 17,
+   "image_id": 8,
+   "category_id": 3,
+   "bbox": [
+    885.18,
+    1802.1,
+    216.21,
+    133.63
+   ],
+   "area": 28892.14,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 18,
+   "image_id": 8,
+   "category_id": 3,
+   "bbox": [
+    1196.87,
+    1874.05,
+    27.06,
+    55.43
+   ],
+   "area": 1499.94,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 19,
+   "image_id": 9,
+   "category_id": 2,
+   "bbox": [
+    253.4,
+    1827.22,
+    42.82,
+    24.45
+   ],
+   "area": 1046.95,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 20,
+   "image_id": 9,
+   "category_id": 2,
+   "bbox": [
+    386.59,
+    1819.39,
+    116.58,
+    80.97
+   ],
+   "area": 9439.48,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 21,
+   "image_id": 9,
+   "category_id": 2,
+   "bbox": [
+    573.47,
+    1791.4,
+    108.94,
+    68.98
+   ],
+   "area": 7514.68,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 22,
+   "image_id": 10,
+   "category_id": 3,
+   "bbox": [
+    556.3,
+    1856.99,
+    155.59,
+    82.61
+   ],
+   "area": 12853.29,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 23,
+   "image_id": 10,
+   "category_id": 3,
+   "bbox": [
+    1060.11,
+    1742.47,
+    157.8,
+    173.05
+   ],
+   "area": 27307.29,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 24,
+   "image_id": 10,
+   "category_id": 3,
+   "bbox": [
+    1226.07,
+    1893.33,
+    24.23,
+    46.44
+   ],
+   "area": 1125.24,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 25,
+   "image_id": 11,
+   "category_id": 2,
+   "bbox": [
+    264.66,
+    1601.2,
+    42.26,
+    29.88
+   ],
+   "area": 1262.73,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 26,
+   "image_id": 11,
+   "category_id": 2,
+   "bbox": [
+    230.04,
+    1668.5,
+    113.64,
+    75.28
+   ],
+   "area": 8554.82,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 27,
+   "image_id": 11,
+   "category_id": 2,
+   "bbox": [
+    241.22,
+    1740.56,
+    48.17,
+    45.38
+   ],
+   "area": 2185.95,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 28,
+   "image_id": 12,
+   "category_id": 3,
+   "bbox": [
+    549.53,
+    1846.69,
+    131.2,
+    92.92
+   ],
+   "area": 12191.1,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 29,
+   "image_id": 12,
+   "category_id": 3,
+   "bbox": [
+    1037.9,
+    1756.14,
+    145.87,
+    158.67
+   ],
+   "area": 23145.19,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 30,
+   "image_id": 12,
+   "category_id": 3,
+   "bbox": [
+    1197.16,
+    1897.85,
+    19.88,
+    32.94
+   ],
+   "area": 654.85,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 31,
+   "image_id": 13,
+   "category_id": 2,
+   "bbox": [
+    255.24,
+    1720.16,
+    50.24,
+    31.58
+   ],
+   "area": 1586.58,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 32,
+   "image_id": 13,
+   "category_id": 2,
+   "bbox": [
+    233.9,
+    1782.51,
+    113.66,
+    88.91
+   ],
+   "area": 10105.51,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 33,
+   "image_id": 14,
+   "category_id": 3,
+   "bbox": [
+    556.45,
+    1850.86,
+    124.19,
+    79.42
+   ],
+   "area": 9863.17,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 34,
+   "image_id": 14,
+   "category_id": 3,
+   "bbox": [
+    823.67,
+    1838.51,
+    180.43,
+    91.89
+   ],
+   "area": 16579.71,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 35,
+   "image_id": 14,
+   "category_id": 3,
+   "bbox": [
+    1202.41,
+    1883.55,
+    25.55,
+    45.86
+   ],
+   "area": 1171.72,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 36,
+   "image_id": 15,
+   "category_id": 2,
+   "bbox": [
+    261.33,
+    915.37,
+    42.7,
+    28.49
+   ],
+   "area": 1216.52,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 37,
+   "image_id": 15,
+   "category_id": 2,
+   "bbox": [
+    219.3,
+    980.95,
+    124.51,
+    94.56
+   ],
+   "area": 11773.67,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 38,
+   "image_id": 16,
+   "category_id": 3,
+   "bbox": [
+    662.78,
+    1872.18,
+    112.72,
+    66.45
+   ],
+   "area": 7490.24,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 39,
+   "image_id": 16,
+   "category_id": 3,
+   "bbox": [
+    888.39,
+    1797.0,
+    170.17,
+    117.79
+   ],
+   "area": 20044.32,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 40,
+   "image_id": 16,
+   "category_id": 3,
+   "bbox": [
+    1233.24,
+    1870.39,
+    22.34,
+    45.4
+   ],
+   "area": 1014.24,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 41,
+   "image_id": 17,
+   "category_id": 2,
+   "bbox": [
+    264.16,
+    1587.61,
+    39.84,
+    22.76
+   ],
+   "area": 906.76,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 42,
+   "image_id": 17,
+   "category_id": 2,
+   "bbox": [
+    226.63,
+    1641.42,
+    109.56,
+    90.93
+   ],
+   "area": 9962.29,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 43,
+   "image_id": 17,
+   "category_id": 2,
+   "bbox": [
+    243.29,
+    1712.71,
+    40.42,
+    46.35
+   ],
+   "area": 1873.47,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 44,
+   "image_id": 18,
+   "category_id": 3,
+   "bbox": [
+    591.15,
+    1858.93,
+    58.47,
+    76.69
+   ],
+   "area": 4484.06,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 45,
+   "image_id": 18,
+   "category_id": 3,
+   "bbox": [
+    812.69,
+    1847.55,
+    194.84,
+    88.57
+   ],
+   "area": 17256.98,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 46,
+   "image_id": 18,
+   "category_id": 3,
+   "bbox": [
+    1181.27,
+    1884.18,
+    37.88,
+    49.91
+   ],
+   "area": 1890.59,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 47,
+   "image_id": 19,
+   "category_id": 2,
+   "bbox": [
+    264.29,
+    999.09,
+    46.05,
+    25.28
+   ],
+   "area": 1164.14,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 48,
+   "image_id": 19,
+   "category_id": 2,
+   "bbox": [
+    216.13,
+    1051.54,
+    130.83,
+    93.89
+   ],
+   "area": 12283.63,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 49,
+   "image_id": 19,
+   "category_id": 2,
+   "bbox": [
+    246.67,
+    1125.59,
+    37.22,
+    60.42
+   ],
+   "area": 2248.83,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 50,
+   "image_id": 20,
+   "category_id": 3,
+   "bbox": [
+    596.75,
+    1795.82,
+    103.96,
+    125.93
+   ],
+   "area": 13091.68,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 51,
+   "image_id": 20,
+   "category_id": 3,
+   "bbox": [
+    821.5,
+    1764.67,
+    193.07,
+    95.73
+   ],
+   "area": 18482.59,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 52,
+   "image_id": 20,
+   "category_id": 3,
+   "bbox": [
+    1227.13,
+    1880.33,
+    23.54,
+    39.16
+   ],
+   "area": 921.83,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 53,
+   "image_id": 21,
+   "category_id": 2,
+   "bbox": [
+    224.79,
+    1334.95,
+    131.5,
+    85.22
+   ],
+   "area": 11206.43,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 54,
+   "image_id": 21,
+   "category_id": 2,
+   "bbox": [
+    255.24,
+    1401.58,
+    45.29,
+    55.35
+   ],
+   "area": 2506.8,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 55,
+   "image_id": 22,
+   "category_id": 3,
+   "bbox": [
+    584.74,
+    1865.48,
+    82.29,
+    73.01
+   ],
+   "area": 6007.99,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 56,
+   "image_id": 22,
+   "category_id": 3,
+   "bbox": [
+    776.65,
+    1858.99,
+    176.64,
+    78.8
+   ],
+   "area": 13919.23,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 57,
+   "image_id": 22,
+   "category_id": 3,
+   "bbox": [
+    1199.02,
+    1886.06,
+    23.41,
+    45.56
+   ],
+   "area": 1066.56,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 58,
+   "image_id": 23,
+   "category_id": 2,
+   "bbox": [
+    268.33,
+    1120.73,
+    40.98,
+    30.28
+   ],
+   "area": 1240.87,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 59,
+   "image_id": 23,
+   "category_id": 2,
+   "bbox": [
+    216.32,
+    1183.7,
+    138.52,
+    80.22
+   ],
+   "area": 11112.07,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 60,
+   "image_id": 23,
+   "category_id": 2,
+   "bbox": [
+    244.41,
+    1242.91,
+    38.9,
+    53.12
+   ],
+   "area": 2066.37,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 61,
+   "image_id": 24,
+   "category_id": 3,
+   "bbox": [
+    639.3,
+    1848.32,
+    202.33,
+    84.28
+   ],
+   "area": 17052.37,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 62,
+   "image_id": 24,
+   "category_id": 3,
+   "bbox": [
+    1003.16,
+    1853.95,
+    111.4,
+    78.61
+   ],
+   "area": 8757.15,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 63,
+   "image_id": 24,
+   "category_id": 3,
+   "bbox": [
+    1201.45,
+    1872.79,
+    35.59,
+    54.83
+   ],
+   "area": 1951.4,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 64,
+   "image_id": 25,
+   "category_id": 2,
+   "bbox": [
+    272.44,
+    1360.35,
+    44.08,
+    27.66
+   ],
+   "area": 1219.25,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 65,
+   "image_id": 25,
+   "category_id": 2,
+   "bbox": [
+    206.46,
+    1426.52,
+    136.56,
+    87.06
+   ],
+   "area": 11888.91,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 66,
+   "image_id": 25,
+   "category_id": 2,
+   "bbox": [
+    242.42,
+    1487.2,
+    32.9,
+    52.73
+   ],
+   "area": 1734.82,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 67,
+   "image_id": 26,
+   "category_id": 3,
+   "bbox": [
+    566.13,
+    1817.88,
+    92.13,
+    119.33
+   ],
+   "area": 10993.87,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 68,
+   "image_id": 26,
+   "category_id": 3,
+   "bbox": [
+    783.39,
+    1798.46,
+    246.32,
+    99.77
+   ],
+   "area": 24575.35,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 69,
+   "image_id": 26,
+   "category_id": 3,
+   "bbox": [
+    1119.17,
+    1758.37,
+    43.01,
+    49.28
+   ],
+   "area": 2119.53,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 70,
+   "image_id": 27,
+   "category_id": 2,
+   "bbox": [
+    265.76,
+    1769.23,
+    39.7,
+    25.59
+   ],
+   "area": 1015.92,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 71,
+   "image_id": 27,
+   "category_id": 2,
+   "bbox": [
+    379.75,
+    1772.18,
+    117.07,
+    74.87
+   ],
+   "area": 8765.03,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 72,
+   "image_id": 27,
+   "category_id": 2,
+   "bbox": [
+    594.01,
+    1752.48,
+    37.11,
+    44.66
+   ],
+   "area": 1657.33,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 73,
+   "image_id": 28,
+   "category_id": 3,
+   "bbox": [
+    618.47,
+    1830.08,
+    71.86,
+    91.46
+   ],
+   "area": 6572.32,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 74,
+   "image_id": 28,
+   "category_id": 3,
+   "bbox": [
+    788.84,
+    1820.26,
+    203.96,
+    83.57
+   ],
+   "area": 17044.94,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 75,
+   "image_id": 28,
+   "category_id": 3,
+   "bbox": [
+    1092.48,
+    1825.92,
+    54.93,
+    69.98
+   ],
+   "area": 3844.0,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 76,
+   "image_id": 29,
+   "category_id": 3,
+   "bbox": [
+    582.16,
+    1732.08,
+    147.69,
+    119.18
+   ],
+   "area": 17601.69,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 77,
+   "image_id": 29,
+   "category_id": 3,
+   "bbox": [
+    814.76,
+    1668.09,
+    245.95,
+    119.34
+   ],
+   "area": 29351.67,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 78,
+   "image_id": 29,
+   "category_id": 3,
+   "bbox": [
+    1111.65,
+    1628.76,
+    32.81,
+    58.3
+   ],
+   "area": 1912.82,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "margin_signature"
+  },
+  {
+   "id": 79,
+   "image_id": 30,
+   "category_id": 2,
+   "bbox": [
+    207.48,
+    896.36,
+    128.04,
+    88.98
+   ],
+   "area": 11393.0,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  },
+  {
+   "id": 80,
+   "image_id": 30,
+   "category_id": 2,
+   "bbox": [
+    250.41,
+    983.45,
+    66.68,
+    42.21
+   ],
+   "area": 2814.56,
+   "iscrowd": 0,
+   "source": "consensus 3/3",
+   "annotators": "Ben+Ferrer+Geron",
+   "type": "staff_signature"
+  }
+ ],
+ "categories": [
+  {
+   "id": 2,
+   "name": "staff_signature",
+   "supercategory": "signature"
+  },
+  {
+   "id": 3,
+   "name": "margin_signature",
+   "supercategory": "signature"
+  }
+ ]
+}

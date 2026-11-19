@@ -1,0 +1,9 @@
+Merge of staff_pilot: annotators Ben, Ferrer, Geron; 30 pages
+Clusters by number of annotators: 2 annotator(s): 3, 3 annotator(s): 77
+Single-annotator boxes needing a decision: 0 (pending: 0)
+Pages with annotator notes: 0
+Single boxes kept: 0, dropped: 0
+Ground truth: 80 signature boxes on 30 pages (0 pages with no signature)
+Lowest IoU of any member box to its consensus box: 0.774
+Written: D:/Thesis/ground_truth/staff_pilot\staff_pilot_ground_truth.csv, D:/Thesis/ground_truth/staff_pilot\staff_pilot_ground_truth_coco.json  (2026-11-18T22:00:50)
+Types: {'margin_signature': 44, 'staff_signature': 36}

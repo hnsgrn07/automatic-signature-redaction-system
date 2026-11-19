@@ -1,0 +1,4 @@
+v1.1 pilot cleaning (raw exports unchanged)
+  staff_pilot_ben.json: dropped nothing
+  staff_pilot_ferrer.json: dropped {'full signature (already ground truth)': 43, 'stray < 8 px': 2}
+  staff_pilot_geron.json: dropped {'stray < 8 px': 1}

@@ -35,6 +35,16 @@ ROLES = [
                         'CITYENGINEER', 'PUBLICSERVANT', 'OFFICERINCHARGE')),
 ]
 TITLE_MIN_SCORE = 80             # rapidfuzz partial_ratio, 0-100
+# fallback: two consecutive words that each nearly match an official title pair ("City Bulget Ollicer").
+# A word-level match is stricter than lowering TITLE_MIN_SCORE (75 adds ~315 false anchors on dev headers).
+TITLE_WORD_PAIRS = [
+    ('presiding_officer', ('VICE', 'MAYOR')), ('presiding_officer', ('PRESIDING', 'OFFICER')),
+    ('mayor', ('CITY', 'MAYOR')),
+    ('other_official', ('CITY', 'TREASURER')), ('other_official', ('CITY', 'ACCOUNTANT')),
+    ('other_official', ('CITY', 'ASSESSOR')), ('other_official', ('CITY', 'ENGINEER')),
+    ('other_official', ('BUDGET', 'OFFICER')), ('other_official', ('PLANNING', 'OFFICER')),
+    ('other_official', ('DEVELOPMENT', 'OFFICER')),
+]
 TITLE_MAX_WORDS = 7              # a title line is short
 NAME_MIN_WORDS = 2               # a printed name has at least two words
 # words that occur in headings and table headers but not in signatory names
@@ -135,7 +145,20 @@ def role_of(text):
             sc = 100 if k in up else (fuzz.partial_ratio(k, up) if len(k) >= 6 and len(up) >= len(k) - 2 else 0)
             if sc > best[1]:
                 best = (role, sc)
-    return best if best[1] >= TITLE_MIN_SCORE else (None, best[1])
+    if best[1] >= TITLE_MIN_SCORE:
+        return best
+    words = [letters(w).upper() for w in text.split() if letters(w)]
+    for role, (a, b) in TITLE_WORD_PAIRS:
+        for w1, w2 in zip(words, words[1:]):
+            if word_close(w1, a) and word_close(w2, b):
+                return role, TITLE_MIN_SCORE
+    return None, best[1]
+
+
+def word_close(w, target):
+    """One letter off for words up to 6 letters, two for longer ones (OCR: ff -> ll, d -> l)."""
+    k = 1 if len(target) <= 6 else 2
+    return abs(len(w) - len(target)) <= k and Levenshtein.distance(w, target) <= k
 
 
 def find_blocks(lines, ppi):

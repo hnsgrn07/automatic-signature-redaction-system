@@ -34,6 +34,12 @@ BLOCK_REGION = dict(x0=-1.1, x1=1.3, y0=-1.1, y1=1.0)    # relative to the print
 BLOCK_EXPECT = dict(x0=0.10, x1=-0.07, y0=-0.40, y1=0.34)
 DIST_SCALE_IN = 1.0            # cluster score = ink * exp(-distance to expected centre / this)
 MERGE_OVERLAP = 0.5            # boxes overlapping this much (share of the smaller) are one signature
+SPLIT_SHARED = True            # split one ink component that reaches into 2+ signatories' expected boxes ...
+SPLIT_MIN_SHARE = 0.20         # ... each holding at least this share of its ink (dev sweep: 0.1 adds FPs, 0.3 no split)
+SPLIT_MIN_PIECE_H_IN = 0.40    # every piece must be at least this tall (signature-sized)
+SPLIT_SAME_ROW_GAP_IN = 0.40   # blocks side by side on one row closer than this = one signatory
+WRITTEN_MAX_WORDS = 4         # a signature written out legibly is read as a short OCR line ...
+WRITTEN_INSIDE = 0.5           # ... lying at least this much inside a block's expected signature box
 
 
 def binarise(gray):
@@ -48,18 +54,92 @@ def binarise(gray):
     return keep[lab].astype(np.uint8)
 
 
-def print_mask(rec, shape, min_conf=None):
+def written_lines(rec, anchors, ppi):
+    """OCR lines that are a signature written out legibly ('Benna RTabargn' over DONNA R. TABANGIN):
+    a short line, not a printed-name or title line and not a label, lying mostly inside a block
+    anchor's expected signature box and ending above the bottom of its name line. Their words are
+    not print."""
+    from anchors import page_lines, is_name_line, role_of
+    exp = [geometry(a, ppi)[1] + [a['name_box']] for a in anchors if a['kind'] == 'block']
+    if not exp:
+        return set()
+    labels = [a['box'] for a in anchors if a['kind'] == 'label']
+    out = set()
+    for ln in page_lines(rec):
+        b = ln['box']
+        if len(ln['words']) > WRITTEN_MAX_WORDS or is_name_line(ln) or role_of(ln['text'])[0] or b in labels:
+            continue
+        area = max(1, (b[2] - b[0]) * (b[3] - b[1]))
+        for e in exp:
+            iw = min(b[2], e[2]) - max(b[0], e[0]); ih = min(b[3], e[3]) - max(b[1], e[1])
+            if iw > 0 and ih > 0 and iw * ih / area >= WRITTEN_INSIDE and b[3] <= e[4][3] and b != e[4]:
+                out.update(id(w) for w in ln['words'])
+                break
+    return out
+
+
+def print_mask(rec, shape, min_conf=None, skip=()):
     min_conf = PRINT_WORD_CONF if min_conf is None else min_conf
     m = np.zeros(shape, np.uint8)
     for ln in rec['lines']:
         for w in ln['words']:
-            if w['conf'] >= min_conf:
+            if w['conf'] >= min_conf and id(w) not in skip:
                 x0, y0, x1, y1 = (int(round(v)) for v in w['box'])
                 m[max(0, y0):y1 + 1, max(0, x0):x1 + 1] = 1
     return m
 
 
-def components(ink, pmask, ppi, anymask=None):
+def split_shared(ink, comps_hand, groups, ppi):
+    """A handwriting component that reaches into the expected boxes of two or more signatories
+    (one signature's stroke runs into a neighbour's, e.g. stacked finance-certification blocks)
+    is split: each of its pixels goes to the nearest expected box (distance 0 inside a box)."""
+    exp = [g['expect'] for g in groups]
+    out = []
+    for c in comps_hand:
+        hit = [i for i, e in enumerate(exp) if touches(c['box'], e)]
+        if len(hit) < 2:
+            out.append(c)
+            continue
+        x0, y0, x1, y1 = c['box']
+        sub = ink[y0:y1, x0:x1].astype(bool) & (c['lab'][y0:y1, x0:x1] == c['id'])
+        ys, xs = np.nonzero(sub)
+        xs = xs + x0; ys = ys + y0
+        share = [((xs >= exp[i][0]) & (xs <= exp[i][2]) & (ys >= exp[i][1]) & (ys <= exp[i][3])).mean() for i in hit]
+        hit = [i for i, s in zip(hit, share) if s >= SPLIT_MIN_SHARE]
+        # one signatory read as two blocks side by side (name line cut by ink): not two signatories
+        hit = [i for k, i in enumerate(hit) if not any(same_signatory(groups[i], groups[j], ppi) for j in hit[:k])]
+        if len(hit) < 2:
+            out.append(c)
+            continue
+        d = np.stack([np.hypot(np.maximum(0, np.maximum(exp[i][0] - xs, xs - exp[i][2])),
+                               np.maximum(0, np.maximum(exp[i][1] - ys, ys - exp[i][3])))
+                      + 1e-3 * np.hypot(xs - centre(exp[i])[0], ys - centre(exp[i])[1]) for i in hit])
+        own = np.argmin(d, axis=0)
+        pieces = []
+        for k in range(len(hit)):
+            m = own == k
+            if m.any():
+                pieces.append(dict(box=[int(xs[m].min()), int(ys[m].min()), int(xs[m].max()) + 1, int(ys[m].max()) + 1],
+                                   area=int(m.sum()), hand=True, split=True))
+        # every piece must be signature-sized, else a stroke merely reaches a neighbour (e.g. an unsigned slot)
+        if len(pieces) < 2 or any(p['box'][3] - p['box'][1] < SPLIT_MIN_PIECE_H_IN * ppi for p in pieces):
+            out.append(c)
+        else:
+            out.extend(pieces)
+    return out
+
+
+def same_signatory(g1, g2, ppi):
+    n1 = next((a['name_box'] for a in g1['anchors'] if a['kind'] == 'block'), None)
+    n2 = next((a['name_box'] for a in g2['anchors'] if a['kind'] == 'block'), None)
+    if n1 is None or n2 is None:
+        return False
+    v = min(n1[3], n2[3]) - max(n1[1], n2[1])
+    hgap = max(n1[0], n2[0]) - min(n1[2], n2[2])
+    return v >= 0.5 * min(n1[3] - n1[1], n2[3] - n2[1]) and hgap <= SPLIT_SAME_ROW_GAP_IN * ppi
+
+
+def components(ink, pmask, ppi, anymask=None, keep_labels=False):
     n, lab, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
     inside = np.bincount(lab[pmask == 1].ravel(), minlength=n)
     inside_any = np.bincount(lab[anymask == 1].ravel(), minlength=n) if anymask is not None else None
@@ -72,7 +152,10 @@ def components(ink, pmask, ppi, anymask=None):
         hand = inside[i] / area < PRINT_INSIDE_SHARE
         if hand and inside_any is not None and h <= TEXT_HEIGHT_IN * ppi and inside_any[i] / area >= PRINT_INSIDE_SHARE:
             hand = False   # text-sized and inside a word OCR read with low confidence: still print
-        comps.append(dict(box=[x, y, x + w, y + h], area=int(area), hand=hand))
+        c = dict(box=[int(x), int(y), int(x + w), int(y + h)], area=int(area), hand=bool(hand))
+        if keep_labels:
+            c.update(id=i, lab=lab)
+        comps.append(c)
     return comps
 
 
@@ -168,9 +251,13 @@ def detect(gray, rec, anchors=None):
     if not anchors:
         return []
     ink = binarise(gray)
-    anymask = print_mask(rec, gray.shape, min_conf=0.0) if TEXT_HEIGHT_IN > 0 else None
-    comps = [c for c in components(ink, print_mask(rec, gray.shape), ppi, anymask) if c['hand']]
+    skip = written_lines(rec, anchors, ppi) if WRITTEN_MAX_WORDS else set()
+    anymask = print_mask(rec, gray.shape, min_conf=0.0, skip=skip) if TEXT_HEIGHT_IN > 0 else None
+    comps = [c for c in components(ink, print_mask(rec, gray.shape, skip=skip), ppi, anymask,
+                                   keep_labels=SPLIT_SHARED) if c['hand']]
     groups = anchor_groups(anchors, ppi)
+    if SPLIT_SHARED:
+        comps = split_shared(ink, comps, groups, ppi)
     # each handwriting component goes to the anchor group whose expected box centre is nearest,
     # among the groups whose search region contains the component's centre
     owned = [[] for _ in groups]

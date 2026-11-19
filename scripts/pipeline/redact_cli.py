@@ -1,13 +1,14 @@
-"""Batch CLI: redact the full signatures in scanned ordinance PDFs.
+"""Batch CLI: redact the signatures (full + staff + margin) in scanned ordinance PDFs.
 
-  python redact_cli.py INPUT [--out DIR] [--cpu] [--save-ocr] [--limit N]
+  python redact_cli.py INPUT [--out DIR] [--cpu] [--save-ocr] [--limit N] [--no-marks]
 
 INPUT is one PDF or a folder (searched recursively for *.pdf). For every document:
 
   stage 1 ingest   - extract each page's scan pixel for pixel (ingest.load_pages)
   stage 2 OCR      - live DocTR OCR of every page (model loaded ONCE per run)
          anchors   - labels and printed name/title blocks (anchors.find_anchors)
-  stage 3 detect   - signature boxes (detect.detect)
+  stage 3 detect   - full-signature boxes (detect.detect)
+  stage 3b marks   - staff and margin signatures (marks.detect_marks); off with --no-marks
   stage 4 redact   - overwrite the scan pixels under the boxes (redact.redact_pdf)
          verify    - re-open the output and prove nothing is recoverable (redact.verify)
 
@@ -15,7 +16,8 @@ Output folder (default: Desktop/Redacted_Outputs/run_YYYYMMDD_HHMMSS):
   redacted/<sub>/<name>_redacted.pdf      verify PASSED, every page a single full-page scan
   needs_review/<sub>/<name>_NOT_SAFE.pdf  verify FAILED or a page could not be handled
                                           automatically -> redact by hand; do NOT publish as is
-  logs/<sub>/<name>.json                  per page: size, method, anchors, boxes; verify result
+  logs/<sub>/<name>.json                  per page: size, method, anchors, boxes (full signatures),
+                                          staff_anchors, marks (staff/margin); verify result
   ocr/<sub>/<name>_pNN.json               (--save-ocr) live OCR, same format as ocr_cache.py
   timings.csv                             one row per document, seconds per stage + wall time
   run_info.json                           commit, versions, device, settings, model load time
@@ -33,10 +35,12 @@ import pymupdf
 
 import anchors as anchors_mod
 import detect as detect_mod
+import marks as marks_mod
 import redact as redact_mod
 from ingest import load_pages, to_gray, to_rgb
 from anchors import find_anchors
 from detect import detect
+from marks import detect_marks
 from redact import redact_pdf, verify
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -126,7 +130,7 @@ class OCR:
         return dict(width=W, height=H, ocr_s=round(dt, 3), lines=lines), dt
 
 
-def process(path, sub, ocr, out, save_ocr):
+def process(path, sub, ocr, out, save_ocr, use_marks=True):
     name = os.path.splitext(os.path.basename(path))[0]
     t_doc = time.perf_counter()
     times = dict(ingest_s=0.0, ocr_s=0.0, detect_s=0.0, redact_s=0.0, verify_s=0.0)
@@ -148,18 +152,22 @@ def process(path, sub, ocr, out, save_ocr):
                 json.dump(dict(file=os.path.basename(path), sub=sub, page=i + 1, **rec), f)
         t = time.perf_counter()
         anc = find_anchors(rec)
-        dets = detect(to_gray(pix), rec, anchors=anc)
+        gray = to_gray(pix)
+        dets = detect(gray, rec, anchors=anc)
+        mk, sanc = detect_marks(gray, rec, dets, anchors=anc) if use_marks else ([], [])
         times['detect_s'] += time.perf_counter() - t
         if s['method'] != 'extracted':
             manual_pages.append(i + 1)
-        if dets:
-            boxes[i] = [d['box'] for d in dets]
+        if dets or mk:
+            boxes[i] = [d['box'] for d in dets] + [m['box'] for m in mk]
         log['pages'].append(dict(
             page=i + 1, width=pix.width, height=pix.height, method=s['method'],
             anchors=[dict(kind=a['kind'], role=a['role'], text=a.get('text'), box=[round(v, 1) for v in a['box']])
                      for a in anc],
             boxes=[dict(box=[int(v) for v in d['box']], ink_px=int(d['ink']),
-                        anchor_kind=d['anchor']['kind'], anchor_role=d['anchor']['role']) for d in dets]))
+                        anchor_kind=d['anchor']['kind'], anchor_role=d['anchor']['role']) for d in dets],
+            staff_anchors=[dict(text=a['text'], box=[round(v, 1) for v in a['box']]) for a in sanc],
+            marks=[dict(box=[int(v) for v in m['box']], ink_px=int(m['ink']), type=m['type']) for m in mk]))
 
     tmp = os.path.join(out, '_tmp', sub)
     os.makedirs(tmp, exist_ok=True)
@@ -197,6 +205,7 @@ def process(path, sub, ocr, out, save_ocr):
 
     row = dict(sub=sub, file=os.path.basename(path), status=log['status'], pages=len(scans),
                boxes=sum(len(v) for v in boxes.values()),
+               marks=sum(len(p.get('marks', [])) for p in log['pages']),
                **{k: round(v, 3) for k, v in times.items()}, wall_s=round(wall, 3),
                size_in_kb=os.path.getsize(path) // 1024,
                size_out_kb=os.path.getsize(log['output']) // 1024 if log['output'] else '',
@@ -210,12 +219,13 @@ def process(path, sub, ocr, out, save_ocr):
 
 
 def main():
-    ap = argparse.ArgumentParser(description='Redact full signatures in scanned ordinance PDFs.')
+    ap = argparse.ArgumentParser(description='Redact signatures (full, staff, margin) in scanned ordinance PDFs.')
     ap.add_argument('input', help='a PDF file or a folder of PDFs (searched recursively)')
     ap.add_argument('--out', default=None, help='output folder (default: Desktop/Redacted_Outputs/run_<time>)')
     ap.add_argument('--cpu', action='store_true', help='run DocTR on the CPU even if a GPU is available')
     ap.add_argument('--save-ocr', action='store_true', help='also save the live OCR of every page (for checks)')
     ap.add_argument('--limit', type=int, default=0, help='process only the first N PDFs (for quick tests)')
+    ap.add_argument('--no-marks', action='store_true', help='full signatures only (skip staff/margin signatures)')
     args = ap.parse_args()
 
     t_run = time.perf_counter()
@@ -242,10 +252,12 @@ def main():
                 git=git_info(), python=platform.python_version(), platform=platform.platform(),
                 versions=dict(torch=torch.__version__, doctr=doctr.__version__, pymupdf=pymupdf.VersionBind,
                               opencv=cv2.__version__, numpy=np.__version__),
+                marks=not args.no_marks,
                 settings=dict(detect=module_settings(detect_mod), anchors=module_settings(anchors_mod),
+                              marks=module_settings(marks_mod),
                               redact=module_settings(redact_mod)))
 
-    fields = ['sub', 'file', 'status', 'pages', 'boxes', 'ingest_s', 'ocr_s', 'detect_s', 'redact_s',
+    fields = ['sub', 'file', 'status', 'pages', 'boxes', 'marks', 'ingest_s', 'ocr_s', 'detect_s', 'redact_s',
               'verify_s', 'wall_s', 'size_in_kb', 'size_out_kb', 'problems']
     rows = []
     with open(os.path.join(out, 'timings.csv'), 'w', newline='', encoding='utf-8') as fcsv:
@@ -253,7 +265,7 @@ def main():
         w.writeheader()
         for k, (path, sub) in enumerate(pdfs, 1):
             try:
-                row = process(path, sub, ocr, out, args.save_ocr)
+                row = process(path, sub, ocr, out, args.save_ocr, use_marks=not args.no_marks)
             except Exception as e:
                 row = dict(sub=sub, file=os.path.basename(path), status=STATUS_REVIEW,
                            problems=f'ERROR {type(e).__name__}: {e}')

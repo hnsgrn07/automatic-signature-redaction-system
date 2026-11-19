@@ -38,6 +38,12 @@
   .badge.ok { background: var(--ok-bg); color: var(--ok); }
   .badge.bad { background: var(--bad-bg); color: var(--bad); }
   .badge.info { background: #eaf1fa; color: var(--accent); }
+  .badge.warn { background: #fdf1dc; color: #8a5300; }
+  .badge.muted { background: #efeee9; color: var(--muted); font-weight: 500; }
+  .notice { border-left: 5px solid #d08a1c; background: #fffaf0; }
+  .notice.bad { border-left-color: var(--bad); background: #fff6f5; }
+  .notice h2 { color: #8a5300; } .notice.bad h2 { color: var(--bad); }
+  .notice p { margin: 0 0 8px; } .notice p:last-child { margin: 0; }
   .title { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 6px; }
   .title strong { font-size: 21px; }
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; }
@@ -130,8 +136,13 @@ function start(req, name) {
 function render(s) {
   const r = s.result, f = n => `/files/${s.id}/${n}`;
   const two = !!r.marks;      // marks on: two usual-method variants (signature pages only / same boxes)
-  $('#state').outerHTML = `<span class="badge info">${esc(r.provenance)}</span>` +
-    (r.ok ? '<span class="badge ok">SAFE &mdash; verification passed</span>' : '<span class="badge bad">NOT SAFE &mdash; needs review</span>');
+  const warn = r.warnings || [], notScanned = r.scope === 'not_scanned';
+  const status = notScanned ? '<span class="badge bad">NOT REDACTED &mdash; not a scanned document</span>'
+    : !r.ok ? '<span class="badge bad">NOT SAFE &mdash; needs review</span>'
+    : warn.includes('no_full_signature') ? '<span class="badge warn">CHECK BY EYE &mdash; no signature found</span>'
+      + '<span class="badge muted">file verification passed</span>'
+    : '<span class="badge ok">SAFE &mdash; verification passed</span>';
+  $('#state').outerHTML = `<span class="badge info">${esc(r.provenance)}</span>` + status;
   const t = r.timings;
   const card = document.querySelector('#main .card');
   const bt = r.by_type || {full: r.signatures, staff: 0, margin: 0};
@@ -147,18 +158,36 @@ function render(s) {
     <div class="stat"><div>${(t.redact + t.verify).toFixed(1)} s</div><span>redact + verify</span></div></div>`);
 
   let html = '';
+  if (notScanned) {
+    html += `<div class="card notice bad"><h2>Outside the scope of this system</h2>
+      <p>Page(s) ${r.not_scan.join(', ')} ${r.not_scan.length > 1 ? 'are' : 'is'} not a single scanned image &mdash; this is a digital
+      (typed or exported) PDF${(r.text_pages || []).length ? ' with a text layer' : ''}.</p>
+      <p>The system redacts <b>scanned</b> Baguio City ordinances by overwriting the pixels of the scan. A digital PDF has no scan to
+      overwrite, and its text and drawings would need a different method, so <b>nothing was redacted</b> and no output file was made.
+      This is the intended, fail-safe behaviour: the batch tool sends such files to <code>needs_review</code>.</p></div>`;
+  } else if (warn.length) {
+    html += `<div class="card notice"><h2>Check this document by eye</h2>
+      ${warn.includes('no_anchors') ? `<p>No ordinance signposts were found on any page: no <i>CERTIFIED CORRECT / Attested / APPROVED</i>
+      label and no printed name with an official title under it. The system finds signatures through these signposts, which every
+      Baguio City ordinance has. This document looks different, so signatures on it may be missed.</p>` : ''}
+      ${warn.includes('no_full_signature') ? `<p><b>No full signature was found.</b> &ldquo;File verification passed&rdquo; only means that
+      whatever was redacted cannot be recovered &mdash; it does not mean the document has no signature. The scope of this study is scanned
+      Baguio City ordinances, 2020&ndash;2026.</p>` : ''}</div>`;
+  }
   for (const v of r.views) {
     const c = v.counts || {};
     const parts = [[c.full, 'full'], [c.staff, 'staff'], [c.margin, 'margin']].filter(x => x[0]).map(x => `${x[0]} ${x[1]}`);
     html += `<div class="card"><h2>Page ${v.page}: what the system found</h2>
-      <p class="counts">${parts.length ? 'Redacted on this page: ' + parts.join(', ') : 'Nothing to redact on this page'}</p>
+      <p class="counts">${parts.length ? (notScanned ? 'Found (not redacted): ' : 'Redacted on this page: ') + parts.join(', ')
+        : 'Nothing found on this page'}</p>
       <p class="legend"><i style="border-color:var(--anchor)"></i>anchor (label or name/title)
       ${r.marks ? '<i style="border-color:var(--staffname)"></i>staff name' : ''}
       <i style="border-color:var(--full)"></i>full signature
       ${r.marks ? '<i style="border-color:var(--staff)"></i>staff signature <i style="border-color:var(--margin)"></i>margin signature' : ''}</p>
       <div class="pair">
         <figure><img src="${f(v.found)}"><figcaption>Before, with anchors and detected signatures</figcaption></figure>
-        <figure><img src="${f(v.after)}"><figcaption>After: the image stored in the redacted PDF</figcaption></figure>
+        ${v.after ? `<figure><img src="${f(v.after)}"><figcaption>After: the image stored in the redacted PDF</figcaption></figure>`
+          : '<figure><figcaption>Not redacted (see above)</figcaption></figure>'}
       </div></div>`;
   }
   if (r.recoverable && (r.recoverable.total || (r.recoverable_marks || {}).total)) {
@@ -204,6 +233,11 @@ function render(s) {
     html += '</div>';
   }
   const vs = r.verify || {};
+  if (notScanned) {
+    html += `<div class="card"><p class="downloads"><a href="${f(r.downloads.original)}" target="_blank">Original PDF (${r.sizes_kb.original} KB)</a></p></div>`;
+    $('#main').insertAdjacentHTML('beforeend', html);
+    return;
+  }
   html += `<div class="card"><h2>Automatic verification of the output file</h2><ul class="checks">
     <li>Every redacted box is solid black in the stored image pixels (${vs.boxes ?? 0} box(es))</li>
     <li>Everything outside the boxes is unchanged (max mean grey difference ${(vs.outside_diff_max ?? 0).toFixed(2)})</li>

@@ -156,8 +156,17 @@ def run_job(job, pdf_path):
             T['ingest'] = time.perf_counter() - t
             n = len(scans)
             s0 = scans[0]['pix']
-            step(f'Stage 1 - ingest: {n} page(s), scanned image {s0.width}x{s0.height} px '
-                 f'(~{s0.width / PAGE_WIDTH_IN:.0f} DPI), no text layer')
+            not_scan = [i + 1 for i, sc in enumerate(scans) if sc['method'] != 'extracted']
+            with pymupdf.open(pdf_path) as d_:
+                text_pages = [i + 1 for i, pg in enumerate(d_) if pg.get_text().strip()]
+            if not not_scan:
+                step(f'Stage 1 - ingest: {n} page(s), scanned image {s0.width}x{s0.height} px '
+                     f'(~{s0.width / PAGE_WIDTH_IN:.0f} DPI), '
+                     + (f'text layer on page(s) {text_pages}' if text_pages else 'no text layer'))
+            else:
+                step(f'Stage 1 - ingest: {n} page(s); page(s) {not_scan} are NOT a single scanned image '
+                     f'(a digital / typed PDF{", with a text layer" if text_pages else ""}) - outside the scope of this '
+                     f'system, which redacts scanned ordinances. Detection still runs, nothing will be redacted.')
             boxes, types, pages = {}, {}, []
             for i, s in enumerate(scans):
                 rec, dt = OCR_ENGINE.page_record(s['pix'])
@@ -187,6 +196,40 @@ def run_job(job, pdf_path):
                  + (f', {by_type["staff"]} staff and {by_type["margin"]} margin signature(s)' if USE_MARKS else '')
                  + f' on {len(boxes)} page(s)')
 
+            # scope notices (shown on the page): this system was built and tested on scanned Baguio City ordinances
+            warnings = []
+            if not any(pg['anchors'] for pg in pages):
+                warnings.append('no_anchors')
+            if by_type['full'] == 0:
+                warnings.append('no_full_signature')
+            if not_scan:
+                pipeline_s = sum(T.values())
+                for i in range(n):
+                    sc = scans[i]
+                    over = bgr(to_rgb(sc['pix']))
+                    for b, t_ in zip(boxes.get(i, []), types.get(i, [])):
+                        cv2.rectangle(over, (b[0], b[1]), (b[2], b[3]), TYPE_BGR[t_], 4)
+                    save_view(over, os.path.join(out, f'p{i + 1}_found.png'))
+                res = dict(file=os.path.basename(pdf_path), provenance=job['provenance'], pages=n, signatures=nsig,
+                           by_type=by_type, marks=USE_MARKS, scope='not_scanned', not_scan=not_scan,
+                           text_pages=text_pages, warnings=warnings, ok=False,
+                           problems=[f'page(s) {not_scan} are not a single scanned image: nothing was redacted'],
+                           timings={k: round(v, 2) for k, v in T.items()}, pipeline_s=round(pipeline_s, 2),
+                           views=[dict(page=i + 1, found=f'p{i + 1}_found.png', after=None,
+                                       counts={k: types.get(i, []).count(k) for k in TYPE_NAMES}) for i in range(n)],
+                           proof=[], recovery=[], downloads=dict(original='original.pdf'),
+                           sizes_kb=dict(original=os.path.getsize(pdf_path) // 1024))
+                with open(os.path.join(out, 'result.json'), 'w', encoding='utf-8') as f:
+                    json.dump(res, f, indent=1, default=lambda o: o.item() if hasattr(o, 'item') else str(o))
+                job['result'] = json.loads(json.dumps(res, default=lambda o: o.item() if hasattr(o, 'item') else str(o)))
+                step('Not redacted: this is not a scanned document (outside the scope of the system)')
+                job['state'] = 'done'
+                return
+            if warnings:
+                step('Notice: ' + ('no ordinance signposts (CERTIFIED CORRECT / Attested / APPROVED labels or official '
+                                   'name/title blocks) found on any page; ' if 'no_anchors' in warnings else '')
+                     + ('no full signature found - check the document by eye' if 'no_full_signature' in warnings else ''))
+
             red = os.path.join(out, 'redacted.pdf')
             t = time.perf_counter()
             done = redact_pdf(pdf_path, red, boxes)
@@ -215,7 +258,7 @@ def run_job(job, pdf_path):
                 step('Comparison: same boxes redacted with PyMuPDF apply_redactions (the usual method)')
 
             res = dict(file=os.path.basename(pdf_path), provenance=job['provenance'], pages=n, signatures=nsig,
-                       by_type=by_type, marks=USE_MARKS,
+                       by_type=by_type, marks=USE_MARKS, scope='scanned', warnings=warnings, text_pages=text_pages,
                        boxes={str(i + 1): [dict(box=b, type=t_) for b, t_ in zip(boxes[i], types[i])] for i in boxes},
                        ok=ok, problems=problems, timings={k: round(v, 2) for k, v in T.items()},
                        pipeline_s=round(pipeline_s, 2), verify=vstats, views=[], proof=[], recovery=[],

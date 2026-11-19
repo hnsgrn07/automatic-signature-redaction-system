@@ -8,6 +8,7 @@
   :root {
     --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1f22; --muted: #5d6168; --line: #dcd9d1;
     --ok: #1f7a3a; --ok-bg: #e5f3e8; --bad: #b3261e; --bad-bg: #fbe7e5; --accent: #1f5fa8; --anchor: #c87814;
+    --full: #28aa28; --staff: #963caa; --margin: #1e6ec8; --staffname: #be6e96;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink);
@@ -43,6 +44,8 @@
   .stat { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
   .stat div { font-size: 26px; font-weight: 650; }
   .stat span { color: var(--muted); font-size: 14px; }
+  .stat.full div { color: var(--full); } .stat.staff div { color: var(--staff); } .stat.margin div { color: var(--margin); }
+  .counts { font-size: 15px; color: var(--muted); margin: -4px 0 10px; }
   .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .pair figure, .proof figure { margin: 0; }
   figure img { width: 100%; border: 1px solid var(--line); border-radius: 6px; display: block; background: #fff; }
@@ -63,7 +66,7 @@
 <body>
 <header>
   <h1>Automatic Signature Redaction</h1>
-  <p>Scanned Baguio City ordinances &rarr; DocTR anchors &rarr; OpenCV detection &rarr; permanent pixel redaction &rarr; verification</p>
+  <p>Scanned Baguio City ordinances &rarr; DocTR anchors &rarr; OpenCV detection (full, staff and margin signatures) &rarr; permanent pixel redaction &rarr; verification</p>
 </header>
 <div class="wrap">
   <aside>
@@ -130,8 +133,12 @@ function render(s) {
     (r.ok ? '<span class="badge ok">SAFE &mdash; verification passed</span>' : '<span class="badge bad">NOT SAFE &mdash; needs review</span>');
   const t = r.timings;
   const card = document.querySelector('#main .card');
+  const bt = r.by_type || {full: r.signatures, staff: 0, margin: 0};
+  const markTiles = r.marks ? `
+    <div class="stat staff"><div>${bt.staff}</div><span>staff signatures</span></div>
+    <div class="stat margin"><div>${bt.margin}</div><span>margin signatures</span></div>` : '';
   card.insertAdjacentHTML('beforeend', `<div class="stats">
-    <div class="stat"><div>${r.signatures}</div><span>signatures found</span></div>
+    <div class="stat full"><div>${bt.full}</div><span>full signatures</span></div>${markTiles}
     <div class="stat"><div>${r.pages}</div><span>pages</span></div>
     <div class="stat"><div>${r.pipeline_s.toFixed(1)} s</div><span>total pipeline time</span></div>
     <div class="stat"><div>${t.ocr.toFixed(1)} s</div><span>OCR (GPU)</span></div>
@@ -140,20 +147,27 @@ function render(s) {
 
   let html = '';
   for (const v of r.views) {
+    const c = v.counts || {};
+    const parts = [[c.full, 'full'], [c.staff, 'staff'], [c.margin, 'margin']].filter(x => x[0]).map(x => `${x[0]} ${x[1]}`);
     html += `<div class="card"><h2>Page ${v.page}: what the system found</h2>
-      <p class="legend"><i style="border-color:var(--anchor)"></i>anchor (printed label or name/title read by OCR)
-      <i style="border-color:var(--ok)"></i>signature box</p>
+      <p class="counts">${parts.length ? 'Redacted on this page: ' + parts.join(', ') : 'Nothing to redact on this page'}</p>
+      <p class="legend"><i style="border-color:var(--anchor)"></i>anchor (label or name/title)
+      ${r.marks ? '<i style="border-color:var(--staffname)"></i>staff name' : ''}
+      <i style="border-color:var(--full)"></i>full signature
+      ${r.marks ? '<i style="border-color:var(--staff)"></i>staff signature <i style="border-color:var(--margin)"></i>margin signature' : ''}</p>
       <div class="pair">
         <figure><img src="${f(v.found)}"><figcaption>Before, with anchors and detected signatures</figcaption></figure>
         <figure><img src="${f(v.after)}"><figcaption>After: the image stored in the redacted PDF</figcaption></figure>
       </div></div>`;
   }
-  if (r.proof.length) {
-    const rc = r.recoverable;
+  if (r.recoverable && (r.recoverable.total || (r.recoverable_marks || {}).total)) {
+    const rc = r.recoverable, rm = r.recoverable_marks || {total: 0};
+    const markLine = rm.total ? ` Staff and margin signatures (all ${rm.total} boxes tested, crops not shown):
+      usual method <b>${rm.naive}/${rm.total}</b>, this system <b>${rm.ours}/${rm.total}</b>.` : '';
     html += `<div class="card"><h2>Is the signature really gone?</h2>
       <p class="legend">Same boxes, two methods. Every image stored inside each saved PDF is extracted (what any free tool such as
-      <code>pdfimages</code> does), and the one closest to the original signature is shown.
-      Recoverable from the file: usual method <b>${rc.naive}/${rc.total}</b>, this system <b>${rc.ours}/${rc.total}</b>.</p>`;
+      <code>pdfimages</code> does), and the one closest to the original is compared.
+      Full signatures recoverable from the file: usual method <b>${rc.naive}/${rc.total}</b>, this system <b>${rc.ours}/${rc.total}</b>.${markLine}</p>`;
     for (const p of r.proof) {
       html += `<div class="proof">
         <figure><h3>Original (p${p.page}, #${p.sig})</h3><img src="${f(p.orig)}"></figure>

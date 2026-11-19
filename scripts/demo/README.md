@@ -2,6 +2,8 @@
 
 A local web page that runs the full pipeline on one PDF and shows each step: the live stage log, the anchors and signature boxes found, before and after, the automatic verification, and a recovery test against PyMuPDF's usual redaction.
 
+Since round v1.1 the demo redacts full signatures **and** staff and margin signatures (stage 3b, `scripts/pipeline/marks.py`), each drawn in its own colour (green full, purple staff, blue margin; staff-name anchors in pink). The recovery test runs on every redacted box; the side-by-side crops are shown for the full signatures only. Start with `--no-marks` to redact full signatures only.
+
 ## Run it
 
 Use the pipeline environment (Python 3.12 with torch, python-doctr 1.1.0, PyMuPDF, OpenCV, rapidfuzz). If your data is not under `D:\Thesis`, set `THESIS_ROOT` first.

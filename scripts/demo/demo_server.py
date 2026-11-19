@@ -7,9 +7,12 @@ DocTR is loaded and warmed up once at start-up, so the first run in front of an 
 The page lists the PDFs in <THESIS_ROOT>\\demo\\unseen (portal ordinances that are NOT in the
 399-document corpus, so the system has never seen them) and also accepts a dropped-in PDF.
 
-For each run it shows: live stage progress; the anchors and signature boxes found; before/after;
-and the recoverability comparison - PyMuPDF's ordinary redaction (looks black on screen, but the
-signature is still in the image data) vs. this system (the image pixels themselves are black).
+For each run it shows: live stage progress; the anchors and signature boxes found (full signatures,
+staff signatures, margin signatures - each in its own colour); before/after; and the recoverability
+comparison - PyMuPDF's ordinary redaction (looks black on screen, but the signature is still in the
+image data) vs. this system (the image pixels themselves are black). The side-by-side crops are shown
+for the full signatures; the recovery test itself is run on every redacted box.
+--no-marks redacts full signatures only (the demo as it was before round v1.1).
 Sealed TEST documents (by SHA-256 in sample.csv) are refused. Outputs: <THESIS_ROOT>\\demo\\runs\\.
 Listens on 127.0.0.1 only.
 """
@@ -28,6 +31,7 @@ from paths import thesis_path
 from ingest import load_pages, page_scan, to_gray, to_rgb, px_to_pt
 from anchors import find_anchors
 from detect import detect
+from marks import detect_marks
 from redact import redact_pdf, verify, padded, PAD_IN, PAGE_WIDTH_IN, BLACK_MAX
 
 DEMO_DIR = thesis_path('demo', 'unseen')
@@ -118,6 +122,10 @@ def best_copy(images, orig_gray, box):
     return best
 
 
+USE_MARKS = True
+TYPE_NAMES = {'full': 'full signature', 'staff': 'staff signature', 'margin': 'margin signature'}
+TYPE_BGR = {'full': (40, 170, 40), 'staff': (170, 60, 150), 'margin': (200, 110, 30)}   # green, purple, blue
+STAFF_ANCHOR_BGR = (150, 110, 190)
 RECOVERABLE_DIFF = 5.0   # a stored image this close to the original inside the box still holds the signature
 
 
@@ -146,7 +154,7 @@ def run_job(job, pdf_path):
             s0 = scans[0]['pix']
             step(f'Stage 1 - ingest: {n} page(s), scanned image {s0.width}x{s0.height} px '
                  f'(~{s0.width / PAGE_WIDTH_IN:.0f} DPI), no text layer')
-            boxes, pages = {}, []
+            boxes, types, pages = {}, {}, []
             for i, s in enumerate(scans):
                 rec, dt = OCR_ENGINE.page_record(s['pix'])
                 T['ocr'] += dt
@@ -154,16 +162,26 @@ def run_job(job, pdf_path):
                 gray = to_gray(s['pix'])
                 anc = find_anchors(rec)
                 dets = detect(gray, rec, anchors=anc)
+                mk, sanc = detect_marks(gray, rec, dets, anchors=anc) if USE_MARKS else ([], [])
                 T['detect'] += time.perf_counter() - t
                 nwords = sum(len(l['words']) for l in rec['lines'])
+                typed = ([('full', [int(v) for v in d['box']]) for d in dets] +
+                         [(m['type'].replace('_signature', ''), [int(v) for v in m['box']]) for m in mk])
+                cnt = {k: sum(1 for t_, _ in typed if t_ == k) for k in TYPE_NAMES}
                 step(f'Page {i + 1}/{n} - OCR {dt:.2f}s ({nwords} words), '
                      f'{len(anc)} anchor(s): ' + (', '.join(sorted({a["role"] for a in anc})) or 'none')
-                     + f' -> {len(dets)} signature(s)')
-                if dets:
-                    boxes[i] = [[int(v) for v in d['box']] for d in dets]
-                pages.append(dict(anchors=anc, dets=dets))
+                     + (f', {len(sanc)} staff name(s)' if sanc else '')
+                     + f' -> {cnt["full"]} full signature(s)'
+                     + (f', {cnt["staff"]} staff, {cnt["margin"]} margin' if USE_MARKS else ''))
+                if typed:
+                    boxes[i] = [b for _, b in typed]
+                    types[i] = [t_ for t_, _ in typed]
+                pages.append(dict(anchors=anc, staff=sanc, dets=dets))
             nsig = sum(len(v) for v in boxes.values())
-            step(f'Stage 3 - detection done: {nsig} signature(s) on {len(boxes)} page(s)')
+            by_type = {k: sum(v.count(k) for v in types.values()) for k in TYPE_NAMES}
+            step(f'Stage 3 - detection done: {by_type["full"]} full signature(s)'
+                 + (f', {by_type["staff"]} staff and {by_type["margin"]} margin signature(s)' if USE_MARKS else '')
+                 + f' on {len(boxes)} page(s)')
 
             red = os.path.join(out, 'redacted.pdf')
             t = time.perf_counter()
@@ -182,8 +200,10 @@ def run_job(job, pdf_path):
             step('Comparison: same boxes redacted with PyMuPDF apply_redactions (the usual method)')
 
             res = dict(file=os.path.basename(pdf_path), provenance=job['provenance'], pages=n, signatures=nsig,
+                       by_type=by_type, marks=USE_MARKS,
+                       boxes={str(i + 1): [dict(box=b, type=t_) for b, t_ in zip(boxes[i], types[i])] for i in boxes},
                        ok=ok, problems=problems, timings={k: round(v, 2) for k, v in T.items()},
-                       pipeline_s=round(pipeline_s, 2), verify=vstats, views=[], proof=[],
+                       pipeline_s=round(pipeline_s, 2), verify=vstats, views=[], proof=[], recovery=[],
                        downloads=dict(redacted='redacted.pdf', naive='naive_pymupdf.pdf', original='original.pdf'))
             with pymupdf.open(pdf_path) as d_orig, pymupdf.open(red) as d_red, pymupdf.open(naive) as d_nav:
                 show = sorted(boxes) or [n - 1]
@@ -194,14 +214,19 @@ def run_job(job, pdf_path):
                     over = bgr(to_rgb(s['pix']))
                     for a in pages[i]['anchors']:
                         x0, y0, x1, y1 = (int(v) for v in a['box'])
-                        cv2.rectangle(over, (x0, y0), (x1, y1), (230, 120, 20), 3)
-                    for b in boxes.get(i, []):
-                        cv2.rectangle(over, (b[0], b[1]), (b[2], b[3]), (40, 170, 40), 5)
+                        cv2.rectangle(over, (x0, y0), (x1, y1), (20, 120, 230), 3)
+                    for a in pages[i]['staff']:
+                        x0, y0, x1, y1 = (int(v) for v in a['box'])
+                        cv2.rectangle(over, (x0, y0), (x1, y1), STAFF_ANCHOR_BGR, 2)
+                    for b, t_ in zip(boxes.get(i, []), types.get(i, [])):
+                        cv2.rectangle(over, (b[0], b[1]), (b[2], b[3]), TYPE_BGR[t_], 5 if t_ == 'full' else 4)
                     save_view(over, os.path.join(out, f'p{i + 1}_found.png'))
                     after = bgr(to_rgb(page_scan(d_red, d_red[i])['pix']))
                     save_view(after, os.path.join(out, f'p{i + 1}_after.png'))
+                    tl = types.get(i, [])
                     res['views'].append(dict(page=i + 1, found=f'p{i + 1}_found.png', after=f'p{i + 1}_after.png',
-                                             anchors=[f"{a['kind']}: {a['text']}" for a in pages[i]['anchors']]))
+                                             anchors=[f"{a['kind']}: {a['text']}" for a in pages[i]['anchors']],
+                                             counts={k: tl.count(k) for k in TYPE_NAMES}))
                     if i not in boxes:
                         continue
                     if not job.get('imgs'):
@@ -213,15 +238,21 @@ def run_job(job, pdf_path):
                     imgs_nav, imgs_red = job['imgs']
                     g_orig = to_gray(s['pix'])
                     zoom = W / d_nav[i].rect.width
-                    for k, b in enumerate(boxes[i]):
+                    own_red = page_scan(d_red, d_red[i])['pix']          # this page's own stored image
+                    k = -1
+                    for b, t_ in zip(boxes[i], types[i]):
                         pb = padded(b, PAD_IN * ppi, W, H)
+                        bn = best_copy(imgs_nav, g_orig, pb)
+                        br = best_copy(imgs_red, g_orig, pb)
+                        res['recovery'].append(dict(type=t_, naive=bool(bn[0] < RECOVERABLE_DIFF),
+                                                    ours=bool(br[0] < RECOVERABLE_DIFF)))
+                        if t_ != 'full':
+                            continue          # side-by-side crops only for the full signatures
+                        k += 1
                         c_orig, win = crop(bgr(to_rgb(s['pix'])), pb, ppi, H, W)
                         rect = px_to_pt(win, s['to_pt'])
                         c_screen = bgr(to_rgb(d_nav[i].get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), clip=rect)))
-                        bn = best_copy(imgs_nav, g_orig, pb)
-                        br = best_copy(imgs_red, g_orig, pb)
                         c_nav, _ = crop(bn[1][3], pb, ppi, H, W)
-                        own_red = page_scan(d_red, d_red[i])['pix']          # show this page's own stored image
                         c_red, _ = crop(bgr(to_rgb(own_red)), pb, ppi, H, W)
                         tag = f'p{i + 1}_s{k + 1}'
                         for name, im in (('orig', c_orig), ('screen', c_screen), ('naive', c_nav), ('ours', c_red)):
@@ -233,13 +264,19 @@ def run_job(job, pdf_path):
                             naive_hidden=not bn[1][1], naive_xref=bn[1][0],
                             ours_recoverable=br[0] < RECOVERABLE_DIFF, ours_diff=round(br[0], 1),
                             ours_black=round(black_share(to_gray(own_red), pb), 3)))
-                    rec_n = sum(p['naive_recoverable'] for p in res['proof'])
-                    rec_o = sum(p['ours_recoverable'] for p in res['proof'])
-                    res['recoverable'] = dict(naive=rec_n, ours=rec_o, total=len(res['proof']))
-            if res.get('recoverable'):
-                rc = res['recoverable']
-                step(f"Recovery test: usual method - {rc['naive']}/{rc['total']} signature(s) recoverable from the file; "
-                     f"this system - {rc['ours']}/{rc['total']}")
+            if res['recovery']:
+                rv = res['recovery']
+
+                def tally(sel):
+                    xs = [x for x in rv if sel(x['type'])]
+                    return dict(naive=sum(x['naive'] for x in xs), ours=sum(x['ours'] for x in xs), total=len(xs))
+                res['recoverable'] = tally(lambda t_: t_ == 'full')
+                res['recoverable_marks'] = tally(lambda t_: t_ != 'full')
+                rc, rm = res['recoverable'], res['recoverable_marks']
+                step(f"Recovery test: usual method - {rc['naive']}/{rc['total']} full signature(s)"
+                     + (f" and {rm['naive']}/{rm['total']} staff/margin signature(s)" if rm['total'] else '')
+                     + f" recoverable from the file; this system - {rc['ours']}/{rc['total']}"
+                     + (f" and {rm['ours']}/{rm['total']}" if rm['total'] else ''))
             job.pop('imgs', None)
             sizes = dict(original=os.path.getsize(pdf_path), redacted=os.path.getsize(red), naive=os.path.getsize(naive))
             res['sizes_kb'] = {k: v // 1024 for k, v in sizes.items()}
@@ -349,7 +386,10 @@ def main():
     ap.add_argument('--port', type=int, default=8765)
     ap.add_argument('--no-browser', action='store_true')
     ap.add_argument('--cpu', action='store_true')
+    ap.add_argument('--no-marks', action='store_true', help='full signatures only (skip staff/margin signatures)')
     args = ap.parse_args()
+    global USE_MARKS
+    USE_MARKS = not args.no_marks
     from redact_cli import OCR
     load_splits()
     os.makedirs(RUNS_DIR, exist_ok=True)

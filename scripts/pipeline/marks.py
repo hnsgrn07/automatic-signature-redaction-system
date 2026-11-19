@@ -68,6 +68,8 @@ STAFF_MIN_AREA_IN2, STAFF_MIN_H_IN = 0.02, 0.10
 MARGIN_Y = 0.90            # bottom strip: cluster centre below this share of the page height (sweep .88-.92)
 MARGIN_MIN_AREA_IN2 = 0.02
 MARGIN_MIN_H_IN, MARGIN_MIN_W_IN = 0.15, 0.08
+MARGIN_LINE_W_IN, MARGIN_LINE_ASPECT = 0.15, 5   # thin and tall (a column of boxed list numbers) = a line, not a
+                                                 # mark; no dev margin mark is <= 0.15 in wide and >= 5x taller
 # margin marks above the bottom strip
 REF_ZONE_X = 0.30          # left zone below the lowest signatory block (mark beside typed reference initials) ...
 REF_ZONE_DOWN_IN = 2.0     # ... at most this far below the block
@@ -331,7 +333,7 @@ def detect_marks(gray, rec, full_dets, anchors=None):
                 typ = 'staff_signature'
             else:
                 continue
-        elif w * h >= MARGIN_MIN_AREA_IN2 and h >= MARGIN_MIN_H_IN and w >= MARGIN_MIN_W_IN and (
+        elif w * h >= MARGIN_MIN_AREA_IN2 and h >= MARGIN_MIN_H_IN and w >= MARGIN_MIN_W_IN and                 not (w <= MARGIN_LINE_W_IN and h >= MARGIN_LINE_ASPECT * w) and (
                 cy >= MARGIN_Y * H
                 or (REF_ZONE_X and low is not None and cx <= REF_ZONE_X * W and low < cy <= low + REF_ZONE_DOWN_IN * ppi)
                 or (CORNER_X and cx >= CORNER_X * W and cy >= CORNER_Y * H)):

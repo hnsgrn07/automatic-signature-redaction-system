@@ -27,6 +27,17 @@
   #drop { margin-top: 14px; border: 2px dashed var(--line); border-radius: 10px; padding: 22px 12px; text-align: center;
           color: var(--muted); cursor: pointer; }
   #drop.over { border-color: var(--accent); color: var(--accent); }
+  #drop.chosen { border-style: solid; border-color: var(--accent); background: #f3f7fc; color: var(--ink); cursor: default; text-align: left; padding: 12px 14px; }
+  #drop .fname { display: block; font-weight: 600; overflow-wrap: anywhere; }
+  #drop .fmeta { display: block; color: var(--muted); font-size: 13px; }
+  #drop .clear { margin-top: 8px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff;
+                 font: inherit; font-size: 13px; color: var(--muted); cursor: pointer; }
+  #drop .clear:hover { border-color: var(--bad); color: var(--bad); }
+  #drop .clear:disabled { opacity: .5; cursor: not-allowed; }
+  .redact { display: block; width: 100%; margin-top: 16px; padding: 11px; border: 0; border-radius: 8px; background: var(--accent);
+            color: #fff; font: inherit; font-weight: 650; font-size: 17px; cursor: pointer; }
+  .redact:hover:not(:disabled) { filter: brightness(1.1); }
+  .redact:disabled { background: #b9c3cf; cursor: not-allowed; }
   .device { margin-top: 14px; font-size: 13px; color: var(--muted); }
   .opt { margin-top: 16px; font-size: 14px; }
   .opt b { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 6px; }
@@ -70,6 +81,15 @@
   .checks { margin: 0; padding-left: 20px; }
   .downloads a { margin-right: 18px; color: var(--accent); }
   .error { color: var(--bad); font-weight: 600; }
+  .hist { display: block; width: 100%; text-align: left; padding: 8px 10px; margin: 0 0 6px; border: 1px solid var(--line);
+          border-radius: 7px; background: #fff; font: inherit; font-size: 15px; cursor: pointer; }
+  .hist:hover { border-color: var(--accent); }
+  .hist.active { border-color: var(--accent); background: #eaf1fa; }
+  .hist .n { display: block; font-weight: 600; overflow-wrap: anywhere; }
+  .hist .m { display: block; color: var(--muted); font-size: 13px; }
+  .hist .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; background: var(--muted); }
+  .dot.ok { background: var(--ok); } .dot.bad { background: var(--bad); } .dot.warn { background: #d08a1c; } .dot.run { background: var(--accent); }
+  .hist-empty { color: var(--muted); font-size: 14px; margin: 0; }
   @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } .pair, .proof { grid-template-columns: 1fr 1fr !important; } }
 </style>
 </head>
@@ -81,16 +101,20 @@
 <div class="wrap">
   <aside>
     <div class="card">
-      <h2>Documents the system has never seen</h2>
-      <div id="docs">Loading&hellip;</div>
-      <div id="drop">Drop a PDF here<br><small>or click to choose</small></div>
+      <h2>Redact a PDF</h2>
+      <div id="drop" style="margin-top:0">Drop a PDF here<br><small>or click to choose</small></div>
       <input id="file" type="file" accept="application/pdf" hidden>
       <div class="opt"><b>Digital (typed) PDFs</b>
         <label><input type="radio" name="digital" value="flatten" checked> Flatten to images</label>
         <small>Safest: nothing but page images is kept. Text is no longer selectable.</small>
         <label><input type="radio" name="digital" value="keep_text"> Keep text selectable</label>
         <small>Removes only what is under each box; verified less strictly.</small></div>
+      <button id="redact" class="redact" disabled>Redact</button>
       <div class="device" id="device"></div>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <h2>This session</h2>
+      <div id="history"><p class="hist-empty">No documents yet.</p></div>
     </div>
   </aside>
   <main id="main">
@@ -107,23 +131,77 @@ document.querySelectorAll('input[name="digital"]').forEach(el => el.onchange = (
 
 fetch('/api/docs').then(r => r.json()).then(d => {
   $('#device').textContent = `OCR on ${d.device.toUpperCase()} (${d.device_name}), model loaded`;
-  $('#docs').innerHTML = d.docs.length ? d.docs.map(x =>
-    `<button class="doc" data-name="${esc(x.name)}">${esc(x.name.replace('.pdf',''))}<span>${x.pages} p</span></button>`).join('')
-    : '<p>No PDFs in demo\\unseen.</p>';
-  document.querySelectorAll('.doc').forEach(b => b.onclick = () => {
-    document.querySelectorAll('.doc').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    start(fetch('/api/run?name=' + encodeURIComponent(b.dataset.name) + '&digital=' + digitalMode(), {method: 'POST'}), b.dataset.name);
-  });
 });
 
+// session history: every document run since the app was started (kept by the server until it is closed)
+let currentJob = null;
+function loadHistory() {
+  fetch('/api/jobs').then(r => r.json()).then(d => {
+    if (!d.jobs.length) { $('#history').innerHTML = '<p class="hist-empty">No documents yet.</p>'; return; }
+    $('#history').innerHTML = d.jobs.map(j => {
+      const bt = j.by_type || {};
+      const [cls, label] = j.state === 'error' ? ['bad', 'error']
+        : j.state !== 'done' ? ['run', j.state === 'queued' ? 'waiting' : 'running']
+        : !j.ok ? ['bad', 'NOT SAFE']
+        : (j.warnings || []).includes('no_full_signature') ? ['warn', 'check by eye']
+        : ['ok', 'safe'];
+      const sigs = j.state === 'done' && bt.full != null
+        ? ` &middot; ${bt.full} full${bt.staff ? `, ${bt.staff} staff` : ''}${bt.margin ? `, ${bt.margin} margin` : ''}` : '';
+      return `<button class="hist${j.id === currentJob ? ' active' : ''}" data-id="${esc(j.id)}">
+        <span class="n">${esc(j.name.replace(/\.pdf$/i, ''))}</span>
+        <span class="m"><i class="dot ${cls}"></i>${esc(j.started)} &middot; ${label}${sigs}</span></button>`;
+    }).join('');
+    document.querySelectorAll('.hist').forEach(b => b.onclick = () => showJob(b.dataset.id));
+  });
+}
+function showJob(id) {
+  clearInterval(poll);
+  currentJob = id;
+  loadHistory();
+  fetch('/api/job/' + id).then(r => r.json()).then(s => {
+    $('#main').innerHTML = `<div class="card"><div class="title"><strong>${esc(s.name)}</strong><span class="badge info" id="state">${esc(s.state)}</span></div>
+      <ul id="log">${s.log.map(l => `<li><b>${l.t.toFixed(1)}s</b>${esc(l.msg)}</li>`).join('')}</ul></div>`;
+    if (s.state === 'done') render(s);
+    else if (s.state === 'error') $('#state').className = 'badge bad';
+    else follow(id, s.log.length);
+  });
+}
+loadHistory();
+
+// choose a file (drop or click) -> it is shown in the drop area, which then takes no other file;
+// pick the digital-PDF option -> press Redact. "Remove" clears the file so another one can be chosen.
 const drop = $('#drop');
-drop.onclick = () => $('#file').click();
-$('#file').onchange = e => e.target.files[0] && upload(e.target.files[0]);
-drop.ondragover = e => { e.preventDefault(); drop.classList.add('over'); };
+const DROP_EMPTY = drop.innerHTML;
+let chosen = null, busy = false;
+const kb = n => n < 1024 * 1024 ? `${Math.max(1, Math.round(n / 1024))} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`;
+function showChosen() {
+  if (!chosen) { drop.className = ''; drop.innerHTML = DROP_EMPTY; }
+  else {
+    drop.className = 'chosen';
+    drop.innerHTML = `<span class="fname">${esc(chosen.name)}</span><span class="fmeta">PDF &middot; ${kb(chosen.size)}</span>
+      <button class="clear" id="clear"${busy ? ' disabled' : ''}>Remove</button>`;
+    $('#clear').onclick = e => { e.stopPropagation(); if (!busy) { chosen = null; $('#file').value = ''; showChosen(); } };
+  }
+  $('#redact').disabled = !chosen || busy;
+  $('#redact').textContent = busy ? 'Redacting…' : 'Redact';
+}
+function choose(f) {
+  if (chosen || !f) return;                       // one file at a time: Remove it first
+  if (!/\.pdf$/i.test(f.name) && f.type !== 'application/pdf') { alert('Please choose a PDF file.'); return; }
+  chosen = f; showChosen();
+}
+function setBusy(b) { busy = b; showChosen(); }
+drop.onclick = () => { if (!chosen) $('#file').click(); };
+$('#file').onchange = e => choose(e.target.files[0]);
+drop.ondragover = e => { e.preventDefault(); if (chosen) { e.dataTransfer.dropEffect = 'none'; return; } drop.classList.add('over'); };
 drop.ondragleave = () => drop.classList.remove('over');
-drop.ondrop = e => { e.preventDefault(); drop.classList.remove('over'); e.dataTransfer.files[0] && upload(e.dataTransfer.files[0]); };
+drop.ondrop = e => { e.preventDefault(); drop.classList.remove('over'); choose(e.dataTransfer.files[0]); };
+// a PDF dropped anywhere else must not make the browser open it and leave the app
+window.addEventListener('dragover', e => e.preventDefault());
+window.addEventListener('drop', e => e.preventDefault());
+$('#redact').onclick = () => { if (chosen && !busy) upload(chosen); };
 function upload(f) {
+  setBusy(true);
   start(fetch('/api/upload?digital=' + digitalMode(), {method: 'POST', headers: {'X-Filename': encodeURIComponent(f.name)}, body: f}), f.name);
 }
 
@@ -131,18 +209,30 @@ function start(req, name) {
   clearInterval(poll);
   $('#main').innerHTML = `<div class="card"><div class="title"><strong>${esc(name)}</strong><span class="badge info" id="state">starting</span></div><ul id="log"></ul></div>`;
   req.then(r => r.json().then(j => ({ok: r.ok, j}))).then(({ok, j}) => {
-    if (!ok) { $('#log').innerHTML = `<li class="error">${esc(j.error)}</li>`; $('#state').textContent = 'refused'; $('#state').className = 'badge bad'; return; }
-    let shown = 0;
-    poll = setInterval(() => fetch('/api/job/' + j.job).then(r => r.json()).then(s => {
-      for (; shown < s.log.length; shown++) {
-        const l = s.log[shown];
-        $('#log').insertAdjacentHTML('beforeend', `<li><b>${l.t.toFixed(1)}s</b>${esc(l.msg)}</li>`);
-      }
-      $('#state').textContent = s.state === 'running' ? 'running' : s.state;
-      if (s.state === 'done') { clearInterval(poll); render(s); }
-      if (s.state === 'error') { clearInterval(poll); $('#state').className = 'badge bad'; }
-    }), 250);
+    if (!ok) { setBusy(false); $('#log').innerHTML = `<li class="error">${esc(j.error)}</li>`; $('#state').textContent = 'refused'; $('#state').className = 'badge bad'; return; }
+    currentJob = j.job;
+    loadHistory();
+    follow(j.job, 0);
+    // independent of what is on screen (another history entry may be opened): free the Redact button when this run ends
+    const watch = setInterval(() => fetch('/api/job/' + j.job).then(r => r.json()).then(s => {
+      if (s.state === 'done' || s.state === 'error') { clearInterval(watch); setBusy(false); loadHistory(); }
+    }), 1000);
   });
+}
+
+function follow(id, shown) {
+  clearInterval(poll);
+  poll = setInterval(() => fetch('/api/job/' + id).then(r => r.json()).then(s => {
+    if (s.state === 'done' || s.state === 'error') setBusy(false);
+    if (currentJob !== id) { clearInterval(poll); return; }
+    for (; shown < s.log.length; shown++) {
+      const l = s.log[shown];
+      $('#log').insertAdjacentHTML('beforeend', `<li><b>${l.t.toFixed(1)}s</b>${esc(l.msg)}</li>`);
+    }
+    $('#state').textContent = s.state === 'running' ? 'running' : s.state;
+    if (s.state === 'done') { clearInterval(poll); render(s); loadHistory(); }
+    if (s.state === 'error') { clearInterval(poll); $('#state').className = 'badge bad'; loadHistory(); }
+  }), 250);
 }
 
 function render(s) {
@@ -232,7 +322,13 @@ function render(s) {
       and the one closest to the original is compared. The usual PyMuPDF method is run twice:
       <b>(a) on the signature pages only</b> (${r.sig_pages} of ${r.pages} page(s)), the way signatures are usually redacted by hand, and
       <b>(b) on exactly the same boxes as this system</b> (${Object.keys(r.boxes || {}).length} page(s)).
-      Its leak needs a page left unredacted: those pages still point to the original scans of the redacted pages, so (a) leaks and (b) does not.
+      ${r.sig_pages >= r.pages
+        ? `<b>On this document (a) and (b) give the same result:</b> every one of its ${r.pages} page(s) has a full signature, so (a)
+      redacted every page too, and no page was left unredacted to keep a hidden copy of the original scan. The usual method's leak needs
+      such a page &mdash; on a multi-page ordinance, (a) leaves the pages without signatures unredacted, and they still point to the original
+      scans, so the signature can be recovered from the file. Try a document with more pages to see it.`
+        : `Its leak needs a page left unredacted: those pages still point to the original scans of the redacted pages, so (a) can leak
+      and (b) does not.`}
       This system is safe either way, and proves it with the checks below.</p>
       <p class="legend">Full signatures recoverable from the file: usual method (a) <b>${rc.naive_sig}/${rc.total}</b>,
       (b) <b>${rc.naive}/${rc.total}</b>, this system <b>${rc.ours}/${rc.total}</b>.${markLine}</p>

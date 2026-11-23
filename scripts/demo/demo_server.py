@@ -401,7 +401,8 @@ def start_job(pdf_path, display_name, digital='flatten'):
     with open(pdf_path, 'rb') as fi, open(os.path.join(d, 'original.pdf'), 'wb') as fo:
         fo.write(fi.read())
     job = dict(id=jid, dir=d, name=display_name, provenance=prov, state='queued', log=[], result=None, error=None,
-               t0=time.perf_counter(), digital='keep_text' if digital == 'keep_text' else 'flatten')
+               t0=time.perf_counter(), digital='keep_text' if digital == 'keep_text' else 'flatten',
+               started=time.strftime('%H:%M:%S'))
     JOBS[jid] = job
     threading.Thread(target=run_job, args=(job, os.path.join(d, 'original.pdf')), daemon=True).start()
     return jid, None
@@ -439,6 +440,14 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, open(os.path.join(HERE, 'demo_page.html'), 'rb').read(), 'text/html; charset=utf-8')
         if u.path == '/api/docs':
             return self.send(200, dict(docs=demo_docs(), device=OCR_ENGINE.device, device_name=OCR_ENGINE.device_name))
+        if u.path == '/api/jobs':
+            # session history: every run since the server started, newest first
+            def summary(j):
+                r = j['result'] or {}
+                return dict(id=j['id'], name=j['name'], started=j.get('started', ''), state=j['state'],
+                            ok=r.get('ok'), warnings=r.get('warnings', []), by_type=r.get('by_type'),
+                            pages=r.get('pages'), scope=r.get('scope'))
+            return self.send(200, dict(jobs=[summary(j) for j in reversed(list(JOBS.values()))]))
         m = re.fullmatch(r'/api/job/([\w]+)', u.path)
         if m and m.group(1) in JOBS:
             j = JOBS[m.group(1)]

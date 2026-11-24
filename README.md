@@ -2,7 +2,13 @@
 
 Proof of concept for Thesis Writing 1: **Automatic Redaction of Signatures on Public LGU Documents to Prevent Forgery Using OCR and Computer Vision** (University of the Cordilleras, BSCS).
 
-The system finds full handwritten signatures on scanned Baguio City ordinances and removes them permanently: DocTR anchor detection, OpenCV contour analysis, and PyMuPDF redaction. This repository currently holds the data preparation and ground-truth stage. The pipeline code comes next.
+The system finds handwritten signatures (full, staff and margin signatures) on scanned Baguio City ordinances and removes them permanently: DocTR anchor detection, OpenCV contour analysis, and PyMuPDF redaction with automatic verification. This repository holds the data preparation and ground truth, the pipeline, a batch tool, and a live demo that can be run as an offline Windows app.
+
+## Run the demo
+
+- **From Python:** `python scripts\demo\demo_server.py` opens a local page at `http://127.0.0.1:8765`. Choose a PDF, pick the option for digital PDFs, press **Redact**; earlier runs of the session stay listed under *This session*. Details in [`scripts/demo/README.md`](scripts/demo/README.md).
+- **As an offline app:** `packaging/` builds `SignatureRedactor.exe`, which needs no internet or Python install and still runs the editable code in this repository. See [`packaging/README.md`](packaging/README.md).
+- **Batch:** `python scripts\pipeline\redact_cli.py INPUT` redacts one PDF or a whole folder and writes a log per document.
 
 ## Data
 
@@ -39,6 +45,9 @@ Boxes are in image pixels of the embedded scan, origin top-left. Files under `da
 | `scripts/screening/` | DPI and text-layer screening |
 | `scripts/sampling/` | Stratified sample, 70/30 split, Iteration 1 sample |
 | `scripts/annotation/` | Page-image extraction, pilot draw, agreement, adjudication, split, export checks, final ground truth |
+| `scripts/pipeline/` | The pipeline: ingest, OCR anchors, full-signature detection, staff/margin signatures, redaction (scanned and digital PDFs), verification, batch CLI and evaluation scripts |
+| `scripts/demo/` | Live demo: local web server and page (choose a PDF, Redact, session history, recovery comparison) |
+| `packaging/` | Builds the demo as an offline Windows app (`SignatureRedactor.exe`) with PyInstaller |
 | `labelstudio/` | Label Studio labelling config and start script |
 | `data/corpus/` | Download manifest, screening report, sample with split and SHA-256 |
 | `data/annotation/` | Page list, pilot and split assignments, raw dev Label Studio exports, corrections |

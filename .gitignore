@@ -17,3 +17,8 @@ staff_geron_test*
 staff_*_dev.json
 staff_pilot_*.json
 !staff_pilot_ground_truth_coco.json
+# offline app build (packaging/): environment, inputs and outputs, ~1-3 GB
+packaging/venv/
+packaging/stage/
+packaging/build/
+packaging/dist/
